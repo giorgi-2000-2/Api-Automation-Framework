@@ -1,0 +1,26 @@
+package org.example.DTOs.ResponseDto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class GetResponseProductDto {
+
+    private Integer id;
+    private String title;
+    private String slug;
+    private double price;
+    private String description;
+    private GetResponseCategoryDTO category;
+    private List<String> images;
+    private String creationAt;
+    private String updatedAt;
+
+}

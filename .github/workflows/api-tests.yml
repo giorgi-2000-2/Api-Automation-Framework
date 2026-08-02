@@ -1,0 +1,31 @@
+name: API Automation CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: პროექტის კოდის გადმოწერა
+        uses: actions/checkout@v4
+
+      - name: Java 21-ის დაყენება
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: ტესტების გაშვება Maven-ის გამოყენებით
+        run: mvn clean test
+
+      - name: Extent Report-ის შენახვა
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Automation-Test-Report
+          path: report/extentReport.html
