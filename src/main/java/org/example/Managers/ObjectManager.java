@@ -1,6 +1,5 @@
 package org.example.Managers;
 import org.example.ApiClient.ProductApiClient;
-import org.example.ApiService.ApiAssertHelper;
 import org.example.ApiService.ApiRequest;
 import org.example.ApiClient.CategoryApiClient;
 import org.example.AssertionManager.ResponseAssert;
