@@ -10,7 +10,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
-
 import java.lang.reflect.Method;
 
 
@@ -41,11 +40,14 @@ public class BaseApiTest {
         if(factoryManagerThreadLocal.get()==null){
             factoryManagerThreadLocal.set(new FactoryManager());
         }
+
             if (method.isAnnotationPresent(RequiresCategory.class)){
                 requestBodyCategory.set(factory().categoryFactory().createCategoryWithData());
                 this.category.set(api().getCategorySteps().createCategorySuccessfully(requestBodyCategory.get(),getSoft()));
 
             }
+
+
         if (method.isAnnotationPresent(RequiresCategory.class)&&method.isAnnotationPresent(RequiresProduct.class)){
 
             this.requestBodyProduct.set(factory().productFactory().createProductWithData(category.get().getId()));
@@ -63,9 +65,12 @@ protected AssertionManager assertManager(){
         return assertionManagerThreadLocal.get();
 }
 
+
 protected SoftAssert getSoft(){
         return softAssertThreadLocal.get();
 }
+
+
     protected ObjectManager api() {
         return apiObjectManagerThreadLocal.get();
     }
@@ -91,6 +96,9 @@ if(ApiConfig.getBaseSpec()!=null){
 }
 assertionManagerThreadLocal.remove();
     }
+
+
+
 
     @AfterClass
     public void afterClass(){
