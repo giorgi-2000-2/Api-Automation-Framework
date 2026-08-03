@@ -8,8 +8,8 @@ import org.example.Utils.ConfigReader;
 import java.util.List;
 
 public class ProductDataFactory {
-    RandomDataFactory randomDataFactory = new RandomDataFactory();
-    private FactoryManager factoryManager;
+    private final RandomDataFactory randomDataFactory = new RandomDataFactory();
+    private final FactoryManager factoryManager;
 
     public ProductDataFactory(FactoryManager factoryManager) {
         this.factoryManager = factoryManager;

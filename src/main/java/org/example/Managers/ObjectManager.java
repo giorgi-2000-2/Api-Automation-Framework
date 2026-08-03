@@ -12,7 +12,7 @@ private CategoryApiClient categoryApiClient;
 private CategorySteps categorySteps;
 private ProductApiClient productApiClient;
 private ProductSteps productSteps;
-    private AssertionManager assertionManager;
+private AssertionManager assertionManager;
 
 
     public ApiRequest getRequest() {

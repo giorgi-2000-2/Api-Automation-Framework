@@ -4,7 +4,7 @@ import org.example.AssertionManager.ResponseCategoryDtoAssert;
 import org.example.AssertionManager.ResponseProductDtoAssert;
 import org.example.AssertionManager.Validator;
 
-public class AssertionManager {
+public class AssertionManager  {
     private ResponseProductDtoAssert responseProductDtoAssert;
     private ResponseCategoryDtoAssert responseCategoryDtoAssert;
     private  Validator validator;

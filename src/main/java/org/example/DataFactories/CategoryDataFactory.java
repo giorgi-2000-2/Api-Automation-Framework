@@ -7,8 +7,8 @@ import org.example.Utils.ConfigReader;
 
 public class CategoryDataFactory {
 
-    RandomDataFactory randomDataFactory = new RandomDataFactory();
-    private FactoryManager factoryManager;
+    private final RandomDataFactory randomDataFactory = new RandomDataFactory();
+    private final FactoryManager factoryManager;
 
     public CategoryDataFactory(FactoryManager factoryManager) {
         this.factoryManager = factoryManager;
