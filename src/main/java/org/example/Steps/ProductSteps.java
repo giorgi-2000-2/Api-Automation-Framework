@@ -1,10 +1,12 @@
 package org.example.Steps;
 import io.restassured.response.Response;
 import org.example.ApiService.HttpStatusCode;
+import org.example.ApiService.Validator;
 import org.example.DTOs.RequestDto.CreateProductRequestDto;
 import org.example.DTOs.ResponseDto.BadRequestResponse;
 import org.example.DTOs.ResponseDto.GetResponseProductDto;
 import org.example.Managers.ObjectManager;
+import org.testng.asserts.SoftAssert;
 
 public class ProductSteps {
     private ObjectManager api;
@@ -15,7 +17,10 @@ public class ProductSteps {
 
     public GetResponseProductDto createProductSuccessfully(CreateProductRequestDto requestBody) {
         Response response = api.productApiClient().createProduct(requestBody);
-
+        Validator validator = new Validator();
+        SoftAssert softAssert = new SoftAssert();
+        validator.ValidateJason(response,GetResponseProductDto.class,softAssert);
+        softAssert.assertAll();
         api.getAssert().assertThat(response)
                 .hasStatusCode(HttpStatusCode.CREATED)
                 .hasContentType("application/json")

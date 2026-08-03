@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 public class UpdateProductRequestDto {
     private String title;
-    private double price;
+    private Integer price;
     private String description;
-    private int categoryId;
+    private Integer categoryId;
     private List<String> images;
 }

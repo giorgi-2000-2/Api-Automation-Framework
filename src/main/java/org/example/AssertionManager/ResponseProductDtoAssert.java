@@ -48,7 +48,7 @@ public class ResponseProductDtoAssert {
         return this;
     }
 
-    public ResponseProductDtoAssert verifyPriceIsCorrect(Double expectedPrice) {
+    public ResponseProductDtoAssert verifyPriceIsCorrect(Integer expectedPrice) {
         validationStep.info("მიმდინარეობს ფასის (Price) შემოწმება");
           Assert.assertEquals(currentProduct.getPrice(), expectedPrice, "Price არასწორია");
         return this;

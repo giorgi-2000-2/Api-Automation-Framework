@@ -38,7 +38,6 @@ public class CategoryTest extends BaseApiTest {
     Response responseCategoryLimit =  api().getCategorySteps().getCategoriesByLimit(requestBody);
 
     assertManager().getResponseCategoryDtoAssert().assertCategoryValidator(responseCategoryLimit);
-
     assertManager().getResponseCategoryDtoAssert().assertThat(responseCategoryLimit)
             .assertCategoryValidator(responseCategoryLimit);
 }

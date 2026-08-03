@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class GetResponseCategoryDTO {
-    private int id;
+    private Integer id;
     private String name;
     private String slug;
     private String image;

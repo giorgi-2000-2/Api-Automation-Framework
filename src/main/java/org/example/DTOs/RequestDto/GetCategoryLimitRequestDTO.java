@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetCategoryLimitRequestDTO {
-    private int limit;
+    private Integer limit;
 }

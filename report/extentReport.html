@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Automation Tester: Giorgi Mikeladze - Reports</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Aug 2, 2026 09:42:20 PM</span></a>
+<a href="#"><span class="badge badge-primary">Aug 3, 2026 04:13:43 PM</span></a>
 </li>
 </ul>
 </div>
@@ -74,14 +74,14 @@
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="pass" test-id="10"
+        <li class="test-item"  status="pass" test-id="1"
           author=""
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">testCreateCategoryEmptyFields</p>
+            <p class="name">testGetCategoryIdBadRequest</p>
             <p class="text-sm">
-              <span>9:42:20 PM</span> / <span>00:00:02:665</span>
+              <span>4:13:43 PM</span> / <span>00:00:02:283</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -89,11 +89,11 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">testCreateCategoryEmptyFields</h5>
-<span class='badge badge-success'>08.02.2026 9:42:20 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:02:665</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
+<h5 class="test-status text-pass">testGetCategoryIdBadRequest</h5>
+<span class='badge badge-success'>08.03.2026 4:13:43 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-default'>00:00:02:283</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
 <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
@@ -105,35 +105,123 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:20 PM</td>
+        <td>4:13:43 PM</td>
         <td>
-          Test Started : testCreateCategoryEmptyFields
+          Test Started : testGetCategoryIdBadRequest
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
+        <td>4:13:43 PM</td>
         <td>
-           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+           HTTP Request: GET https://api.escuelajs.co/api/v1/categories/-1
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
-        <td>
-          Request Body: <pre>{"name":"","image":""}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
            Response Status Code: 400
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
+        <td>
+           Response Body: <pre>{
+    "path": "/api/v1/categories/-1",
+    "timestamp": "2026-08-03T12:13:45.566Z",
+    "name": "EntityNotFoundError",
+    "message": "Could not find any entity of type \"Category\" matching: {\n    \"id\": -1\n}"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="2"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">testCreateCategoryEmptyFields</p>
+            <p class="text-sm">
+              <span>4:13:43 PM</span> / <span>00:00:02:265</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">testCreateCategoryEmptyFields</h5>
+<span class='badge badge-success'>08.03.2026 4:13:43 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-default'>00:00:02:265</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
+        <td>
+          Test Started : testCreateCategoryEmptyFields
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
+        <td>
+           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
+        <td>
+          Request Body: <pre>{"name":"","image":""}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+           Response Status Code: 400
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
         <td>
            Response Body: <pre>{
     "message": [
@@ -148,21 +236,21 @@
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           Test Passed
         </td>
@@ -172,14 +260,14 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="9"
+        <li class="test-item"  status="pass" test-id="4"
           author=""
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">testCreateCategorySuccessfully</p>
+            <p class="name">testDeleteCategorySuccessfully</p>
             <p class="text-sm">
-              <span>9:42:20 PM</span> / <span>00:00:02:985</span>
+              <span>4:13:43 PM</span> / <span>00:00:03:503</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -187,11 +275,11 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">testCreateCategorySuccessfully</h5>
-<span class='badge badge-success'>08.02.2026 9:42:20 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:02:985</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=9</span>
+<h5 class="test-status text-pass">testDeleteCategorySuccessfully</h5>
+<span class='badge badge-success'>08.03.2026 4:13:43 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:46 PM</span>
+<span class='badge badge-default'>00:00:03:503</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
 <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
@@ -203,63 +291,100 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:20 PM</td>
-        <td>
-          Test Started : testCreateCategorySuccessfully
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
+        <td>4:13:43 PM</td>
         <td>
            HTTP Request: POST https://api.escuelajs.co/api/v1/categories
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
+        <td>4:13:43 PM</td>
         <td>
-          Request Body: <pre>{"name":"Electronics from Config-2f60c01c-6a33-4fcf-90a7-c79d3bd5168c","image":"https://placehold.co/600x400"}</pre>
+          Request Body: <pre>{"name":"Electronics from Config-274c8b7d-0f95-4e29-9145-f5a63289c9bb","image":"https://placehold.co/600x400"}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
            Response Status Code: 201
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 560,
-    "name": "Electronics from Config-2f60c01c-6a33-4fcf-90a7-c79d3bd5168c",
-    "slug": "electronics-from-config-2f60c01c-6a33-4fcf-90a7-c79d3bd5168c",
+    "id": 227,
+    "name": "Electronics from Config-274c8b7d-0f95-4e29-9145-f5a63289c9bb",
+    "slug": "electronics-from-config-274c8b7d-0f95-4e29-9145-f5a63289c9bb",
     "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:22.000Z",
-    "updatedAt": "2026-08-02T17:42:22.000Z"
+    "creationAt": "2026-08-03T12:13:45.000Z",
+    "updatedAt": "2026-08-03T12:13:45.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          Test Started : testDeleteCategorySuccessfully
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+           HTTP Request: DELETE https://api.escuelajs.co/api/v1/categories/227
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           Response Status Code: 200
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           Response Body: <pre><html>
+  <body>true</body>
+</html></pre>
+        </td>
+      </tr>
+      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           მიმდინარეობს წაშლის შემოწმება 
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:46 PM</td>
         <td>
           Test Passed
         </td>
@@ -278,7 +403,123 @@
             </ul>
           </div>
           <div class="card-title">
-            <a class="node " id="18"><span> კატეგორიის ბიზნეს სცენარის შემოწმება </span></a>
+            <a class="node " id="20"><span> კატეგორიის ბიზნეს სცენარის შემოწმება </span></a>
+            <div class="node-attr">
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="3"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">testCreateCategorySuccessfully</p>
+            <p class="text-sm">
+              <span>4:13:43 PM</span> / <span>00:00:02:307</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">testCreateCategorySuccessfully</h5>
+<span class='badge badge-success'>08.03.2026 4:13:43 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-default'>00:00:02:307</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
+        <td>
+          Test Started : testCreateCategorySuccessfully
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
+        <td>
+           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
+        <td>
+          Request Body: <pre>{"name":"Electronics from Config-05aa9f2a-01ab-49f3-9b49-8e8079fb964c","image":"https://placehold.co/600x400"}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+           Response Status Code: 201
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+           Response Body: <pre>{
+    "id": 225,
+    "name": "Electronics from Config-05aa9f2a-01ab-49f3-9b49-8e8079fb964c",
+    "slug": "electronics-from-config-05aa9f2a-01ab-49f3-9b49-8e8079fb964c",
+    "image": "https://placehold.co/600x400",
+    "creationAt": "2026-08-03T12:13:45.000Z",
+    "updatedAt": "2026-08-03T12:13:45.000Z"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+  <div class="mt-4">  <div class="accordion" role="tablist">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-toolbar node-info">
+            <ul class="list-inline d-none d-sm-block">
+              <li><span class="badge pass-bg log ">Pass</span></li>
+              <li><span class='badge badge-default'>00:00:000</span></li>
+              <li></li>
+            </ul>
+          </div>
+          <div class="card-title">
+            <a class="node " id="13"><span> კატეგორიის ბიზნეს სცენარის შემოწმება </span></a>
             <div class="node-attr">
             </div>
           </div>
@@ -291,14 +532,14 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
            მიმდინარეობს კატეგორიის Title-ის შემოწმება 
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           მიმდინარეობს კატეგორიის სურათის შემოწმება
         </td>
@@ -312,14 +553,14 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="8"
+        <li class="test-item"  status="pass" test-id="5"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">testGetCategoryLimit</p>
             <p class="text-sm">
-              <span>9:42:20 PM</span> / <span>00:00:02:726</span>
+              <span>4:13:43 PM</span> / <span>00:00:02:375</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -328,10 +569,10 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">testGetCategoryLimit</h5>
-<span class='badge badge-success'>08.02.2026 9:42:20 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:02:726</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+<span class='badge badge-success'>08.03.2026 4:13:43 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-default'>00:00:02:375</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
 <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
@@ -343,28 +584,28 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:20 PM</td>
+        <td>4:13:43 PM</td>
         <td>
           Test Started : testGetCategoryLimit
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
+        <td>4:13:43 PM</td>
         <td>
-           HTTP Request: GET https://api.escuelajs.co/api/v1/categories?limit=10
+           HTTP Request: GET https://api.escuelajs.co/api/v1/categories?limit=9
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
            Response Status Code: 200
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
            Response Body: <pre>[
     {
@@ -372,241 +613,219 @@
         "name": "Clothes",
         "slug": "clothes",
         "image": "https://i.imgur.com/QkIa5tT.jpeg",
-        "creationAt": "2026-08-01T23:02:10.000Z",
-        "updatedAt": "2026-08-01T23:02:10.000Z"
+        "creationAt": "2026-08-02T23:32:37.000Z",
+        "updatedAt": "2026-08-03T12:02:37.000Z"
     },
     {
         "id": 2,
-        "name": "Electronics",
-        "slug": "electronics",
-        "image": "https://i.imgur.com/ZANVnHE.jpeg",
-        "creationAt": "2026-08-01T23:02:10.000Z",
-        "updatedAt": "2026-08-01T23:02:10.000Z"
+        "name": "Mob",
+        "slug": "mob",
+        "image": "https://placeimg.com/640/480/any",
+        "creationAt": "2026-08-02T23:32:37.000Z",
+        "updatedAt": "2026-08-03T07:07:30.000Z"
     },
     {
         "id": 3,
         "name": "Furniture",
         "slug": "furniture",
         "image": "https://i.imgur.com/Qphac99.jpeg",
-        "creationAt": "2026-08-01T23:02:10.000Z",
-        "updatedAt": "2026-08-01T23:02:10.000Z"
+        "creationAt": "2026-08-02T23:32:37.000Z",
+        "updatedAt": "2026-08-02T23:32:37.000Z"
     },
     {
         "id": 4,
         "name": "Shoes",
         "slug": "shoes",
         "image": "https://i.imgur.com/qNOjJje.jpeg",
-        "creationAt": "2026-08-01T23:02:10.000Z",
-        "updatedAt": "2026-08-01T23:02:10.000Z"
+        "creationAt": "2026-08-02T23:32:37.000Z",
+        "updatedAt": "2026-08-02T23:32:37.000Z"
     },
     {
         "id": 5,
-        "name": "Miscellaneous",
-        "slug": "miscellaneous",
+        "name": "Toys",
+        "slug": "toys",
         "image": "https://i.imgur.com/BG8J0Fj.jpg",
-        "creationAt": "2026-08-01T23:02:10.000Z",
-        "updatedAt": "2026-08-01T23:02:10.000Z"
-    },
-    {
-        "id": 6,
-        "name": "Electronics from Config-4fbd7b34-a3ce-4090-8a63-b830494f69a8",
-        "slug": "electronics-from-config-4fbd7b34-a3ce-4090-8a63-b830494f69a8",
-        "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-01T23:29:03.000Z",
-        "updatedAt": "2026-08-01T23:29:03.000Z"
-    },
-    {
-        "id": 7,
-        "name": " ",
-        "slug": "",
-        "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-01T23:29:03.000Z",
-        "updatedAt": "2026-08-01T23:29:03.000Z"
-    },
-    {
-        "id": 9,
-        "name": "Electronics from Config-3b24af9a-b2a2-4c7c-88e0-8ca1abf09f8c",
-        "slug": "electronics-from-config-3b24af9a-b2a2-4c7c-88e0-8ca1abf09f8c",
-        "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-01T23:29:03.000Z",
-        "updatedAt": "2026-08-01T23:29:03.000Z"
+        "creationAt": "2026-08-02T23:32:37.000Z",
+        "updatedAt": "2026-08-03T11:09:22.000Z"
     },
     {
         "id": 10,
-        "name": "Electronics from Config-a866fc6d-19e5-4710-8e6b-d457226bfd65",
-        "slug": "electronics-from-config-a866fc6d-19e5-4710-8e6b-d457226bfd65",
-        "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-01T23:29:04.000Z",
-        "updatedAt": "2026-08-01T23:29:04.000Z"
+        "name": "Aziz",
+        "slug": "aziz",
+        "image": "https://i.pinimg.com/736x/82/c5/3c/82c53cc485a9230836c08623d0bb5064.jpg",
+        "creationAt": "2026-08-03T00:52:42.000Z",
+        "updatedAt": "2026-08-03T08:26:42.000Z"
     },
     {
-        "id": 11,
-        "name": "Electronics from Config-d2694cf8-946a-444c-adb9-8df708a6d4c1",
-        "slug": "electronics-from-config-d2694cf8-946a-444c-adb9-8df708a6d4c1",
+        "id": 12,
+        "name": "test Category",
+        "slug": "test-category",
+        "image": "http://www.jones.org/",
+        "creationAt": "2026-08-03T03:19:31.000Z",
+        "updatedAt": "2026-08-03T08:15:57.000Z"
+    },
+    {
+        "id": 37,
+        "name": "Electronics",
+        "slug": "electronics",
         "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-01T23:29:04.000Z",
-        "updatedAt": "2026-08-01T23:29:04.000Z"
+        "creationAt": "2026-08-03T04:09:36.000Z",
+        "updatedAt": "2026-08-03T10:45:52.000Z"
+    },
+    {
+        "id": 41,
+        "name": "Electronics from Config-fc7204f3-719b-45a2-b421-8f26b96650dc",
+        "slug": "electronics-from-config-fc7204f3-719b-45a2-b421-8f26b96650dc",
+        "image": "https://placehold.co/600x400",
+        "creationAt": "2026-08-03T04:09:37.000Z",
+        "updatedAt": "2026-08-03T04:09:37.000Z"
     }
 ]</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 1
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 2
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 3
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 4
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 5
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          კატეგორიის ID ვალიდურია: 6
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          კატეგორიის ID ვალიდურია: 7
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          კატეგორიის ID ვალიდურია: 9
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 10
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
-          კატეგორიის ID ვალიდურია: 11
+          კატეგორიის ID ვალიდურია: 12
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
+        <td>
+          კატეგორიის ID ვალიდურია: 37
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          კატეგორიის ID ვალიდურია: 41
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 1
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 2
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 3
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 4
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 5
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          კატეგორიის ID ვალიდურია: 6
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          კატეგორიის ID ვალიდურია: 7
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          კატეგორიის ID ვალიდურია: 9
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           კატეგორიის ID ვალიდურია: 10
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
-          კატეგორიის ID ვალიდურია: 11
+          კატეგორიის ID ვალიდურია: 12
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
+        <td>
+          კატეგორიის ID ვალიდურია: 37
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          კატეგორიის ID ვალიდურია: 41
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
         <td>
           Test Passed
         </td>
@@ -625,7 +844,7 @@
             </ul>
           </div>
           <div class="card-title">
-            <a class="node " id="11"><span> კატეგორიის ბიზნეს სცენარის შემოწმება </span></a>
+            <a class="node " id="9"><span> კატეგორიის ბიზნეს სცენარის შემოწმება </span></a>
             <div class="node-attr">
             </div>
           </div>
@@ -640,9 +859,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">testGetCategoryWithSlug</p>
+            <p class="name">testCreateCategoryBadRequest</p>
             <p class="text-sm">
-              <span>9:42:20 PM</span> / <span>00:00:03:376</span>
+              <span>4:13:43 PM</span> / <span>00:00:02:301</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -650,10 +869,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">testGetCategoryWithSlug</h5>
-<span class='badge badge-success'>08.02.2026 9:42:20 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:03:376</span>
+<h5 class="test-status text-pass">testCreateCategoryBadRequest</h5>
+<span class='badge badge-success'>08.03.2026 4:13:43 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-default'>00:00:02:301</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -666,105 +885,447 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
+        <td>4:13:43 PM</td>
+        <td>
+          Test Started : testCreateCategoryBadRequest
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
         <td>
            HTTP Request: POST https://api.escuelajs.co/api/v1/categories
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
+        <td>4:13:43 PM</td>
         <td>
-          Request Body: <pre>{"name":"Electronics from Config-56baf611-9abd-4cbd-be9e-fb06d69bc895","image":"https://placehold.co/600x400"}</pre>
+          Request Body: <pre>{"name":" ","image":"https://placehold.co/600x400"}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
+        <td>
+           Response Status Code: 400
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+           Response Body: <pre>{
+    "path": "/api/v1/categories",
+    "timestamp": "2026-08-03T12:13:45.679Z",
+    "name": "QueryFailedError",
+    "message": "SqliteError: UNIQUE constraint failed: category.slug",
+    "code": "SQLITE_CONSTRAINT_UNIQUE"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="7"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">testGetCategoryById</p>
+            <p class="text-sm">
+              <span>4:13:43 PM</span> / <span>00:00:03:213</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">testGetCategoryById</h5>
+<span class='badge badge-success'>08.03.2026 4:13:43 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:46 PM</span>
+<span class='badge badge-default'>00:00:03:213</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
+        <td>
+           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
+        <td>
+          Request Body: <pre>{"name":"Electronics from Config-cc3ec6eb-6381-454d-81ab-d5acc3645dec","image":"https://placehold.co/600x400"}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
         <td>
            Response Status Code: 201
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 559,
-    "name": "Electronics from Config-56baf611-9abd-4cbd-be9e-fb06d69bc895",
-    "slug": "electronics-from-config-56baf611-9abd-4cbd-be9e-fb06d69bc895",
+    "id": 226,
+    "name": "Electronics from Config-cc3ec6eb-6381-454d-81ab-d5acc3645dec",
+    "slug": "electronics-from-config-cc3ec6eb-6381-454d-81ab-d5acc3645dec",
     "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:22.000Z",
-    "updatedAt": "2026-08-02T17:42:22.000Z"
+    "creationAt": "2026-08-03T12:13:45.000Z",
+    "updatedAt": "2026-08-03T12:13:45.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
-          Test Started : testGetCategoryWithSlug
+          Test Started : testGetCategoryById
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
-           HTTP Request: GET https://api.escuelajs.co/api/v1/categories/slug/electronics-from-config-56baf611-9abd-4cbd-be9e-fb06d69bc895
+           HTTP Request: GET https://api.escuelajs.co/api/v1/categories/226
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
            Response Status Code: 200
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 559,
-    "name": "Electronics from Config-56baf611-9abd-4cbd-be9e-fb06d69bc895",
-    "slug": "electronics-from-config-56baf611-9abd-4cbd-be9e-fb06d69bc895",
+    "id": 226,
+    "name": "Electronics from Config-cc3ec6eb-6381-454d-81ab-d5acc3645dec",
+    "slug": "electronics-from-config-cc3ec6eb-6381-454d-81ab-d5acc3645dec",
     "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:22.000Z",
-    "updatedAt": "2026-08-02T17:42:22.000Z"
+    "creationAt": "2026-08-03T12:13:45.000Z",
+    "updatedAt": "2026-08-03T12:13:45.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          მიმდინარეობს კატეგორიის ID-ს შემოწმება
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+  <div class="mt-4">  <div class="accordion" role="tablist">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-toolbar node-info">
+            <ul class="list-inline d-none d-sm-block">
+              <li><span class="badge pass-bg log ">Pass</span></li>
+              <li><span class='badge badge-default'>00:00:000</span></li>
+              <li></li>
+            </ul>
+          </div>
+          <div class="card-title">
+            <a class="node " id="17"><span> კატეგორიის ბიზნეს სცენარის შემოწმება </span></a>
+            <div class="node-attr">
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="8"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">testDeleteCategoryWrongIdBadRequest</p>
+            <p class="text-sm">
+              <span>4:13:43 PM</span> / <span>00:00:02:282</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">testDeleteCategoryWrongIdBadRequest</h5>
+<span class='badge badge-success'>08.03.2026 4:13:43 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-default'>00:00:02:282</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
+        <td>
+          Test Started : testDeleteCategoryWrongIdBadRequest
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:43 PM</td>
+        <td>
+           HTTP Request: DELETE https://api.escuelajs.co/api/v1/categories/0
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+           Response Status Code: 400
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+           Response Body: <pre>{
+    "path": "/api/v1/categories/0",
+    "timestamp": "2026-08-03T12:13:45.556Z",
+    "name": "EntityNotFoundError",
+    "message": "Could not find any entity of type \"Category\" matching: {\n    \"id\": 0\n}"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="10"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">testGetCategoryWithSlug</p>
+            <p class="text-sm">
+              <span>4:13:45 PM</span> / <span>00:00:01:987</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">testGetCategoryWithSlug</h5>
+<span class='badge badge-success'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:47 PM</span>
+<span class='badge badge-default'>00:00:01:987</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          Request Body: <pre>{"name":"Electronics from Config-7690d6c2-ecc1-4288-b199-9a0441112f9e","image":"https://placehold.co/600x400"}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           Response Status Code: 201
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           Response Body: <pre>{
+    "id": 230,
+    "name": "Electronics from Config-7690d6c2-ecc1-4288-b199-9a0441112f9e",
+    "slug": "electronics-from-config-7690d6c2-ecc1-4288-b199-9a0441112f9e",
+    "image": "https://placehold.co/600x400",
+    "creationAt": "2026-08-03T12:13:46.000Z",
+    "updatedAt": "2026-08-03T12:13:46.000Z"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          Test Started : testGetCategoryWithSlug
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           HTTP Request: GET https://api.escuelajs.co/api/v1/categories/slug/electronics-from-config-7690d6c2-ecc1-4288-b199-9a0441112f9e
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           Response Status Code: 200
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           Response Body: <pre>{
+    "id": 230,
+    "name": "Electronics from Config-7690d6c2-ecc1-4288-b199-9a0441112f9e",
+    "slug": "electronics-from-config-7690d6c2-ecc1-4288-b199-9a0441112f9e",
+    "image": "https://placehold.co/600x400",
+    "creationAt": "2026-08-03T12:13:46.000Z",
+    "updatedAt": "2026-08-03T12:13:46.000Z"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           Test Passed
         </td>
@@ -796,7 +1357,7 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            მიმდინარეობს კატეგორიის Title-ის შემოწმება 
         </td>
@@ -810,14 +1371,14 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="7"
+        <li class="test-item"  status="pass" test-id="11"
           author=""
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">testDeleteCategoryWrongIdBadRequest</p>
+            <p class="name">testPutCategoryUpdateBadRequest</p>
             <p class="text-sm">
-              <span>9:42:20 PM</span> / <span>00:00:02:626</span>
+              <span>4:13:45 PM</span> / <span>00:00:02:012</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -825,11 +1386,11 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">testDeleteCategoryWrongIdBadRequest</h5>
-<span class='badge badge-success'>08.02.2026 9:42:20 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:02:626</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+<h5 class="test-status text-pass">testPutCategoryUpdateBadRequest</h5>
+<span class='badge badge-success'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:47 PM</span>
+<span class='badge badge-default'>00:00:02:012</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=11</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
 <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
@@ -841,285 +1402,88 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:20 PM</td>
-        <td>
-          Test Started : testDeleteCategoryWrongIdBadRequest
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
-        <td>
-           HTTP Request: DELETE https://api.escuelajs.co/api/v1/categories/0
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Status Code: 400
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Body: <pre>{
-    "path": "/api/v1/categories/0",
-    "timestamp": "2026-08-02T17:42:21.943Z",
-    "name": "EntityNotFoundError",
-    "message": "Could not find any entity of type \"Category\" matching: {\n    \"id\": 0\n}"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Passed
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="4"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">testGetCategoryById</p>
-            <p class="text-sm">
-              <span>9:42:20 PM</span> / <span>00:00:03:205</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">testGetCategoryById</h5>
-<span class='badge badge-success'>08.02.2026 9:42:20 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:03:205</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
+        <td>4:13:45 PM</td>
         <td>
            HTTP Request: POST https://api.escuelajs.co/api/v1/categories
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
+        <td>4:13:45 PM</td>
         <td>
-          Request Body: <pre>{"name":"Electronics from Config-c265406b-4f06-46ef-9049-fb27662e7aa9","image":"https://placehold.co/600x400"}</pre>
+          Request Body: <pre>{"name":"Electronics from Config-94c98612-06d6-4de7-808f-2f34c7ded57d","image":"https://placehold.co/600x400"}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
            Response Status Code: 201
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 557,
-    "name": "Electronics from Config-c265406b-4f06-46ef-9049-fb27662e7aa9",
-    "slug": "electronics-from-config-c265406b-4f06-46ef-9049-fb27662e7aa9",
+    "id": 231,
+    "name": "Electronics from Config-94c98612-06d6-4de7-808f-2f34c7ded57d",
+    "slug": "electronics-from-config-94c98612-06d6-4de7-808f-2f34c7ded57d",
     "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:22.000Z",
-    "updatedAt": "2026-08-02T17:42:22.000Z"
+    "creationAt": "2026-08-03T12:13:46.000Z",
+    "updatedAt": "2026-08-03T12:13:46.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
-          Test Started : testGetCategoryById
+          Test Started : testPutCategoryUpdateBadRequest
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
-           HTTP Request: GET https://api.escuelajs.co/api/v1/categories/557
+           HTTP Request: PUT https://api.escuelajs.co/api/v1/categories/231
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Status Code: 200
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Body: <pre>{
-    "id": 557,
-    "name": "Electronics from Config-c265406b-4f06-46ef-9049-fb27662e7aa9",
-    "slug": "electronics-from-config-c265406b-4f06-46ef-9049-fb27662e7aa9",
-    "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:22.000Z",
-    "updatedAt": "2026-08-02T17:42:22.000Z"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          მიმდინარეობს კატეგორიის ID-ს შემოწმება
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Passed
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-  <div class="mt-4">  <div class="accordion" role="tablist">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-toolbar node-info">
-            <ul class="list-inline d-none d-sm-block">
-              <li><span class="badge pass-bg log ">Pass</span></li>
-              <li><span class='badge badge-default'>00:00:000</span></li>
-              <li></li>
-            </ul>
-          </div>
-          <div class="card-title">
-            <a class="node " id="20"><span> კატეგორიის ბიზნეს სცენარის შემოწმება </span></a>
-            <div class="node-attr">
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="1"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">testCreateCategoryBadRequest</p>
-            <p class="text-sm">
-              <span>9:42:20 PM</span> / <span>00:00:02:747</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">testCreateCategoryBadRequest</h5>
-<span class='badge badge-success'>08.02.2026 9:42:20 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:02:747</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:20 PM</td>
-        <td>
-          Test Started : testCreateCategoryBadRequest
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
-        <td>
-           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
+        <td>4:13:46 PM</td>
         <td>
           Request Body: <pre>{"name":" ","image":"https://placehold.co/600x400"}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            Response Status Code: 400
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            Response Body: <pre>{
-    "path": "/api/v1/categories",
-    "timestamp": "2026-08-02T17:42:22.160Z",
+    "path": "/api/v1/categories/231",
+    "timestamp": "2026-08-03T12:13:47.708Z",
     "name": "QueryFailedError",
     "message": "SqliteError: UNIQUE constraint failed: category.slug",
     "code": "SQLITE_CONSTRAINT_UNIQUE"
@@ -1128,350 +1492,14 @@
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Passed
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="3"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">testGetCategoryWithWrongSlug</p>
-            <p class="text-sm">
-              <span>9:42:20 PM</span> / <span>00:00:02:626</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">testGetCategoryWithWrongSlug</h5>
-<span class='badge badge-success'>08.02.2026 9:42:20 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:02:626</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:20 PM</td>
-        <td>
-          Test Started : testGetCategoryWithWrongSlug
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
-        <td>
-           HTTP Request: GET https://api.escuelajs.co/api/v1/categories/slug/%20
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Status Code: 400
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Body: <pre>{
-    "path": "/api/v1/categories/slug/%20",
-    "timestamp": "2026-08-02T17:42:21.935Z",
-    "name": "EntityNotFoundError",
-    "message": "Could not find any entity of type \"Category\" matching: {\n    \"where\": {\n        \"slug\": \" \"\n    }\n}"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Passed
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="5"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">testDeleteCategorySuccessfully</p>
-            <p class="text-sm">
-              <span>9:42:20 PM</span> / <span>00:00:03:450</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">testDeleteCategorySuccessfully</h5>
-<span class='badge badge-success'>08.02.2026 9:42:20 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:24 PM</span>
-<span class='badge badge-default'>00:00:03:450</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
-        <td>
-           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
-        <td>
-          Request Body: <pre>{"name":"Electronics from Config-77faafb1-1d84-4ef3-88ee-7ac339d15854","image":"https://placehold.co/600x400"}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Status Code: 201
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Body: <pre>{
-    "id": 558,
-    "name": "Electronics from Config-77faafb1-1d84-4ef3-88ee-7ac339d15854",
-    "slug": "electronics-from-config-77faafb1-1d84-4ef3-88ee-7ac339d15854",
-    "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:22.000Z",
-    "updatedAt": "2026-08-02T17:42:22.000Z"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Started : testDeleteCategorySuccessfully
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           HTTP Request: DELETE https://api.escuelajs.co/api/v1/categories/558
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Status Code: 200
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           Response Body: <pre><html>
-  <body>true</body>
-</html></pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           მიმდინარეობს წაშლის შემოწმება 
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          Test Passed
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-  <div class="mt-4">  <div class="accordion" role="tablist">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-toolbar node-info">
-            <ul class="list-inline d-none d-sm-block">
-              <li><span class="badge pass-bg log ">Pass</span></li>
-              <li><span class='badge badge-default'>00:00:000</span></li>
-              <li></li>
-            </ul>
-          </div>
-          <div class="card-title">
-            <a class="node " id="25"><span> კატეგორიის ბიზნეს სცენარის შემოწმება </span></a>
-            <div class="node-attr">
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="2"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">testGetCategoryIdBadRequest</p>
-            <p class="text-sm">
-              <span>9:42:20 PM</span> / <span>00:00:02:626</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">testGetCategoryIdBadRequest</h5>
-<span class='badge badge-success'>08.02.2026 9:42:20 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:02:626</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:20 PM</td>
-        <td>
-          Test Started : testGetCategoryIdBadRequest
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:21 PM</td>
-        <td>
-           HTTP Request: GET https://api.escuelajs.co/api/v1/categories/0
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Status Code: 400
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Body: <pre>{
-    "path": "/api/v1/categories/0",
-    "timestamp": "2026-08-02T17:42:21.942Z",
-    "name": "EntityNotFoundError",
-    "message": "Could not find any entity of type \"Category\" matching: {\n    \"id\": 0\n}"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           Test Passed
         </td>
@@ -1486,9 +1514,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">testPutCategoryUpdateBadRequest</p>
+            <p class="name">testGetCategoryWithWrongSlug</p>
             <p class="text-sm">
-              <span>9:42:23 PM</span> / <span>00:00:01:662</span>
+              <span>4:13:45 PM</span> / <span>00:00:00:930</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -1496,10 +1524,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">testPutCategoryUpdateBadRequest</h5>
-<span class='badge badge-success'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:24 PM</span>
-<span class='badge badge-default'>00:00:01:662</span>
+<h5 class="test-status text-pass">testGetCategoryWithWrongSlug</h5>
+<span class='badge badge-success'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:46 PM</span>
+<span class='badge badge-default'>00:00:00:930</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=12</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -1512,104 +1540,54 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
-           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+          Test Started : testGetCategoryWithWrongSlug
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
-          Request Body: <pre>{"name":"Electronics from Config-a8a8a4b6-4b27-4e4a-9f70-b07699d0bdbb","image":"https://placehold.co/600x400"}</pre>
+           HTTP Request: GET https://api.escuelajs.co/api/v1/categories/slug/%20
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           Response Status Code: 201
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           Response Body: <pre>{
-    "id": 564,
-    "name": "Electronics from Config-a8a8a4b6-4b27-4e4a-9f70-b07699d0bdbb",
-    "slug": "electronics-from-config-a8a8a4b6-4b27-4e4a-9f70-b07699d0bdbb",
-    "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:23.000Z",
-    "updatedAt": "2026-08-02T17:42:23.000Z"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          Test Started : testPutCategoryUpdateBadRequest
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           HTTP Request: PUT https://api.escuelajs.co/api/v1/categories/564
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          Request Body: <pre>{"name":" ","image":"https://placehold.co/600x400"}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:46 PM</td>
         <td>
            Response Status Code: 400
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:46 PM</td>
         <td>
            Response Body: <pre>{
-    "path": "/api/v1/categories/564",
-    "timestamp": "2026-08-02T17:42:23.731Z",
-    "name": "QueryFailedError",
-    "message": "SqliteError: UNIQUE constraint failed: category.slug",
-    "code": "SQLITE_CONSTRAINT_UNIQUE"
+    "path": "/api/v1/categories/slug/%20",
+    "timestamp": "2026-08-03T12:13:46.595Z",
+    "name": "EntityNotFoundError",
+    "message": "Could not find any entity of type \"Category\" matching: {\n    \"where\": {\n        \"slug\": \" \"\n    }\n}"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:46 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:46 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:46 PM</td>
         <td>
           Test Passed
         </td>
@@ -1619,14 +1597,14 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="13"
+        <li class="test-item"  status="pass" test-id="14"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">testPutCategoryUpdateSuccessfully</p>
             <p class="text-sm">
-              <span>9:42:23 PM</span> / <span>00:00:01:350</span>
+              <span>4:13:45 PM</span> / <span>00:00:01:953</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -1635,10 +1613,10 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">testPutCategoryUpdateSuccessfully</h5>
-<span class='badge badge-success'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:24 PM</span>
-<span class='badge badge-default'>00:00:01:350</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=13</span>
+<span class='badge badge-success'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:47 PM</span>
+<span class='badge badge-default'>00:00:01:953</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=14</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
 <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
@@ -1650,112 +1628,112 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
            HTTP Request: POST https://api.escuelajs.co/api/v1/categories
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
-          Request Body: <pre>{"name":"Electronics from Config-546ad75a-7aaf-4ff2-848c-f1a795ca480d","image":"https://placehold.co/600x400"}</pre>
+          Request Body: <pre>{"name":"Electronics from Config-35be1319-0fe6-46bd-8084-1dbb19b69cbc","image":"https://placehold.co/600x400"}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
            Response Status Code: 201
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 561,
-    "name": "Electronics from Config-546ad75a-7aaf-4ff2-848c-f1a795ca480d",
-    "slug": "electronics-from-config-546ad75a-7aaf-4ff2-848c-f1a795ca480d",
+    "id": 228,
+    "name": "Electronics from Config-35be1319-0fe6-46bd-8084-1dbb19b69cbc",
+    "slug": "electronics-from-config-35be1319-0fe6-46bd-8084-1dbb19b69cbc",
     "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:22.000Z",
-    "updatedAt": "2026-08-02T17:42:22.000Z"
+    "creationAt": "2026-08-03T12:13:46.000Z",
+    "updatedAt": "2026-08-03T12:13:46.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
           Test Started : testPutCategoryUpdateSuccessfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
-           HTTP Request: PUT https://api.escuelajs.co/api/v1/categories/561
+           HTTP Request: PUT https://api.escuelajs.co/api/v1/categories/228
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
-          Request Body: <pre>{"name":"Electronics from Config-5dca63db-fdc4-4a04-8828-93227fc2679f","image":"https://placehold.co/600x400"}</pre>
+          Request Body: <pre>{"name":"Electronics from Config-d740f1b1-1797-4a39-b044-61a35833bd44","image":"https://placehold.co/600x400"}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            Response Status Code: 200
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 561,
-    "name": "Electronics from Config-5dca63db-fdc4-4a04-8828-93227fc2679f",
-    "slug": "electronics-from-config-5dca63db-fdc4-4a04-8828-93227fc2679f",
+    "id": 228,
+    "name": "Electronics from Config-d740f1b1-1797-4a39-b044-61a35833bd44",
+    "slug": "electronics-from-config-d740f1b1-1797-4a39-b044-61a35833bd44",
     "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:22.000Z",
-    "updatedAt": "2026-08-02T17:42:23.000Z"
+    "creationAt": "2026-08-03T12:13:46.000Z",
+    "updatedAt": "2026-08-03T12:13:47.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           Test Passed
         </td>
@@ -1787,7 +1765,7 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            მიმდინარეობს კატეგორიის Title-ის შემოწმება 
         </td>
@@ -1801,14 +1779,14 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="14"
+        <li class="test-item"  status="pass" test-id="15"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">testCreateProductInvalidCategoryId</p>
             <p class="text-sm">
-              <span>9:42:23 PM</span> / <span>00:00:00:667</span>
+              <span>4:13:45 PM</span> / <span>00:00:01:216</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -1817,104 +1795,9 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">testCreateProductInvalidCategoryId</h5>
-<span class='badge badge-success'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:00:667</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=14</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Started : testCreateProductInvalidCategoryId
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           HTTP Request: POST https://api.escuelajs.co/api/v1/products
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Request Body: <pre>{"title":"Electronics from Config-b031803c-9580-4e81-97bb-f1555cef7e2b","price":100.0,"description":"description-d4e2c590-16e8-490b-ba27-9bf77f6474ab","categoryId":-1,"images":["https://placehold.co/600x400"]}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Status Code: 400
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Body: <pre>{
-    "path": "/api/v1/products",
-    "timestamp": "2026-08-02T17:42:22.723Z",
-    "name": "EntityNotFoundError",
-    "message": "Could not find any entity of type \"Category\" matching: {\n    \"id\": -1\n}"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Passed
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="15"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">testCreateProductValidData</p>
-            <p class="text-sm">
-              <span>9:42:23 PM</span> / <span>00:00:01:423</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">testCreateProductValidData</h5>
-<span class='badge badge-success'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:24 PM</span>
-<span class='badge badge-default'>00:00:01:423</span>
+<span class='badge badge-success'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:46 PM</span>
+<span class='badge badge-default'>00:00:01:216</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=15</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -1927,124 +1810,338 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
-           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+          Test Started : testCreateProductInvalidCategoryId
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Request Body: <pre>{"name":"Electronics from Config-7ec11ad6-22ea-4117-9d22-5a83e781462b","image":"https://placehold.co/600x400"}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Status Code: 201
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Body: <pre>{
-    "id": 562,
-    "name": "Electronics from Config-7ec11ad6-22ea-4117-9d22-5a83e781462b",
-    "slug": "electronics-from-config-7ec11ad6-22ea-4117-9d22-5a83e781462b",
-    "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:22.000Z",
-    "updatedAt": "2026-08-02T17:42:22.000Z"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Started : testCreateProductValidData
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
            HTTP Request: POST https://api.escuelajs.co/api/v1/products
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:45 PM</td>
         <td>
-          Request Body: <pre>{"title":"Electronics from Config-d12f15bd-7d26-4dfc-aaf4-1ac8dd3eed95","price":57.0,"description":"description-e81b7fa0-784b-4eb5-ab69-5f6bcb8c836d","categoryId":562,"images":["https://placehold.co/600x400"]}</pre>
+          Request Body: <pre>{"title":"Electronics from Config-1725300b-f49c-4cde-b699-3ac4c6df1362","price":62,"description":"description-f684d207-131d-4911-b561-1a9638df1bb2","categoryId":-1,"images":["https://placehold.co/600x400"]}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:46 PM</td>
         <td>
-           Response Status Code: 201
+           Response Status Code: 400
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:46 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 353,
-    "title": "Electronics from Config-d12f15bd-7d26-4dfc-aaf4-1ac8dd3eed95",
-    "slug": "electronics-from-config-d12f15bd-7d26-4dfc-aaf4-1ac8dd3eed95",
-    "price": 57,
-    "description": "description-e81b7fa0-784b-4eb5-ab69-5f6bcb8c836d",
-    "category": {
-        "id": 562,
-        "name": "Electronics from Config-7ec11ad6-22ea-4117-9d22-5a83e781462b",
-        "slug": "electronics-from-config-7ec11ad6-22ea-4117-9d22-5a83e781462b",
-        "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-02T17:42:22.000Z",
-        "updatedAt": "2026-08-02T17:42:22.000Z"
-    },
-    "images": [
-        "https://placehold.co/600x400"
-    ],
-    "creationAt": "2026-08-02T17:42:23.000Z",
-    "updatedAt": "2026-08-02T17:42:23.000Z"
+    "path": "/api/v1/products",
+    "timestamp": "2026-08-03T12:13:46.923Z",
+    "name": "EntityNotFoundError",
+    "message": "Could not find any entity of type \"Category\" matching: {\n    \"id\": -1\n}"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:46 PM</td>
         <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
+          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:46 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:46 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="16"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">testCreateProductValidData</p>
+            <p class="text-sm">
+              <span>4:13:45 PM</span> / <span>00:00:01:903</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">testCreateProductValidData</h5>
+<span class='badge badge-success'>08.03.2026 4:13:45 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:47 PM</span>
+<span class='badge badge-default'>00:00:01:903</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=16</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:45 PM</td>
+        <td>
+          Request Body: <pre>{"name":"Electronics from Config-5cca9976-820d-426d-a0d9-9d7c6003328d","image":"https://placehold.co/600x400"}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           Response Status Code: 201
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           Response Body: <pre>{
+    "id": 229,
+    "name": "Electronics from Config-5cca9976-820d-426d-a0d9-9d7c6003328d",
+    "slug": "electronics-from-config-5cca9976-820d-426d-a0d9-9d7c6003328d",
+    "image": "https://placehold.co/600x400",
+    "creationAt": "2026-08-03T12:13:46.000Z",
+    "updatedAt": "2026-08-03T12:13:46.000Z"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          Test Started : testCreateProductValidData
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           HTTP Request: POST https://api.escuelajs.co/api/v1/products
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          Request Body: <pre>{"title":"Electronics from Config-cef09ee2-1f1b-4599-b568-40f97a6aa44c","price":72,"description":"description-c542e22b-200b-45ff-9e55-5b4f3c1db262","categoryId":229,"images":["https://placehold.co/600x400"]}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           Response Status Code: 201
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           Response Body: <pre>{
+    "id": 196,
+    "title": "Electronics from Config-cef09ee2-1f1b-4599-b568-40f97a6aa44c",
+    "slug": "electronics-from-config-cef09ee2-1f1b-4599-b568-40f97a6aa44c",
+    "price": 72,
+    "description": "description-c542e22b-200b-45ff-9e55-5b4f3c1db262",
+    "category": {
+        "id": 229,
+        "name": "Electronics from Config-5cca9976-820d-426d-a0d9-9d7c6003328d",
+        "slug": "electronics-from-config-5cca9976-820d-426d-a0d9-9d7c6003328d",
+        "image": "https://placehold.co/600x400",
+        "creationAt": "2026-08-03T12:13:46.000Z",
+        "updatedAt": "2026-08-03T12:13:46.000Z"
+    },
+    "images": [
+        "https://placehold.co/600x400"
+    ],
+    "creationAt": "2026-08-03T12:13:47.000Z",
+    "updatedAt": "2026-08-03T12:13:47.000Z"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+          <b>[სქემის ვალიდაცია]</b> დაიწყო რესპონსის შედარება კლასთან: GetResponseProductDto
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           field ის რაოდენობა არის jason - 9 DTO კლასის – 9
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 196
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და Electronics from Config-cef09ee2-1f1b-4599-b568-40f97a6aa44c
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და electronics-from-config-cef09ee2-1f1b-4599-b568-40f97a6aa44c
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 72
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და description-c542e22b-200b-45ff-9e55-5b4f3c1db262
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           field ის რაოდენობა არის jason - 6 DTO კლასის – 6
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 229
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და Electronics from Config-5cca9976-820d-426d-a0d9-9d7c6003328d
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და electronics-from-config-5cca9976-820d-426d-a0d9-9d7c6003328d
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და https://placehold.co/600x400
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:46.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:46.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიinterface java.util.List და [https://placehold.co/600x400]
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:47.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:47.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
         <td>
           Test Passed
         </td>
@@ -2076,35 +2173,35 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           მიმდინარეობს სათაურის (Title) შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           მიმდინარეობს ფასის (Price) შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           მიმდინარეობს აღწერის (Description) შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           მიმდინარეობს კატეგორიის ID-ს შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           მიმდინარეობს ფოტოების (Images) შემოწმება
         </td>
@@ -2118,14 +2215,14 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="16"
+        <li class="test-item"  status="pass" test-id="18"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">testDeleteProductSuccessfully</p>
             <p class="text-sm">
-              <span>9:42:23 PM</span> / <span>00:00:02:119</span>
+              <span>4:13:46 PM</span> / <span>00:00:02:865</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -2134,10 +2231,10 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">testDeleteProductSuccessfully</h5>
-<span class='badge badge-success'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:25 PM</span>
-<span class='badge badge-default'>00:00:02:119</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=16</span>
+<span class='badge badge-success'>08.03.2026 4:13:46 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:49 PM</span>
+<span class='badge badge-default'>00:00:02:865</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=18</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
 <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
@@ -2149,138 +2246,257 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
            HTTP Request: POST https://api.escuelajs.co/api/v1/categories
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
-          Request Body: <pre>{"name":"Electronics from Config-2a035955-eaf1-4165-9e79-079143030bca","image":"https://placehold.co/600x400"}</pre>
+          Request Body: <pre>{"name":"Electronics from Config-51cb86b9-3dce-4ef8-9419-1ecef1c523d5","image":"https://placehold.co/600x400"}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            Response Status Code: 201
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 563,
-    "name": "Electronics from Config-2a035955-eaf1-4165-9e79-079143030bca",
-    "slug": "electronics-from-config-2a035955-eaf1-4165-9e79-079143030bca",
+    "id": 233,
+    "name": "Electronics from Config-51cb86b9-3dce-4ef8-9419-1ecef1c523d5",
+    "slug": "electronics-from-config-51cb86b9-3dce-4ef8-9419-1ecef1c523d5",
     "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:22.000Z",
-    "updatedAt": "2026-08-02T17:42:22.000Z"
+    "creationAt": "2026-08-03T12:13:47.000Z",
+    "updatedAt": "2026-08-03T12:13:47.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            HTTP Request: POST https://api.escuelajs.co/api/v1/products
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:47 PM</td>
         <td>
-          Request Body: <pre>{"title":"Electronics from Config-54731210-b25c-44a3-879b-f17f6331c057","price":49.0,"description":"description-3acc7907-a52a-4b83-85d5-48f228c520bc","categoryId":563,"images":["https://placehold.co/600x400"]}</pre>
+          Request Body: <pre>{"title":"Electronics from Config-beac62d2-3474-444c-9635-95e612bb2ae0","price":47,"description":"description-07b074b3-19d5-4467-ab89-a021b9d5b77e","categoryId":233,"images":["https://placehold.co/600x400"]}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
            Response Status Code: 201
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 354,
-    "title": "Electronics from Config-54731210-b25c-44a3-879b-f17f6331c057",
-    "slug": "electronics-from-config-54731210-b25c-44a3-879b-f17f6331c057",
-    "price": 49,
-    "description": "description-3acc7907-a52a-4b83-85d5-48f228c520bc",
+    "id": 198,
+    "title": "Electronics from Config-beac62d2-3474-444c-9635-95e612bb2ae0",
+    "slug": "electronics-from-config-beac62d2-3474-444c-9635-95e612bb2ae0",
+    "price": 47,
+    "description": "description-07b074b3-19d5-4467-ab89-a021b9d5b77e",
     "category": {
-        "id": 563,
-        "name": "Electronics from Config-2a035955-eaf1-4165-9e79-079143030bca",
-        "slug": "electronics-from-config-2a035955-eaf1-4165-9e79-079143030bca",
+        "id": 233,
+        "name": "Electronics from Config-51cb86b9-3dce-4ef8-9419-1ecef1c523d5",
+        "slug": "electronics-from-config-51cb86b9-3dce-4ef8-9419-1ecef1c523d5",
         "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-02T17:42:22.000Z",
-        "updatedAt": "2026-08-02T17:42:22.000Z"
+        "creationAt": "2026-08-03T12:13:47.000Z",
+        "updatedAt": "2026-08-03T12:13:47.000Z"
     },
     "images": [
         "https://placehold.co/600x400"
     ],
-    "creationAt": "2026-08-02T17:42:23.000Z",
-    "updatedAt": "2026-08-02T17:42:23.000Z"
+    "creationAt": "2026-08-03T12:13:48.000Z",
+    "updatedAt": "2026-08-03T12:13:48.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+          <b>[სქემის ვალიდაცია]</b> დაიწყო რესპონსის შედარება კლასთან: GetResponseProductDto
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           field ის რაოდენობა არის jason - 9 DTO კლასის – 9
+        </td>
+      </tr>
+      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 198
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და Electronics from Config-beac62d2-3474-444c-9635-95e612bb2ae0
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და electronics-from-config-beac62d2-3474-444c-9635-95e612bb2ae0
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 47
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და description-07b074b3-19d5-4467-ab89-a021b9d5b77e
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           field ის რაოდენობა არის jason - 6 DTO კლასის – 6
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 233
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და Electronics from Config-51cb86b9-3dce-4ef8-9419-1ecef1c523d5
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და electronics-from-config-51cb86b9-3dce-4ef8-9419-1ecef1c523d5
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და https://placehold.co/600x400
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:47.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:47.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიinterface java.util.List და [https://placehold.co/600x400]
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:48.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:48.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
           Test Started : testDeleteProductSuccessfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
-           HTTP Request: DELETE https://api.escuelajs.co/api/v1/products/354
+           HTTP Request: DELETE https://api.escuelajs.co/api/v1/products/198
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
            Response Status Code: 200
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
            Response Body: <pre><html>
   <body>true</body>
@@ -2289,343 +2505,14 @@
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-          Test Passed
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-  <div class="mt-4">  <div class="accordion" role="tablist">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-toolbar node-info">
-            <ul class="list-inline d-none d-sm-block">
-              <li><span class="badge pass-bg log ">Pass</span></li>
-              <li><span class='badge badge-default'>00:00:000</span></li>
-              <li></li>
-            </ul>
-          </div>
-          <div class="card-title">
-            <a class="node " id="28"><span> პროდუქტის ბიზნეს სცენარის შემოწმება </span></a>
-            <div class="node-attr">
-            </div>
-          </div>
-        </div>
-        <div class="collapse">
-          <div class="card-body">
-            
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-           მიმდინარეობს წაშლის შემოწმება 
-        </td>
-      </tr>
-  </tbody>
-</table>
-          </div>
-        </div>
-      </div>
-  </div>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="17"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">testDeleteProductWrongIdBadRequest</p>
-            <p class="text-sm">
-              <span>9:42:23 PM</span> / <span>00:00:00:627</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">testDeleteProductWrongIdBadRequest</h5>
-<span class='badge badge-success'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-default'>00:00:00:627</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=17</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Started : testDeleteProductWrongIdBadRequest
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           HTTP Request: DELETE https://api.escuelajs.co/api/v1/products/0
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Status Code: 400
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           Response Body: <pre>{
-    "path": "/api/v1/products/0",
-    "timestamp": "2026-08-02T17:42:22.810Z",
-    "name": "EntityNotFoundError",
-    "message": "Could not find any entity of type \"Product\" matching: {\n    \"relations\": [\n        \"category\"\n    ],\n    \"where\": {\n        \"id\": 0\n    }\n}"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Passed
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="19"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">testGetProductById</p>
-            <p class="text-sm">
-              <span>9:42:23 PM</span> / <span>00:00:02:020</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">testGetProductById</h5>
-<span class='badge badge-success'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:25 PM</span>
-<span class='badge badge-default'>00:00:02:020</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=19</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Request Body: <pre>{"name":"Electronics from Config-d6674413-2514-45ff-a053-63f6819b16c2","image":"https://placehold.co/600x400"}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           Response Status Code: 201
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           Response Body: <pre>{
-    "id": 565,
-    "name": "Electronics from Config-d6674413-2514-45ff-a053-63f6819b16c2",
-    "slug": "electronics-from-config-d6674413-2514-45ff-a053-63f6819b16c2",
-    "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:23.000Z",
-    "updatedAt": "2026-08-02T17:42:23.000Z"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           HTTP Request: POST https://api.escuelajs.co/api/v1/products
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          Request Body: <pre>{"title":"Electronics from Config-9b923425-c672-47b8-8807-cb445bce37bb","price":23.0,"description":"description-0565109a-3a2c-4e75-aa77-a01904600d80","categoryId":565,"images":["https://placehold.co/600x400"]}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-           Response Status Code: 201
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-           Response Body: <pre>{
-    "id": 355,
-    "title": "Electronics from Config-9b923425-c672-47b8-8807-cb445bce37bb",
-    "slug": "electronics-from-config-9b923425-c672-47b8-8807-cb445bce37bb",
-    "price": 23,
-    "description": "description-0565109a-3a2c-4e75-aa77-a01904600d80",
-    "category": {
-        "id": 565,
-        "name": "Electronics from Config-d6674413-2514-45ff-a053-63f6819b16c2",
-        "slug": "electronics-from-config-d6674413-2514-45ff-a053-63f6819b16c2",
-        "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-02T17:42:23.000Z",
-        "updatedAt": "2026-08-02T17:42:23.000Z"
-    },
-    "images": [
-        "https://placehold.co/600x400"
-    ],
-    "creationAt": "2026-08-02T17:42:23.000Z",
-    "updatedAt": "2026-08-02T17:42:23.000Z"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-          Test Started : testGetProductById
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-           HTTP Request: GET https://api.escuelajs.co/api/v1/products/355
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-           Response Status Code: 200
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-           Response Body: <pre>{
-    "id": 355,
-    "title": "Electronics from Config-9b923425-c672-47b8-8807-cb445bce37bb",
-    "slug": "electronics-from-config-9b923425-c672-47b8-8807-cb445bce37bb",
-    "price": 23,
-    "description": "description-0565109a-3a2c-4e75-aa77-a01904600d80",
-    "category": {
-        "id": 565,
-        "name": "Electronics from Config-d6674413-2514-45ff-a053-63f6819b16c2",
-        "slug": "electronics-from-config-d6674413-2514-45ff-a053-63f6819b16c2",
-        "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-02T17:42:23.000Z",
-        "updatedAt": "2026-08-02T17:42:23.000Z"
-    },
-    "images": [
-        "https://placehold.co/600x400"
-    ],
-    "creationAt": "2026-08-02T17:42:23.000Z",
-    "updatedAt": "2026-08-02T17:42:23.000Z"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
           Test Passed
         </td>
@@ -2657,35 +2544,483 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
+        <td>
+           მიმდინარეობს წაშლის შემოწმება 
+        </td>
+      </tr>
+  </tbody>
+</table>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="19"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">testDeleteProductWrongIdBadRequest</p>
+            <p class="text-sm">
+              <span>4:13:46 PM</span> / <span>00:00:01:014</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">testDeleteProductWrongIdBadRequest</h5>
+<span class='badge badge-success'>08.03.2026 4:13:46 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:47 PM</span>
+<span class='badge badge-default'>00:00:01:014</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=19</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          Test Started : testDeleteProductWrongIdBadRequest
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           HTTP Request: DELETE https://api.escuelajs.co/api/v1/products/-1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           Response Status Code: 400
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           Response Body: <pre>{
+    "path": "/api/v1/products/-1",
+    "timestamp": "2026-08-03T12:13:47.608Z",
+    "name": "EntityNotFoundError",
+    "message": "Could not find any entity of type \"Product\" matching: {\n    \"relations\": [\n        \"category\"\n    ],\n    \"where\": {\n        \"id\": -1\n    }\n}"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="21"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">testGetProductById</p>
+            <p class="text-sm">
+              <span>4:13:46 PM</span> / <span>00:00:02:583</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">testGetProductById</h5>
+<span class='badge badge-success'>08.03.2026 4:13:46 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:49 PM</span>
+<span class='badge badge-default'>00:00:02:583</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=21</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:46 PM</td>
+        <td>
+          Request Body: <pre>{"name":"Electronics from Config-d42c0035-425e-464d-961d-5c377bc91842","image":"https://placehold.co/600x400"}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           Response Status Code: 201
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           Response Body: <pre>{
+    "id": 232,
+    "name": "Electronics from Config-d42c0035-425e-464d-961d-5c377bc91842",
+    "slug": "electronics-from-config-d42c0035-425e-464d-961d-5c377bc91842",
+    "image": "https://placehold.co/600x400",
+    "creationAt": "2026-08-03T12:13:47.000Z",
+    "updatedAt": "2026-08-03T12:13:47.000Z"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           HTTP Request: POST https://api.escuelajs.co/api/v1/products
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+          Request Body: <pre>{"title":"Electronics from Config-9569517b-5489-4ce5-b448-bd0583a97444","price":3,"description":"description-29680238-4a69-4d0d-816e-d512fdad962f","categoryId":232,"images":["https://placehold.co/600x400"]}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           Response Status Code: 201
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           Response Body: <pre>{
+    "id": 197,
+    "title": "Electronics from Config-9569517b-5489-4ce5-b448-bd0583a97444",
+    "slug": "electronics-from-config-9569517b-5489-4ce5-b448-bd0583a97444",
+    "price": 3,
+    "description": "description-29680238-4a69-4d0d-816e-d512fdad962f",
+    "category": {
+        "id": 232,
+        "name": "Electronics from Config-d42c0035-425e-464d-961d-5c377bc91842",
+        "slug": "electronics-from-config-d42c0035-425e-464d-961d-5c377bc91842",
+        "image": "https://placehold.co/600x400",
+        "creationAt": "2026-08-03T12:13:47.000Z",
+        "updatedAt": "2026-08-03T12:13:47.000Z"
+    },
+    "images": [
+        "https://placehold.co/600x400"
+    ],
+    "creationAt": "2026-08-03T12:13:48.000Z",
+    "updatedAt": "2026-08-03T12:13:48.000Z"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+          <b>[სქემის ვალიდაცია]</b> დაიწყო რესპონსის შედარება კლასთან: GetResponseProductDto
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           field ის რაოდენობა არის jason - 9 DTO კლასის – 9
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 197
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და Electronics from Config-9569517b-5489-4ce5-b448-bd0583a97444
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და electronics-from-config-9569517b-5489-4ce5-b448-bd0583a97444
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 3
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და description-29680238-4a69-4d0d-816e-d512fdad962f
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           field ის რაოდენობა არის jason - 6 DTO კლასის – 6
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 232
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და Electronics from Config-d42c0035-425e-464d-961d-5c377bc91842
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და electronics-from-config-d42c0035-425e-464d-961d-5c377bc91842
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და https://placehold.co/600x400
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:47.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:47.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიinterface java.util.List და [https://placehold.co/600x400]
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:48.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:48.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+          Test Started : testGetProductById
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           HTTP Request: GET https://api.escuelajs.co/api/v1/products/197
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           Response Status Code: 200
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           Response Body: <pre>{
+    "id": 197,
+    "title": "Electronics from Config-9569517b-5489-4ce5-b448-bd0583a97444",
+    "slug": "electronics-from-config-9569517b-5489-4ce5-b448-bd0583a97444",
+    "price": 3,
+    "description": "description-29680238-4a69-4d0d-816e-d512fdad962f",
+    "category": {
+        "id": 232,
+        "name": "Electronics from Config-d42c0035-425e-464d-961d-5c377bc91842",
+        "slug": "electronics-from-config-d42c0035-425e-464d-961d-5c377bc91842",
+        "image": "https://placehold.co/600x400",
+        "creationAt": "2026-08-03T12:13:47.000Z",
+        "updatedAt": "2026-08-03T12:13:47.000Z"
+    },
+    "images": [
+        "https://placehold.co/600x400"
+    ],
+    "creationAt": "2026-08-03T12:13:48.000Z",
+    "updatedAt": "2026-08-03T12:13:48.000Z"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+  <div class="mt-4">  <div class="accordion" role="tablist">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-toolbar node-info">
+            <ul class="list-inline d-none d-sm-block">
+              <li><span class="badge pass-bg log ">Pass</span></li>
+              <li><span class='badge badge-default'>00:00:000</span></li>
+              <li></li>
+            </ul>
+          </div>
+          <div class="card-title">
+            <a class="node " id="28"><span> პროდუქტის ბიზნეს სცენარის შემოწმება </span></a>
+            <div class="node-attr">
+            </div>
+          </div>
+        </div>
+        <div class="collapse">
+          <div class="card-body">
+            
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
         <td>
           მიმდინარეობს სათაურის (Title) შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
           მიმდინარეობს ფასის (Price) შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
           მიმდინარეობს აღწერის (Description) შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
           მიმდინარეობს კატეგორიის ID-ს შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
           მიმდინარეობს ფოტოების (Images) შემოწმება
         </td>
@@ -2699,14 +3034,14 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="21"
+        <li class="test-item"  status="pass" test-id="22"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">testGetProductByWrongId</p>
             <p class="text-sm">
-              <span>9:42:23 PM</span> / <span>00:00:00:570</span>
+              <span>4:13:46 PM</span> / <span>00:00:00:919</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -2715,97 +3050,9 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">testGetProductByWrongId</h5>
-<span class='badge badge-success'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:24 PM</span>
-<span class='badge badge-default'>00:00:00:570</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=21</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-          Test Started : testGetProductByWrongId
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
-        <td>
-           HTTP Request: GET https://api.escuelajs.co/api/v1/products/0
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           Response Status Code: 400
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           Response Body: <pre>{
-    "path": "/api/v1/products/0",
-    "timestamp": "2026-08-02T17:42:23.175Z",
-    "name": "EntityNotFoundError",
-    "message": "Could not find any entity of type \"Product\" matching: {\n    \"relations\": [\n        \"category\"\n    ],\n    \"where\": {\n        \"id\": 0\n    }\n}"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          Test Passed
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="22"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">testUpdateProductBadRequest</p>
-            <p class="text-sm">
-              <span>9:42:23 PM</span> / <span>00:00:02:030</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">testUpdateProductBadRequest</h5>
-<span class='badge badge-success'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:25 PM</span>
-<span class='badge badge-default'>00:00:02:030</span>
+<span class='badge badge-success'>08.03.2026 4:13:46 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:47 PM</span>
+<span class='badge badge-default'>00:00:00:919</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=22</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -2818,172 +3065,54 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
-           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+          Test Started : testGetProductByWrongId
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:46 PM</td>
         <td>
-          Request Body: <pre>{"name":"Electronics from Config-948ec103-8c6e-4e37-8210-382551848527","image":"https://placehold.co/600x400"}</pre>
+           HTTP Request: GET https://api.escuelajs.co/api/v1/products/-1
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           Response Status Code: 201
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           Response Body: <pre>{
-    "id": 566,
-    "name": "Electronics from Config-948ec103-8c6e-4e37-8210-382551848527",
-    "slug": "electronics-from-config-948ec103-8c6e-4e37-8210-382551848527",
-    "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:23.000Z",
-    "updatedAt": "2026-08-02T17:42:23.000Z"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-           HTTP Request: POST https://api.escuelajs.co/api/v1/products
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
-        <td>
-          Request Body: <pre>{"title":"Electronics from Config-c0c40b59-f353-4726-b34b-8f45b5b736f8","price":64.0,"description":"description-0ca27e10-1885-4046-be26-68143ef0940f","categoryId":566,"images":["https://placehold.co/600x400"]}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-           Response Status Code: 201
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-           Response Body: <pre>{
-    "id": 356,
-    "title": "Electronics from Config-c0c40b59-f353-4726-b34b-8f45b5b736f8",
-    "slug": "electronics-from-config-c0c40b59-f353-4726-b34b-8f45b5b736f8",
-    "price": 64,
-    "description": "description-0ca27e10-1885-4046-be26-68143ef0940f",
-    "category": {
-        "id": 566,
-        "name": "Electronics from Config-948ec103-8c6e-4e37-8210-382551848527",
-        "slug": "electronics-from-config-948ec103-8c6e-4e37-8210-382551848527",
-        "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-02T17:42:23.000Z",
-        "updatedAt": "2026-08-02T17:42:23.000Z"
-    },
-    "images": [
-        "https://placehold.co/600x400"
-    ],
-    "creationAt": "2026-08-02T17:42:24.000Z",
-    "updatedAt": "2026-08-02T17:42:24.000Z"
-}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-          Content-Type შემოწმება წარმატებულია: application/json
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-          Test Started : testUpdateProductBadRequest
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-           HTTP Request: PUT https://api.escuelajs.co/api/v1/products/356
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
-        <td>
-          Request Body: <pre>{"title":" ","price":184.0,"description":"description","categoryId":-1,"images":["https://placehold.co/600x400"]}</pre>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            Response Status Code: 400
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            Response Body: <pre>{
-    "path": "/api/v1/products/356",
-    "timestamp": "2026-08-02T17:42:24.753Z",
-    "name": "QueryFailedError",
-    "message": "SqliteError: UNIQUE constraint failed: product.slug",
-    "code": "SQLITE_CONSTRAINT_UNIQUE"
+    "path": "/api/v1/products/-1",
+    "timestamp": "2026-08-03T12:13:47.802Z",
+    "name": "EntityNotFoundError",
+    "message": "Could not find any entity of type \"Product\" matching: {\n    \"relations\": [\n        \"category\"\n    ],\n    \"where\": {\n        \"id\": -1\n    }\n}"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:47 PM</td>
         <td>
           Test Passed
         </td>
@@ -2998,9 +3127,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">testUpdateProductSuccessfully</p>
+            <p class="name">testUpdateProductBadRequest</p>
             <p class="text-sm">
-              <span>9:42:23 PM</span> / <span>00:00:02:170</span>
+              <span>4:13:47 PM</span> / <span>00:00:02:843</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -3008,10 +3137,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">testUpdateProductSuccessfully</h5>
-<span class='badge badge-success'>08.02.2026 9:42:23 PM</span>
-<span class='badge badge-danger'>08.02.2026 9:42:26 PM</span>
-<span class='badge badge-default'>00:00:02:170</span>
+<h5 class="test-status text-pass">testUpdateProductBadRequest</h5>
+<span class='badge badge-success'>08.03.2026 4:13:47 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:50 PM</span>
+<span class='badge badge-default'>00:00:02:843</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=24</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -3024,185 +3153,629 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:47 PM</td>
         <td>
            HTTP Request: POST https://api.escuelajs.co/api/v1/categories
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:23 PM</td>
+        <td>4:13:47 PM</td>
         <td>
-          Request Body: <pre>{"name":"Electronics from Config-82c94b84-7d0e-4bfb-8193-c94c68a12eed","image":"https://placehold.co/600x400"}</pre>
+          Request Body: <pre>{"name":"Electronics from Config-43c87778-3c34-4ab5-962d-4ba8f8b65b20","image":"https://placehold.co/600x400"}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
            Response Status Code: 201
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 567,
-    "name": "Electronics from Config-82c94b84-7d0e-4bfb-8193-c94c68a12eed",
-    "slug": "electronics-from-config-82c94b84-7d0e-4bfb-8193-c94c68a12eed",
+    "id": 235,
+    "name": "Electronics from Config-43c87778-3c34-4ab5-962d-4ba8f8b65b20",
+    "slug": "electronics-from-config-43c87778-3c34-4ab5-962d-4ba8f8b65b20",
     "image": "https://placehold.co/600x400",
-    "creationAt": "2026-08-02T17:42:23.000Z",
-    "updatedAt": "2026-08-02T17:42:23.000Z"
+    "creationAt": "2026-08-03T12:13:48.000Z",
+    "updatedAt": "2026-08-03T12:13:48.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
            HTTP Request: POST https://api.escuelajs.co/api/v1/products
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:24 PM</td>
+        <td>4:13:48 PM</td>
         <td>
-          Request Body: <pre>{"title":"Electronics from Config-97fd057e-14e7-4bff-922a-ae135ad4f32e","price":98.0,"description":"description-ea25d803-fe1a-4d4b-985e-d9ecde5f6bac","categoryId":567,"images":["https://placehold.co/600x400"]}</pre>
+          Request Body: <pre>{"title":"Electronics from Config-cf727275-8f5a-4c6f-837f-b39d20db1f48","price":75,"description":"description-5a8c328e-243d-4867-a0a7-5af178c5b8c8","categoryId":235,"images":["https://placehold.co/600x400"]}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
            Response Status Code: 201
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 357,
-    "title": "Electronics from Config-97fd057e-14e7-4bff-922a-ae135ad4f32e",
-    "slug": "electronics-from-config-97fd057e-14e7-4bff-922a-ae135ad4f32e",
-    "price": 98,
-    "description": "description-ea25d803-fe1a-4d4b-985e-d9ecde5f6bac",
+    "id": 199,
+    "title": "Electronics from Config-cf727275-8f5a-4c6f-837f-b39d20db1f48",
+    "slug": "electronics-from-config-cf727275-8f5a-4c6f-837f-b39d20db1f48",
+    "price": 75,
+    "description": "description-5a8c328e-243d-4867-a0a7-5af178c5b8c8",
     "category": {
-        "id": 567,
-        "name": "Electronics from Config-82c94b84-7d0e-4bfb-8193-c94c68a12eed",
-        "slug": "electronics-from-config-82c94b84-7d0e-4bfb-8193-c94c68a12eed",
+        "id": 235,
+        "name": "Electronics from Config-43c87778-3c34-4ab5-962d-4ba8f8b65b20",
+        "slug": "electronics-from-config-43c87778-3c34-4ab5-962d-4ba8f8b65b20",
         "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-02T17:42:23.000Z",
-        "updatedAt": "2026-08-02T17:42:23.000Z"
+        "creationAt": "2026-08-03T12:13:48.000Z",
+        "updatedAt": "2026-08-03T12:13:48.000Z"
     },
     "images": [
         "https://placehold.co/600x400"
     ],
-    "creationAt": "2026-08-02T17:42:24.000Z",
-    "updatedAt": "2026-08-02T17:42:24.000Z"
+    "creationAt": "2026-08-03T12:13:49.000Z",
+    "updatedAt": "2026-08-03T12:13:49.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+          <b>[სქემის ვალიდაცია]</b> დაიწყო რესპონსის შედარება კლასთან: GetResponseProductDto
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           field ის რაოდენობა არის jason - 9 DTO კლასის – 9
+        </td>
+      </tr>
+      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 199
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და Electronics from Config-cf727275-8f5a-4c6f-837f-b39d20db1f48
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და electronics-from-config-cf727275-8f5a-4c6f-837f-b39d20db1f48
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 75
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და description-5a8c328e-243d-4867-a0a7-5af178c5b8c8
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           field ის რაოდენობა არის jason - 6 DTO კლასის – 6
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 235
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და Electronics from Config-43c87778-3c34-4ab5-962d-4ba8f8b65b20
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და electronics-from-config-43c87778-3c34-4ab5-962d-4ba8f8b65b20
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და https://placehold.co/600x400
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:48.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:48.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიinterface java.util.List და [https://placehold.co/600x400]
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:49.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:49.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
+        <td>
+          Test Started : testUpdateProductBadRequest
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           HTTP Request: PUT https://api.escuelajs.co/api/v1/products/199
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+          Request Body: <pre>{"title":" ","price":402,"description":"description","categoryId":-1,"images":["https://placehold.co/600x400"]}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:50 PM</td>
+        <td>
+           Response Status Code: 400
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:50 PM</td>
+        <td>
+           Response Body: <pre>{
+    "path": "/api/v1/products/199",
+    "timestamp": "2026-08-03T12:13:50.370Z",
+    "name": "QueryFailedError",
+    "message": "SqliteError: UNIQUE constraint failed: product.slug",
+    "code": "SQLITE_CONSTRAINT_UNIQUE"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:50 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [400] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:50 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:50 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="25"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">testUpdateProductSuccessfully</p>
+            <p class="text-sm">
+              <span>4:13:47 PM</span> / <span>00:00:02:843</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">testUpdateProductSuccessfully</h5>
+<span class='badge badge-success'>08.03.2026 4:13:47 PM</span>
+<span class='badge badge-danger'>08.03.2026 4:13:50 PM</span>
+<span class='badge badge-default'>00:00:02:843</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=25</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+           HTTP Request: POST https://api.escuelajs.co/api/v1/categories
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:47 PM</td>
+        <td>
+          Request Body: <pre>{"name":"Electronics from Config-9c831e2a-b7b5-4a8e-befb-d6336fec0075","image":"https://placehold.co/600x400"}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           Response Status Code: 201
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           Response Body: <pre>{
+    "id": 234,
+    "name": "Electronics from Config-9c831e2a-b7b5-4a8e-befb-d6336fec0075",
+    "slug": "electronics-from-config-9c831e2a-b7b5-4a8e-befb-d6336fec0075",
+    "image": "https://placehold.co/600x400",
+    "creationAt": "2026-08-03T12:13:48.000Z",
+    "updatedAt": "2026-08-03T12:13:48.000Z"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+           HTTP Request: POST https://api.escuelajs.co/api/v1/products
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:48 PM</td>
+        <td>
+          Request Body: <pre>{"title":"Electronics from Config-c08d8d8d-9a40-4e2d-8e54-dd9129fa33ff","price":27,"description":"description-5bbb61a3-1f8e-4ae5-9d1a-9595b20e49a5","categoryId":234,"images":["https://placehold.co/600x400"]}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           Response Status Code: 201
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           Response Body: <pre>{
+    "id": 200,
+    "title": "Electronics from Config-c08d8d8d-9a40-4e2d-8e54-dd9129fa33ff",
+    "slug": "electronics-from-config-c08d8d8d-9a40-4e2d-8e54-dd9129fa33ff",
+    "price": 27,
+    "description": "description-5bbb61a3-1f8e-4ae5-9d1a-9595b20e49a5",
+    "category": {
+        "id": 234,
+        "name": "Electronics from Config-9c831e2a-b7b5-4a8e-befb-d6336fec0075",
+        "slug": "electronics-from-config-9c831e2a-b7b5-4a8e-befb-d6336fec0075",
+        "image": "https://placehold.co/600x400",
+        "creationAt": "2026-08-03T12:13:48.000Z",
+        "updatedAt": "2026-08-03T12:13:48.000Z"
+    },
+    "images": [
+        "https://placehold.co/600x400"
+    ],
+    "creationAt": "2026-08-03T12:13:49.000Z",
+    "updatedAt": "2026-08-03T12:13:49.000Z"
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+          <b>[სქემის ვალიდაცია]</b> დაიწყო რესპონსის შედარება კლასთან: GetResponseProductDto
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           field ის რაოდენობა არის jason - 9 DTO კლასის – 9
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 200
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და Electronics from Config-c08d8d8d-9a40-4e2d-8e54-dd9129fa33ff
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და electronics-from-config-c08d8d8d-9a40-4e2d-8e54-dd9129fa33ff
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 27
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და description-5bbb61a3-1f8e-4ae5-9d1a-9595b20e49a5
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           field ის რაოდენობა არის jason - 6 DTO კლასის – 6
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.Integer და 234
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და Electronics from Config-9c831e2a-b7b5-4a8e-befb-d6336fec0075
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და electronics-from-config-9c831e2a-b7b5-4a8e-befb-d6336fec0075
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და https://placehold.co/600x400
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:48.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:48.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიinterface java.util.List და [https://placehold.co/600x400]
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:49.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+           ტესტში წარმატებულად შემოწმდა ფილდის ტიპიclass java.lang.String და 2026-08-03T12:13:49.000Z
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+          სტატუს კოდის შემოწმება: მოსალოდნელი [201] — წარმატებულია
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>4:13:49 PM</td>
+        <td>
+          Content-Type შემოწმება წარმატებულია: application/json
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>4:13:49 PM</td>
         <td>
           Test Started : testUpdateProductSuccessfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
-           HTTP Request: PUT https://api.escuelajs.co/api/v1/products/357
+           HTTP Request: PUT https://api.escuelajs.co/api/v1/products/200
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:25 PM</td>
+        <td>4:13:49 PM</td>
         <td>
-          Request Body: <pre>{"title":"updatedName-9eb6564f-8fc0-4426-a458-b9c75c53e1d2","price":308.0,"description":"description","categoryId":567,"images":["https://placehold.co/600x400"]}</pre>
+          Request Body: <pre>{"title":"updatedName-347e0257-ccb9-4f97-b563-e5d6ad7949f9","price":212,"description":"description","categoryId":234,"images":["https://placehold.co/600x400"]}</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:26 PM</td>
+        <td>4:13:50 PM</td>
         <td>
            Response Status Code: 200
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:26 PM</td>
+        <td>4:13:50 PM</td>
         <td>
            Response Body: <pre>{
-    "id": 357,
-    "title": "updatedName-9eb6564f-8fc0-4426-a458-b9c75c53e1d2",
-    "slug": "updatedname-9eb6564f-8fc0-4426-a458-b9c75c53e1d2",
-    "price": 308,
+    "id": 200,
+    "title": "updatedName-347e0257-ccb9-4f97-b563-e5d6ad7949f9",
+    "slug": "updatedname-347e0257-ccb9-4f97-b563-e5d6ad7949f9",
+    "price": 212,
     "description": "description",
     "category": {
-        "id": 567,
-        "name": "Electronics from Config-82c94b84-7d0e-4bfb-8193-c94c68a12eed",
-        "slug": "electronics-from-config-82c94b84-7d0e-4bfb-8193-c94c68a12eed",
+        "id": 234,
+        "name": "Electronics from Config-9c831e2a-b7b5-4a8e-befb-d6336fec0075",
+        "slug": "electronics-from-config-9c831e2a-b7b5-4a8e-befb-d6336fec0075",
         "image": "https://placehold.co/600x400",
-        "creationAt": "2026-08-02T17:42:23.000Z",
-        "updatedAt": "2026-08-02T17:42:23.000Z"
+        "creationAt": "2026-08-03T12:13:48.000Z",
+        "updatedAt": "2026-08-03T12:13:48.000Z"
     },
     "images": [
         "https://placehold.co/600x400"
     ],
-    "creationAt": "2026-08-02T17:42:24.000Z",
-    "updatedAt": "2026-08-02T17:42:24.000Z"
+    "creationAt": "2026-08-03T12:13:49.000Z",
+    "updatedAt": "2026-08-03T12:13:50.000Z"
 }</pre>
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:26 PM</td>
+        <td>4:13:50 PM</td>
         <td>
           სტატუს კოდის შემოწმება: მოსალოდნელი [200] — წარმატებულია
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:26 PM</td>
+        <td>4:13:50 PM</td>
         <td>
           Content-Type შემოწმება წარმატებულია: application/json
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>9:42:26 PM</td>
+        <td>4:13:50 PM</td>
         <td>
           Test Passed
         </td>
@@ -3234,35 +3807,35 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:26 PM</td>
+        <td>4:13:50 PM</td>
         <td>
           მიმდინარეობს სათაურის (Title) შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:26 PM</td>
+        <td>4:13:50 PM</td>
         <td>
           მიმდინარეობს ფასის (Price) შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:26 PM</td>
+        <td>4:13:50 PM</td>
         <td>
           მიმდინარეობს აღწერის (Description) შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:26 PM</td>
+        <td>4:13:50 PM</td>
         <td>
           მიმდინარეობს კატეგორიის ID-ს შემოწმება
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>9:42:26 PM</td>
+        <td>4:13:50 PM</td>
         <td>
           მიმდინარეობს ფოტოების (Images) შემოწმება
         </td>
@@ -3290,13 +3863,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Aug 2, 2026 09:42:20 PM</h3>
+<h3>Aug 3, 2026 04:13:43 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Aug 2, 2026 09:42:26 PM</h3>
+<h3>Aug 3, 2026 04:13:50 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -3367,10 +3940,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='38%'><b>103</b> events passed</small></div>
+<div><small data-tooltip='48%'><b>171</b> events passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> events failed,
-<b data-tooltip='%'>167</b> others
+<b data-tooltip='%'>182</b> others
 </small>
 </div>
 </div>
@@ -3386,7 +3959,7 @@
 </div></div>
 <script>
 var timeline = {
-"testCreateCategoryEmptyFields":2.665,"testCreateCategorySuccessfully":2.985,"testGetCategoryLimit":2.726,"testGetCategoryWithSlug":3.376,"testDeleteCategoryWrongIdBadRequest":2.626,"testGetCategoryById":3.205,"testCreateCategoryBadRequest":2.747,"testGetCategoryWithWrongSlug":2.626,"testDeleteCategorySuccessfully":3.45,"testGetCategoryIdBadRequest":2.626,"testPutCategoryUpdateBadRequest":1.662,"testPutCategoryUpdateSuccessfully":1.35,"testCreateProductInvalidCategoryId":0.667,"testCreateProductValidData":1.423,"testDeleteProductSuccessfully":2.119,"testDeleteProductWrongIdBadRequest":0.627,"testGetProductById":2.02,"testGetProductByWrongId":0.57,"testUpdateProductBadRequest":2.03,"testUpdateProductSuccessfully":2.17
+"testGetCategoryIdBadRequest":2.283,"testCreateCategoryEmptyFields":2.265,"testDeleteCategorySuccessfully":3.503,"testCreateCategorySuccessfully":2.307,"testGetCategoryLimit":2.375,"testCreateCategoryBadRequest":2.301,"testGetCategoryById":3.213,"testDeleteCategoryWrongIdBadRequest":2.282,"testGetCategoryWithSlug":1.987,"testPutCategoryUpdateBadRequest":2.012,"testGetCategoryWithWrongSlug":0.93,"testPutCategoryUpdateSuccessfully":1.953,"testCreateProductInvalidCategoryId":1.216,"testCreateProductValidData":1.903,"testDeleteProductSuccessfully":2.865,"testDeleteProductWrongIdBadRequest":1.014,"testGetProductById":2.583,"testGetProductByWrongId":0.919,"testUpdateProductBadRequest":2.843,"testUpdateProductSuccessfully":2.843
 };
 </script>
 <div class="row">
@@ -3430,11 +4003,11 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 103,
+passEvents: 171,
 failEvents: 0,
 warningEvents: 0,
 skipEvents: 0,
-infoEvents: 167
+infoEvents: 182
 };
 </script>        </div>
       </div>

@@ -16,7 +16,7 @@ public class GetResponseProductDto {
     private Integer id;
     private String title;
     private String slug;
-    private double price;
+    private Integer price;
     private String description;
     private GetResponseCategoryDTO category;
     private List<String> images;

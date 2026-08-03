@@ -1,5 +1,6 @@
 package org.example.ApiTest;
 import io.restassured.response.Response;
+import org.example.ApiService.Validator;
 import org.example.BaseApiTest;
 import org.example.DTOs.RequestDto.CreateProductRequestDto;
 import org.example.DTOs.RequestDto.UpdateProductRequestDto;
@@ -45,7 +46,6 @@ public class ProductTest extends BaseApiTest {
                 .verifyDescriptionIsCorrect(requestBodyProduct.get().getDescription())
                 .verifyCategoryIdIsCorrect(requestBodyProduct.get().getCategoryId())
                 .verifyImagesAreCorrect(requestBodyProduct.get().getImages());
-
     }
 
 
@@ -61,6 +61,8 @@ public class ProductTest extends BaseApiTest {
     public void testUpdateProductSuccessfully() {
         UpdateProductRequestDto requests = factory().productFactory().updateProductDto(category.get());
         GetResponseProductDto responseProductDto=  api().getProductSteps().putProduct(product.get().getId(), requests);
+
+
 
         assertManager().getResponseProductDtoAssert().assertThat(responseProductDto)
                 .verifyTitleIsCorrect(requests.getTitle())
@@ -94,9 +96,6 @@ public class ProductTest extends BaseApiTest {
     @Test
     public void testDeleteProductWrongIdBadRequest() {
         api().getProductSteps().deleteWithWrongCategoryId(factory().productFactory().getWrongId());
-
-
-
 
     }
 
