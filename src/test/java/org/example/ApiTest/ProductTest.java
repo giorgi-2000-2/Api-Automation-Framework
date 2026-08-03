@@ -28,8 +28,8 @@ public class ProductTest extends BaseApiTest {
     @Test
     public void testCreateProductInvalidCategoryId() {
         CreateProductRequestDto requestBody = factory().productFactory().createProductWithData(factory().productFactory().getWrongId());
-      api().getProductSteps().createProductWithWrongCategoryId(requestBody);
-
+      api().getProductSteps().createProductWithWrongCategoryId(requestBody,getSoft());
+getSoft().assertAll();
     }
 
 
@@ -37,7 +37,7 @@ public class ProductTest extends BaseApiTest {
     @RequiresCategory
     @RequiresProduct
     public void testGetProductById() {
-      GetResponseProductDto responseProductDto= api().getProductSteps().getProductById(product.get().getId());
+      GetResponseProductDto responseProductDto= api().getProductSteps().getProductById(product.get().getId(),getSoft());
 
         assertManager().getResponseProductDtoAssert().assertThat(responseProductDto)
                 .verifyTitleIsCorrect(requestBodyProduct.get().getTitle())
@@ -45,6 +45,8 @@ public class ProductTest extends BaseApiTest {
                 .verifyDescriptionIsCorrect(requestBodyProduct.get().getDescription())
                 .verifyCategoryIdIsCorrect(requestBodyProduct.get().getCategoryId())
                 .verifyImagesAreCorrect(requestBodyProduct.get().getImages());
+
+        getSoft().assertAll();
     }
 
 
@@ -59,9 +61,7 @@ public class ProductTest extends BaseApiTest {
     @RequiresProduct
     public void testUpdateProductSuccessfully() {
         UpdateProductRequestDto requests = factory().productFactory().updateProductDto(category.get());
-        GetResponseProductDto responseProductDto=  api().getProductSteps().putProduct(product.get().getId(), requests);
-
-
+        GetResponseProductDto responseProductDto=  api().getProductSteps().putProduct(product.get().getId(), requests,getSoft());
 
         assertManager().getResponseProductDtoAssert().assertThat(responseProductDto)
                 .verifyTitleIsCorrect(requests.getTitle())
@@ -69,7 +69,7 @@ public class ProductTest extends BaseApiTest {
                 .verifyDescriptionIsCorrect(requests.getDescription())
                 .verifyCategoryIdIsCorrect(requests.getCategoryId())
                 .verifyImagesAreCorrect(requests.getImages());
-
+getSoft().assertAll();
     }
 
     @Test
@@ -77,8 +77,8 @@ public class ProductTest extends BaseApiTest {
     @RequiresProduct
     public void testUpdateProductBadRequest() {
         UpdateProductRequestDto requests = factory().productFactory().updateProductWithWrongData();
-        api().getProductSteps().putProductBadRequest(product.get().getId(), requests);
-
+        api().getProductSteps().putProductBadRequest(product.get().getId(), requests, getSoft());
+        getSoft().assertAll();
 
     }
 
@@ -94,8 +94,8 @@ public class ProductTest extends BaseApiTest {
 
     @Test
     public void testDeleteProductWrongIdBadRequest() {
-        api().getProductSteps().deleteWithWrongCategoryId(factory().productFactory().getWrongId());
-
+        api().getProductSteps().deleteWithWrongCategoryId(factory().productFactory().getWrongId(),getSoft());
+        getSoft().assertAll();
     }
 
 }

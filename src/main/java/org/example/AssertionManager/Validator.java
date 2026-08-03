@@ -8,7 +8,7 @@ import java.util.Map;
 public class Validator {
 
 
-    public void ValidateJason(Response jason , Class<?> dtoclass,  SoftAssert softAssert ){
+    public void ValidateJson(Response jason , Class<?> dtoclass, SoftAssert softAssert ){
         if (ExtentReportManager.getTest() != null) {
             ExtentReportManager.getTest().info("სქემის ვალიდაცია დაიწყო – რესპონსის შედარება კლასთან: " + dtoclass.getSimpleName());
         }

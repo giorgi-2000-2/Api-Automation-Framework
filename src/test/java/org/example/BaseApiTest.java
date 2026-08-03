@@ -9,6 +9,8 @@ import org.example.annotations.RequiresProduct;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.asserts.SoftAssert;
+
 import java.lang.reflect.Method;
 
 
@@ -16,6 +18,7 @@ public class BaseApiTest {
     private static final ThreadLocal<ObjectManager> apiObjectManagerThreadLocal = new ThreadLocal<>();
     private static final ThreadLocal<FactoryManager> factoryManagerThreadLocal = new ThreadLocal<>();
     private static final ThreadLocal<AssertionManager> assertionManagerThreadLocal = new ThreadLocal<>();
+    protected ThreadLocal<SoftAssert>softAssertThreadLocal = new ThreadLocal<>();
     protected ThreadLocal <GetResponseCategoryDTO> category = new ThreadLocal<>();
     protected ThreadLocal <CreateCategoryRequestDto> requestBodyCategory = new ThreadLocal<>();
     protected ThreadLocal <GetResponseProductDto> product = new ThreadLocal<>();
@@ -25,6 +28,8 @@ public class BaseApiTest {
     @BeforeMethod(alwaysRun = true)
     public void apiSetUp(Method method) {
         ExtentReportManager.createTest(method.getName());
+        softAssertThreadLocal.set(new SoftAssert());
+
         if (apiObjectManagerThreadLocal.get() ==null){
         apiObjectManagerThreadLocal.set(new ObjectManager());
 
@@ -38,7 +43,7 @@ public class BaseApiTest {
         }
             if (method.isAnnotationPresent(RequiresCategory.class)){
                 requestBodyCategory.set(factory().categoryFactory().createCategoryWithData());
-                this.category.set(api().getCategorySteps().createCategorySuccessfully(requestBodyCategory.get()));
+                this.category.set(api().getCategorySteps().createCategorySuccessfully(requestBodyCategory.get(),getSoft()));
 
             }
         if (method.isAnnotationPresent(RequiresCategory.class)&&method.isAnnotationPresent(RequiresProduct.class)){
@@ -58,7 +63,9 @@ protected AssertionManager assertManager(){
         return assertionManagerThreadLocal.get();
 }
 
-
+protected SoftAssert getSoft(){
+        return softAssertThreadLocal.get();
+}
     protected ObjectManager api() {
         return apiObjectManagerThreadLocal.get();
     }
@@ -72,6 +79,7 @@ protected FactoryManager factory(){
 
     @AfterMethod
     public void removeApi() {
+        softAssertThreadLocal.remove();
             category.remove();
             product.remove();
 

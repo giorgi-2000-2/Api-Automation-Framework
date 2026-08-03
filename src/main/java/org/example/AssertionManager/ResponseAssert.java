@@ -1,6 +1,7 @@
 package org.example.AssertionManager;
 import io.restassured.response.Response;
 import org.example.ApiService.HttpStatusCode;
+import org.example.Utils.ConfigReader;
 import org.example.Utils.ExtentReportManager;
 import org.testng.Assert;
 
@@ -14,7 +15,7 @@ public class ResponseAssert {
     }
 
     public ResponseAssert time() {
-        Assert.assertTrue( response.time()<20000, " არ არის 20000 ის ტოლი ");
+        Assert.assertTrue( response.time()< ConfigReader.getInt("response.time"), " არ არის 20000 ის ტოლი ");
 
         return this;
     }

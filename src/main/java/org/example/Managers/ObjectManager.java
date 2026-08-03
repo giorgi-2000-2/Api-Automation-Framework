@@ -2,29 +2,27 @@ package org.example.Managers;
 import org.example.ApiClient.ProductApiClient;
 import org.example.ApiService.ApiRequest;
 import org.example.ApiClient.CategoryApiClient;
-import org.example.AssertionManager.ResponseAssert;
 import org.example.Steps.CategorySteps;
 import org.example.Steps.ProductSteps;
 
 
 public class ObjectManager {
 private ApiRequest apiRequest;
-private ResponseAssert apiAssertHelper;
 private CategoryApiClient categoryApiClient;
 private CategorySteps categorySteps;
 private ProductApiClient productApiClient;
 private ProductSteps productSteps;
+    private AssertionManager assertionManager;
 
 
 
-
-public ResponseAssert getAssert(){
-    if(apiAssertHelper==null){
-        apiAssertHelper = new ResponseAssert();
-
-    }
-    return apiAssertHelper;
-}
+//public ResponseAssert getAssert(){
+//    if(apiAssertHelper==null){
+//        apiAssertHelper = new ResponseAssert();
+//
+//    }
+//    return apiAssertHelper;
+//}
 
 
     public ApiRequest getRequest() {
@@ -41,22 +39,31 @@ public ResponseAssert getAssert(){
         return categoryApiClient;
     }
 
-    public CategorySteps getCategorySteps() {
-        if (categorySteps == null) {
-            categorySteps = new CategorySteps(this);
-        }
-        return categorySteps;
-    }
-public ProductApiClient productApiClient(){
+public ProductApiClient getProductApiClient(){
     if(productApiClient==null){
         productApiClient=new ProductApiClient(this);
     }
     return productApiClient;
 }
+public AssertionManager getAssert(){
+        if(assertionManager==null){
+            assertionManager=new AssertionManager();
+        }
+
+        return assertionManager;
+}
+
+    public CategorySteps getCategorySteps() {
+        if (categorySteps == null) {
+            categorySteps = new CategorySteps(this,getAssert());
+        }
+        return categorySteps;
+    }
+
 
 public ProductSteps getProductSteps(){
     if(productSteps==null){
-        productSteps=new ProductSteps(this);
+        productSteps=new ProductSteps(this,getAssert());
     }
 
     return productSteps;

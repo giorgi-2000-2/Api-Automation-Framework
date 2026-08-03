@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BadRequestResponse {
-  private   String path;
-  private   String timestamp;
-  private String name;
-  private   String message;
-
+public class PutBadRequestResponse {
+    private   String path;
+    private   String timestamp;
+    private   String name;
+    private   String message;
+    private   String code;
 
 }

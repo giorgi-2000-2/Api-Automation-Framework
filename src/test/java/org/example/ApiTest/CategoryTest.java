@@ -13,11 +13,13 @@ public class CategoryTest extends BaseApiTest {
     @Test
     public void testCreateCategorySuccessfully() {
         CreateCategoryRequestDto requestBody = factory().categoryFactory().createCategoryWithData();
-        GetResponseCategoryDTO responseBody = api().getCategorySteps().createCategorySuccessfully(requestBody);
+        GetResponseCategoryDTO responseBody = api().getCategorySteps().createCategorySuccessfully(requestBody,getSoft());
 
         assertManager().getResponseCategoryDtoAssert().assertThat(responseBody)
                 .verifyTitleIsCorrect(requestBody.getName())
                 .verifyImageIsCorrect(requestBody.getImage());
+
+        getSoft().assertAll();
     }
 
 
@@ -45,15 +47,17 @@ public class CategoryTest extends BaseApiTest {
     @Test
     @RequiresCategory
     public void testGetCategoryById(){
-    GetResponseCategoryDTO response = api().getCategorySteps().getCategoryById(category.get().getId());
+    GetResponseCategoryDTO response = api().getCategorySteps().getCategoryById(category.get().getId(),getSoft());
 
         assertManager().getResponseCategoryDtoAssert().assertThat(response)
                     .verifyIdIsCorrect(category.get().getId());
+        getSoft().assertAll();
 }
 
 @Test
     public void testGetCategoryIdBadRequest(){
-  api().getCategorySteps().getCategoryByWrongId(factory().categoryFactory().getWrongCategoryId());
+  api().getCategorySteps().getCategoryByWrongId(factory().categoryFactory().getWrongCategoryId(),getSoft());
+  getSoft().assertAll();
 
 }
 
@@ -61,17 +65,19 @@ public class CategoryTest extends BaseApiTest {
     @RequiresCategory
     public void testPutCategoryUpdateSuccessfully(){
     UpdateCategoryRequestDto updateCategory = factory().categoryFactory().updateCategoryDto();
-    GetResponseCategoryDTO response = api().getCategorySteps().putCategoryById(category.get().getId(),updateCategory);
+    GetResponseCategoryDTO response = api().getCategorySteps().putCategoryById(category.get().getId(),updateCategory,getSoft());
 
         assertManager().getResponseCategoryDtoAssert().assertThat(response)
                     .verifyTitleIsCorrect(updateCategory.getName());
+        getSoft().assertAll();
 }
 
     @Test
     @RequiresCategory
     public void testPutCategoryUpdateBadRequest() {
         UpdateCategoryRequestDto updateCategory = factory().categoryFactory().updateCategoryDtoBadRequest();
-      api().getCategorySteps().putCategoryByIdBadRequest(category.get().getId(), updateCategory);
+      api().getCategorySteps().putCategoryByIdBadRequest(category.get().getId(), updateCategory,getSoft());
+      getSoft().assertAll();
 
     }
 
@@ -88,7 +94,8 @@ public class CategoryTest extends BaseApiTest {
 
     @Test
     public void testDeleteCategoryWrongIdBadRequest(){
-       api().getCategorySteps().deleteWithWrongCategoryId(factory().categoryFactory().getWrongCategoryId());
+       api().getCategorySteps().deleteWithWrongCategoryId(factory().categoryFactory().getWrongCategoryId(),getSoft());
+       getSoft().assertAll();
 
     }
 
@@ -96,15 +103,18 @@ public class CategoryTest extends BaseApiTest {
     @Test
     @RequiresCategory
     public void testGetCategoryWithSlug(){
-GetResponseCategoryDTO responseCategoryDTO = api().getCategorySteps().getCategoryWIthSlug(category.get().getSlug());
+GetResponseCategoryDTO responseCategoryDTO = api().getCategorySteps().getCategoryWithSlug(category.get().getSlug(),getSoft());
+
 
         assertManager().getResponseCategoryDtoAssert().assertThat(responseCategoryDTO)
                 .verifyTitleIsCorrect(category.get().getName());
+        getSoft().assertAll();
 }
 
 @Test
     public void testGetCategoryWithWrongSlug(){
- api().getCategorySteps().getCategoryWIthWrongSlug(factory().categoryFactory().emptyField());
+ api().getCategorySteps().getCategoryWithWrongSlug(factory().categoryFactory().emptyField(),getSoft());
+ getSoft().assertAll();
 
 }
 
