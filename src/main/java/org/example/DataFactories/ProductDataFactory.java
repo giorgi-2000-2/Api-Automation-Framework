@@ -1,7 +1,7 @@
 package org.example.DataFactories;
 import org.example.DTOs.RequestDto.CreateProductRequestDto;
 import org.example.DTOs.RequestDto.UpdateProductRequestDto;
-import org.example.DTOs.ResponseDto.GetResponseCategoryDTO;
+import org.example.DTOs.ResponseDto.GetResponseCategoryDto;
 import org.example.Managers.FactoryManager;
 import org.example.Utils.ConfigReader;
 
@@ -32,7 +32,7 @@ public class ProductDataFactory {
 
     }
 
-    public UpdateProductRequestDto updateProductDto(GetResponseCategoryDTO response) {
+    public UpdateProductRequestDto updateProductDto(GetResponseCategoryDto response) {
         return UpdateProductRequestDto.builder()
                 .title(randomDataFactory.uniqueTitle("updatedName"))
                 .price(randomDataFactory.randomInt(0,1000))

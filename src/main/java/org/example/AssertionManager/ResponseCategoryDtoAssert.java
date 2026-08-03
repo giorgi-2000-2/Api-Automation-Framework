@@ -1,13 +1,13 @@
 package org.example.AssertionManager;
 import com.aventstack.extentreports.ExtentTest;
 import io.restassured.response.Response;
-import org.example.DTOs.ResponseDto.GetResponseCategoryDTO;
+import org.example.DTOs.ResponseDto.GetResponseCategoryDto;
 import org.testng.Assert;
 import java.util.List;
 import static org.example.Utils.ExtentReportManager.getTest;
 
 public class ResponseCategoryDtoAssert {
-    private GetResponseCategoryDTO currentCategory;
+    private GetResponseCategoryDto currentCategory;
     private Response responseCategory;
 
     ExtentTest validationStep = getTest().createNode(" კატეგორიის ბიზნეს სცენარის შემოწმება ");
@@ -18,7 +18,7 @@ public class ResponseCategoryDtoAssert {
     }
 
 
-    public ResponseCategoryDtoAssert assertThat(GetResponseCategoryDTO requestBody) {
+    public ResponseCategoryDtoAssert assertThat(GetResponseCategoryDto requestBody) {
         this.currentCategory =requestBody;
         return this;
     }
@@ -72,10 +72,10 @@ public class ResponseCategoryDtoAssert {
     }
 
     public void assertCategoryValidator(Response response) {
-        List<GetResponseCategoryDTO> categories =
-                response.jsonPath().getList("", GetResponseCategoryDTO.class);
+        List<GetResponseCategoryDto> categories =
+                response.jsonPath().getList("", GetResponseCategoryDto.class);
 
-        for (GetResponseCategoryDTO category : categories) {
+        for (GetResponseCategoryDto category : categories) {
 
             int id = category.getId();
 

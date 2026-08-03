@@ -1,7 +1,7 @@
 package org.example.AssertionManager;
 import com.aventstack.extentreports.ExtentTest;
 import io.restassured.response.Response;
-import org.example.DTOs.ResponseDto.GetResponseCategoryDTO;
+import org.example.DTOs.ResponseDto.GetResponseCategoryDto;
 import org.example.DTOs.ResponseDto.GetResponseProductDto;
 import org.testng.Assert;
 import java.util.List;
@@ -60,7 +60,7 @@ public class ResponseProductDtoAssert {
         return this;
     }
 
-    public ResponseProductDtoAssert verifyCategoryIsCorrect(GetResponseCategoryDTO expectedCategory) {
+    public ResponseProductDtoAssert verifyCategoryIsCorrect(GetResponseCategoryDto expectedCategory) {
         validationStep.info("მიმდინარეობს კატეგორიის (Category) შემოწმება");
         Assert.assertEquals(currentProduct.getCategory(), expectedCategory, "Category არასწორია");
         return this;
@@ -72,7 +72,7 @@ public class ResponseProductDtoAssert {
         return this;
     }
 
-    public ResponseProductDtoAssert verifyCategoryIdIsWrong(GetResponseCategoryDTO expectedCategoryId) {
+    public ResponseProductDtoAssert verifyCategoryIdIsWrong(GetResponseCategoryDto expectedCategoryId) {
         validationStep.info("მიმდინარეობს კატეგორიის ID-ს შემოწმება");
         Assert.assertTrue(expectedCategoryId.getId()<=0, "Category ID არასწორია");
         return this;

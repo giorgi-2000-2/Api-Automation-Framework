@@ -19,7 +19,7 @@ public class BaseApiTest {
     private static final ThreadLocal<FactoryManager> factoryManagerThreadLocal = new ThreadLocal<>();
     private static final ThreadLocal<AssertionManager> assertionManagerThreadLocal = new ThreadLocal<>();
     protected ThreadLocal<SoftAssert>softAssertThreadLocal = new ThreadLocal<>();
-    protected ThreadLocal <GetResponseCategoryDTO> category = new ThreadLocal<>();
+    protected ThreadLocal <GetResponseCategoryDto> category = new ThreadLocal<>();
     protected ThreadLocal <CreateCategoryRequestDto> requestBodyCategory = new ThreadLocal<>();
     protected ThreadLocal <GetResponseProductDto> product = new ThreadLocal<>();
     protected ThreadLocal <CreateProductRequestDto> requestBodyProduct = new ThreadLocal<>();

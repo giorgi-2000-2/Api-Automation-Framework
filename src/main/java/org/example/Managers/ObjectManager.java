@@ -15,16 +15,6 @@ private ProductSteps productSteps;
     private AssertionManager assertionManager;
 
 
-
-//public ResponseAssert getAssert(){
-//    if(apiAssertHelper==null){
-//        apiAssertHelper = new ResponseAssert();
-//
-//    }
-//    return apiAssertHelper;
-//}
-
-
     public ApiRequest getRequest() {
         if (apiRequest == null) {
             apiRequest = new ApiRequest(this);

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GetResponseCategoryDTO {
+public class GetResponseCategoryDto {
     private Integer id;
     private String name;
     private String slug;

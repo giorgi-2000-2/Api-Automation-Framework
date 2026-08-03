@@ -1,6 +1,6 @@
 package org.example.ApiClient;
 import io.restassured.response.Response;
-import org.example.DTOs.RequestDto.GetCategoryLimitRequestDTO;
+import org.example.DTOs.RequestDto.GetCategoryLimitRequestDto;
 import org.example.Managers.ObjectManager;
 import org.example.DTOs.RequestDto.CreateCategoryRequestDto;
 import org.example.Utils.ApiConfig;
@@ -21,7 +21,7 @@ public class CategoryApiClient{
 
 
 
-    public Response getCategoryLimit(GetCategoryLimitRequestDTO limit) {
+    public Response getCategoryLimit(GetCategoryLimitRequestDto limit) {
         Map<String, Integer> queryParams = Map.of("limit", limit.getLimit());
         return api.getRequest().getWithQueryParams(ConfigReader.get("category.endpoint"), ApiConfig.getBaseSpec(), queryParams);
     }

@@ -1,6 +1,6 @@
 package org.example.DataFactories;
 import org.example.DTOs.RequestDto.CreateCategoryRequestDto;
-import org.example.DTOs.RequestDto.GetCategoryLimitRequestDTO;
+import org.example.DTOs.RequestDto.GetCategoryLimitRequestDto;
 import org.example.DTOs.RequestDto.UpdateCategoryRequestDto;
 import org.example.Managers.FactoryManager;
 import org.example.Utils.ConfigReader;
@@ -43,8 +43,8 @@ public class CategoryDataFactory {
                 .build();
     }
 
-    public GetCategoryLimitRequestDTO getCategoryLimit() {
-        return GetCategoryLimitRequestDTO.builder()
+    public GetCategoryLimitRequestDto getCategoryLimit() {
+        return GetCategoryLimitRequestDto.builder()
                 .limit(randomDataFactory.randomInt(ConfigReader.getInt("Limit")))
                 .build();
 

@@ -2,9 +2,9 @@ package org.example.Steps;
 import io.restassured.response.Response;
 import org.example.ApiService.HttpStatusCode;
 import org.example.DTOs.RequestDto.CreateCategoryRequestDto;
-import org.example.DTOs.RequestDto.GetCategoryLimitRequestDTO;
+import org.example.DTOs.RequestDto.GetCategoryLimitRequestDto;
 import org.example.DTOs.ResponseDto.BadRequestResponse;
-import org.example.DTOs.ResponseDto.GetResponseCategoryDTO;
+import org.example.DTOs.ResponseDto.GetResponseCategoryDto;
 import org.example.DTOs.ResponseDto.DeleteCategoryResponseDto;
 import org.example.DTOs.ResponseDto.PutBadRequestResponse;
 import org.example.Managers.AssertionManager;
@@ -19,16 +19,16 @@ public class CategorySteps {
         this.assertionManager=assertionManager;
     }
 
-    public GetResponseCategoryDTO createCategorySuccessfully(CreateCategoryRequestDto requestBody,SoftAssert softAssert) {
+    public GetResponseCategoryDto createCategorySuccessfully(CreateCategoryRequestDto requestBody, SoftAssert softAssert) {
         Response response = api.getCategoryClient().createCategory(requestBody);
         assertionManager.getAssert().assertThat(response)
                 .hasStatusCode(HttpStatusCode.CREATED)
                 .hasContentType("application/json")
                 .time();
 
-        assertionManager.getValidator().ValidateJson(response, GetResponseCategoryDTO.class,softAssert);
+        assertionManager.getValidator().ValidateJson(response, GetResponseCategoryDto.class,softAssert);
         softAssert.assertAll();
-        return response.as(GetResponseCategoryDTO.class);
+        return response.as(GetResponseCategoryDto.class);
 
     }
 
@@ -41,7 +41,7 @@ public class CategorySteps {
                 .time();
     }
 
-public Response getCategoriesByLimit(GetCategoryLimitRequestDTO limit ) {
+public Response getCategoriesByLimit(GetCategoryLimitRequestDto limit ) {
     Response response= api.getCategoryClient().getCategoryLimit(limit);
     assertionManager.getAssert().assertThat(response)
             .hasStatusCode(HttpStatusCode.OK)
@@ -52,17 +52,17 @@ public Response getCategoriesByLimit(GetCategoryLimitRequestDTO limit ) {
 }
 
 
-public GetResponseCategoryDTO getCategoryById(int id,SoftAssert softAssert){
+public GetResponseCategoryDto getCategoryById(int id, SoftAssert softAssert){
 Response response=api.getCategoryClient().getCategoryById(id);
 
 
-    assertionManager.getValidator().ValidateJson(response, GetResponseCategoryDTO.class,softAssert);
+    assertionManager.getValidator().ValidateJson(response, GetResponseCategoryDto.class,softAssert);
     assertionManager.getAssert().assertThat(response)
             .hasStatusCode(HttpStatusCode.OK)
             .hasContentType("application/json")
             .time();
 
-        return response.as(GetResponseCategoryDTO.class);
+        return response.as(GetResponseCategoryDto.class);
 
 
 }
@@ -92,17 +92,17 @@ Response response=api.getCategoryClient().getCategoryById(id);
 
     }
 
-    public GetResponseCategoryDTO putCategoryById(int id, Object body,SoftAssert softAssert){
+    public GetResponseCategoryDto putCategoryById(int id, Object body, SoftAssert softAssert){
 
         Response response = api.getCategoryClient().putCategoryById(id, body);
 
-        assertionManager.getValidator().ValidateJson(response,GetResponseCategoryDTO.class,softAssert);
+        assertionManager.getValidator().ValidateJson(response, GetResponseCategoryDto.class,softAssert);
         assertionManager.getAssert().assertThat(response)
                 .hasStatusCode(HttpStatusCode.OK)
                 .hasContentType("application/json")
                 .time();
 
-        return response.as(GetResponseCategoryDTO.class);
+        return response.as(GetResponseCategoryDto.class);
 
     }
 
@@ -138,15 +138,15 @@ Response response=api.getCategoryClient().getCategoryById(id);
 
 
 
-public GetResponseCategoryDTO getCategoryWithSlug(String slug, SoftAssert softAssert){
+public GetResponseCategoryDto getCategoryWithSlug(String slug, SoftAssert softAssert){
     Response response =  api.getCategoryClient().getCategoryWithSlug(slug);
 
-    assertionManager.getValidator().ValidateJson(response,GetResponseCategoryDTO.class,softAssert);
+    assertionManager.getValidator().ValidateJson(response, GetResponseCategoryDto.class,softAssert);
     assertionManager.getAssert().assertThat(response)
             .hasStatusCode(HttpStatusCode.OK)
             .hasContentType("application/json")
             .time();
-    return response.as(GetResponseCategoryDTO.class);
+    return response.as(GetResponseCategoryDto.class);
 }
 
     public BadRequestResponse getCategoryWithWrongSlug(String slug, SoftAssert softAssert){

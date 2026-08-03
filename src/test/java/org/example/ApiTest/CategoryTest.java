@@ -2,9 +2,9 @@ package org.example.ApiTest;
 import io.restassured.response.Response;
 import org.example.BaseApiTest;
 import org.example.DTOs.RequestDto.CreateCategoryRequestDto;
-import org.example.DTOs.RequestDto.GetCategoryLimitRequestDTO;
+import org.example.DTOs.RequestDto.GetCategoryLimitRequestDto;
 import org.example.DTOs.RequestDto.UpdateCategoryRequestDto;
-import org.example.DTOs.ResponseDto.GetResponseCategoryDTO;
+import org.example.DTOs.ResponseDto.GetResponseCategoryDto;
 import org.example.annotations.RequiresCategory;
 import org.testng.annotations.Test;
 
@@ -13,7 +13,7 @@ public class CategoryTest extends BaseApiTest {
     @Test
     public void testCreateCategorySuccessfully() {
         CreateCategoryRequestDto requestBody = factory().categoryFactory().createCategoryWithData();
-        GetResponseCategoryDTO responseBody = api().getCategorySteps().createCategorySuccessfully(requestBody,getSoft());
+        GetResponseCategoryDto responseBody = api().getCategorySteps().createCategorySuccessfully(requestBody,getSoft());
 
         assertManager().getResponseCategoryDtoAssert().assertThat(responseBody)
                 .verifyTitleIsCorrect(requestBody.getName())
@@ -36,7 +36,7 @@ public class CategoryTest extends BaseApiTest {
 
 @Test
     public void testGetCategoryLimit(){
-    GetCategoryLimitRequestDTO requestBody = factory().categoryFactory().getCategoryLimit();
+    GetCategoryLimitRequestDto requestBody = factory().categoryFactory().getCategoryLimit();
     Response responseCategoryLimit =  api().getCategorySteps().getCategoriesByLimit(requestBody);
 
     assertManager().getResponseCategoryDtoAssert().assertCategoryValidator(responseCategoryLimit);
@@ -47,7 +47,7 @@ public class CategoryTest extends BaseApiTest {
     @Test
     @RequiresCategory
     public void testGetCategoryById(){
-    GetResponseCategoryDTO response = api().getCategorySteps().getCategoryById(category.get().getId(),getSoft());
+    GetResponseCategoryDto response = api().getCategorySteps().getCategoryById(category.get().getId(),getSoft());
 
         assertManager().getResponseCategoryDtoAssert().assertThat(response)
                     .verifyIdIsCorrect(category.get().getId());
@@ -65,7 +65,7 @@ public class CategoryTest extends BaseApiTest {
     @RequiresCategory
     public void testPutCategoryUpdateSuccessfully(){
     UpdateCategoryRequestDto updateCategory = factory().categoryFactory().updateCategoryDto();
-    GetResponseCategoryDTO response = api().getCategorySteps().putCategoryById(category.get().getId(),updateCategory,getSoft());
+    GetResponseCategoryDto response = api().getCategorySteps().putCategoryById(category.get().getId(),updateCategory,getSoft());
 
         assertManager().getResponseCategoryDtoAssert().assertThat(response)
                     .verifyTitleIsCorrect(updateCategory.getName());
@@ -103,7 +103,7 @@ public class CategoryTest extends BaseApiTest {
     @Test
     @RequiresCategory
     public void testGetCategoryWithSlug(){
-GetResponseCategoryDTO responseCategoryDTO = api().getCategorySteps().getCategoryWithSlug(category.get().getSlug(),getSoft());
+GetResponseCategoryDto responseCategoryDTO = api().getCategorySteps().getCategoryWithSlug(category.get().getSlug(),getSoft());
 
 
         assertManager().getResponseCategoryDtoAssert().assertThat(responseCategoryDTO)
