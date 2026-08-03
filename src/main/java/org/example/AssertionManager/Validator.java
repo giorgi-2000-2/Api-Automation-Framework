@@ -1,4 +1,4 @@
-package org.example.ApiService;
+package org.example.AssertionManager;
 import io.restassured.response.Response;
 import org.example.Utils.ExtentReportManager;
 import org.testng.asserts.SoftAssert;

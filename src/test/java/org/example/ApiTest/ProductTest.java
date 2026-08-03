@@ -1,6 +1,5 @@
 package org.example.ApiTest;
 import io.restassured.response.Response;
-import org.example.ApiService.Validator;
 import org.example.BaseApiTest;
 import org.example.DTOs.RequestDto.CreateProductRequestDto;
 import org.example.DTOs.RequestDto.UpdateProductRequestDto;

@@ -1,7 +1,7 @@
 package org.example.Steps;
 import io.restassured.response.Response;
 import org.example.ApiService.HttpStatusCode;
-import org.example.ApiService.Validator;
+import org.example.AssertionManager.Validator;
 import org.example.DTOs.RequestDto.CreateProductRequestDto;
 import org.example.DTOs.ResponseDto.BadRequestResponse;
 import org.example.DTOs.ResponseDto.GetResponseProductDto;
