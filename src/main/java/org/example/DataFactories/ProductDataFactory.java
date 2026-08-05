@@ -8,29 +8,23 @@ import org.example.Utils.ConfigReader;
 import java.util.List;
 
 public class ProductDataFactory {
-    private final RandomDataFactory randomDataFactory = new RandomDataFactory();
-    private final FactoryManager factoryManager;
+    private RandomDataFactory randomDataFactory;
 
-    public ProductDataFactory(FactoryManager factoryManager) {
-        this.factoryManager = factoryManager;
+    public ProductDataFactory(RandomDataFactory randomDataFactory) {
+        this.randomDataFactory = randomDataFactory;
 
     }
 
     public CreateProductRequestDto createProductWithData(int id) {
         return CreateProductRequestDto.builder()
-                .title(randomDataFactory.uniqueTitle(ConfigReader.get("category.name")))
+                .title(randomDataFactory.uniqueTitle(ConfigReader.get("categoryName")))
                 .price(randomDataFactory.randomInt(1,100))
                 .description(randomDataFactory.uniqueTitle("description"))
                 .categoryId(id)
-                .images(List.of(ConfigReader.get("category.image")))
+                .images(List.of(ConfigReader.get("categoryImage")))
                 .build();
     }
 
-    public int getWrongId() {
-        return randomDataFactory.randomInt(-1, 0);
-
-
-    }
 
     public UpdateProductRequestDto updateProductDto(GetResponseCategoryDto response) {
         return UpdateProductRequestDto.builder()
@@ -38,7 +32,7 @@ public class ProductDataFactory {
                 .price(randomDataFactory.randomInt(0,1000))
                 .description("description")
                 .categoryId(response.getId())
-                .images(List.of(ConfigReader.get("category.image")))
+                .images(List.of(ConfigReader.get("categoryImage")))
                 .build();
 
     }
@@ -49,7 +43,7 @@ public class ProductDataFactory {
                 .price(randomDataFactory.randomInt(0,1000))
                 .description("description")
                 .categoryId(-1)
-                .images(List.of(ConfigReader.get("category.image")))
+                .images(List.of(ConfigReader.get("categoryImage")))
                 .build();
 
     }

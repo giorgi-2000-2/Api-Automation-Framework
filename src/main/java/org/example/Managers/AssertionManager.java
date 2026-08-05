@@ -1,21 +1,22 @@
 package org.example.Managers;
-import org.example.AssertionManager.ResponseAssert;
-import org.example.AssertionManager.ResponseCategoryDtoAssert;
-import org.example.AssertionManager.ResponseProductDtoAssert;
-import org.example.AssertionManager.Validator;
+import org.example.AssertionManager.*;
+import org.testng.asserts.SoftAssert;
 
 public class AssertionManager  {
     private ResponseProductDtoAssert responseProductDtoAssert;
     private ResponseCategoryDtoAssert responseCategoryDtoAssert;
-    private  Validator validator;
-private ResponseAssert responseAssert;
+    private  ResponseValidator responseValidator;
+    private SoftAssert softAssert;
+public AssertionManager(SoftAssert softAssert){
+    this.softAssert=softAssert;
+}
 
     public ResponseProductDtoAssert getResponseProductDtoAssert(){
 
         if(responseProductDtoAssert==null){
             responseProductDtoAssert= new ResponseProductDtoAssert();
         }
-     return responseProductDtoAssert;
+        return responseProductDtoAssert;
     }
 
     public ResponseCategoryDtoAssert getResponseCategoryDtoAssert(){
@@ -26,19 +27,11 @@ private ResponseAssert responseAssert;
         return responseCategoryDtoAssert;
     }
 
-    public Validator getValidator(){
-        if(validator==null){
-            validator = new Validator();
+    public   ResponseValidator getResponseValidator(){
+        if(responseValidator==null){
+            responseValidator = new ResponseValidator(softAssert);
         }
-        return validator;
-    }
-
-    public ResponseAssert getAssert(){
-        if(responseAssert==null){
-            responseAssert = new ResponseAssert();
-
-        }
-        return responseAssert;
+        return responseValidator;
     }
 
 

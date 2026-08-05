@@ -1,9 +1,12 @@
 package org.example.ApiTest;
 import io.restassured.response.Response;
+import org.example.ApiService.HttpStatusCode;
 import org.example.BaseApiTest;
 import org.example.DTOs.RequestDto.CreateProductRequestDto;
 import org.example.DTOs.RequestDto.UpdateProductRequestDto;
+import org.example.DTOs.ResponseDto.BadRequestResponse;
 import org.example.DTOs.ResponseDto.GetResponseProductDto;
+import org.example.DTOs.ResponseDto.PutBadRequestResponse;
 import org.example.annotations.RequiresCategory;
 import org.example.annotations.RequiresProduct;
 import org.testng.annotations.Test;
@@ -14,22 +17,19 @@ public class ProductTest extends BaseApiTest {
     @RequiresCategory
     public void testCreateProductValidData() {
         CreateProductRequestDto requestBody = factory().productFactory().createProductWithData(category.get().getId());
-        GetResponseProductDto product =  api().getProductSteps().createProductSuccessfully(requestBody);
-
-        assertManager().getResponseProductDtoAssert().assertThat(product)
+        GetResponseProductDto response =  api().getProductSteps().createProduct(requestBody);
+        assertManager().getResponseProductDtoAssert().assertThat(response)
                 .verifyTitleIsCorrect(requestBody.getTitle())
                 .verifyPriceIsCorrect(requestBody.getPrice())
                 .verifyDescriptionIsCorrect(requestBody.getDescription())
                 .verifyCategoryIdIsCorrect(requestBody.getCategoryId())
                 .verifyImagesAreCorrect(requestBody.getImages());
-
     }
 
     @Test
     public void testCreateProductInvalidCategoryId() {
-        CreateProductRequestDto requestBody = factory().productFactory().createProductWithData(factory().productFactory().getWrongId());
-      api().getProductSteps().createProductWithWrongCategoryId(requestBody,getSoft());
-getSoft().assertAll();
+        CreateProductRequestDto requestBody = factory().productFactory().createProductWithData(factory().getRandomData().getWrongNumber());
+       api().getProductSteps().createProductExpectingError(requestBody,HttpStatusCode.BAD_REQUEST,BadRequestResponse.class);
     }
 
 
@@ -37,23 +37,20 @@ getSoft().assertAll();
     @RequiresCategory
     @RequiresProduct
     public void testGetProductById() {
-      GetResponseProductDto responseProductDto= api().getProductSteps().getProductById(product.get().getId(),getSoft());
-
-        assertManager().getResponseProductDtoAssert().assertThat(responseProductDto)
+      GetResponseProductDto response= api().getProductSteps().getProduct(product.get().getId());
+        assertManager().getResponseProductDtoAssert().assertThat(response)
                 .verifyTitleIsCorrect(requestBodyProduct.get().getTitle())
                 .verifyPriceIsCorrect(requestBodyProduct.get().getPrice())
                 .verifyDescriptionIsCorrect(requestBodyProduct.get().getDescription())
                 .verifyCategoryIdIsCorrect(requestBodyProduct.get().getCategoryId())
                 .verifyImagesAreCorrect(requestBodyProduct.get().getImages());
-
-        getSoft().assertAll();
     }
 
 
     @Test
     public void testGetProductByWrongId() {
-       api().getProductSteps().getProductByWrongId(factory().productFactory().getWrongId());
-
+       api().getProductSteps().getProductExpectingError(factory().getRandomData().getWrongNumber(),HttpStatusCode.BAD_REQUEST,
+               BadRequestResponse.class);
     }
 
     @Test
@@ -61,15 +58,13 @@ getSoft().assertAll();
     @RequiresProduct
     public void testUpdateProductSuccessfully() {
         UpdateProductRequestDto requests = factory().productFactory().updateProductDto(category.get());
-        GetResponseProductDto responseProductDto=  api().getProductSteps().putProduct(product.get().getId(), requests,getSoft());
-
-        assertManager().getResponseProductDtoAssert().assertThat(responseProductDto)
+        GetResponseProductDto response=  api().getProductSteps().updateProduct(product.get().getId(), requests);
+        assertManager().getResponseProductDtoAssert().assertThat(response)
                 .verifyTitleIsCorrect(requests.getTitle())
                  .verifyPriceIsCorrect(requests.getPrice())
                 .verifyDescriptionIsCorrect(requests.getDescription())
                 .verifyCategoryIdIsCorrect(requests.getCategoryId())
                 .verifyImagesAreCorrect(requests.getImages());
-getSoft().assertAll();
     }
 
     @Test
@@ -77,9 +72,8 @@ getSoft().assertAll();
     @RequiresProduct
     public void testUpdateProductBadRequest() {
         UpdateProductRequestDto requests = factory().productFactory().updateProductWithWrongData();
-        api().getProductSteps().putProductBadRequest(product.get().getId(), requests, getSoft());
-        getSoft().assertAll();
-
+     api().getProductSteps().updateProductExpectingError(product.get().getId(),requests,HttpStatusCode.BAD_REQUEST,
+             PutBadRequestResponse.class);
     }
 
     @Test
@@ -87,15 +81,13 @@ getSoft().assertAll();
     @RequiresProduct
     public void testDeleteProductSuccessfully() {
        Response response = api().getProductSteps().deleteProduct(product.get().getId());
-
         assertManager().getResponseProductDtoAssert().assertThat(response)
                .verifyBooleanResponseIsCorrect();
     }
 
     @Test
     public void testDeleteProductWrongIdBadRequest() {
-        api().getProductSteps().deleteWithWrongCategoryId(factory().productFactory().getWrongId(),getSoft());
-        getSoft().assertAll();
+     api().getProductSteps().deleteProductExpectingError(factory().getRandomData().getWrongNumber(), HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
     }
 
 }

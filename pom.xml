@@ -11,9 +11,15 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <restassured.version>5.5.6</restassured.version>
+    <testng.version>7.11.0</testng.version>
+    <surefire.version>3.5.2</surefire.version>
+
+    <suiteXmlFile>testng.xml</suiteXmlFile>
+    <BASE_URL>https://api.escuelajs.co</BASE_URL>
   </properties>
 
   <dependencies>
@@ -53,19 +59,54 @@
       <version>1.18.30</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <version>6.0.0</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.13.0</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire.version}</version>
         <configuration>
-          <source>21</source>
-          <target>21</target>
+
+          <suiteXmlFiles>
+            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+          </suiteXmlFiles>
+
+          <argLine>
+            -Dfile.encoding=UTF-8
+            -Dstdout.encoding=UTF-8
+            -Dstderr.encoding=UTF-8
+            -Duser.language=en
+            -Duser.country=US
+          </argLine>
+
+          <trimStackTrace>false</trimStackTrace>
+
+          <systemPropertyVariables>
+            <BASE_URL>${BASE_URL}</BASE_URL>
+          </systemPropertyVariables>
+
+          <forkCount>1</forkCount>
+          <reuseForks>true</reuseForks>
+          <workingDirectory>${project.basedir}</workingDirectory>
+
         </configuration>
       </plugin>
+
     </plugins>
   </build>
 </project>

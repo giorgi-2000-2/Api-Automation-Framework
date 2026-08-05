@@ -1,4 +1,5 @@
 package org.example.Utils;
+
 import io.restassured.filter.Filter;
 import io.restassured.filter.FilterContext;
 import io.restassured.response.Response;
@@ -27,4 +28,4 @@ public class LogFilter implements Filter {
 
         return response;
     }
-}
+}  

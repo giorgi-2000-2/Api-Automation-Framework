@@ -1,63 +1,49 @@
 package org.example.Managers;
-import org.example.ApiClient.ProductApiClient;
+import org.example.ApiClient.GenericClient;
 import org.example.ApiService.ApiRequest;
-import org.example.ApiClient.CategoryApiClient;
 import org.example.Steps.CategorySteps;
 import org.example.Steps.ProductSteps;
 
 
 public class ObjectManager {
-private ApiRequest apiRequest;
-private CategoryApiClient categoryApiClient;
-private CategorySteps categorySteps;
-private ProductApiClient productApiClient;
-private ProductSteps productSteps;
-private AssertionManager assertionManager;
+    private ApiRequest apiRequest;
+    private CategorySteps categorySteps;
+    private ProductSteps productSteps;
+    private AssertionManager assertionManager;
+private GenericClient genericClient;
+   public ObjectManager(AssertionManager assertionManager){
 
+       this.assertionManager = assertionManager;
+   }
+
+    public GenericClient getGenericClient() {
+        if(genericClient==null){
+            genericClient=new GenericClient(getRequest());
+        }
+        return genericClient;
+    }
 
     public ApiRequest getRequest() {
         if (apiRequest == null) {
-            apiRequest = new ApiRequest(this);
+            apiRequest = new ApiRequest();
         }
         return apiRequest;
     }
 
-    public CategoryApiClient getCategoryClient() {
-        if (categoryApiClient == null) {
-            categoryApiClient = new CategoryApiClient(this);
-        }
-        return categoryApiClient;
-    }
-
-public ProductApiClient getProductApiClient(){
-    if(productApiClient==null){
-        productApiClient=new ProductApiClient(this);
-    }
-    return productApiClient;
-}
-public AssertionManager getAssert(){
-        if(assertionManager==null){
-            assertionManager=new AssertionManager();
-        }
-
-        return assertionManager;
-}
-
     public CategorySteps getCategorySteps() {
         if (categorySteps == null) {
-            categorySteps = new CategorySteps(this,getAssert());
+            categorySteps = new CategorySteps(getGenericClient(), assertionManager.getResponseValidator());
         }
         return categorySteps;
     }
 
-
-public ProductSteps getProductSteps(){
-    if(productSteps==null){
-        productSteps=new ProductSteps(this,getAssert());
+    public ProductSteps getProductSteps() {
+        if (productSteps == null) {
+            productSteps = new ProductSteps(getGenericClient(), assertionManager.getResponseValidator());
+        }
+        return productSteps;
     }
 
-    return productSteps;
-}
 
 
 

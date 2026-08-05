@@ -1,163 +1,111 @@
 package org.example.Steps;
+
 import io.restassured.response.Response;
+import org.example.ApiClient.GenericClient;
 import org.example.ApiService.HttpStatusCode;
+import org.example.AssertionManager.ResponseValidator;
 import org.example.DTOs.RequestDto.CreateCategoryRequestDto;
-import org.example.DTOs.RequestDto.GetCategoryLimitRequestDto;
-import org.example.DTOs.ResponseDto.BadRequestResponse;
+import org.example.DTOs.RequestDto.UpdateCategoryRequestDto;
 import org.example.DTOs.ResponseDto.GetResponseCategoryDto;
-import org.example.DTOs.ResponseDto.DeleteCategoryResponseDto;
-import org.example.DTOs.ResponseDto.PutBadRequestResponse;
-import org.example.Managers.AssertionManager;
-import org.example.Managers.ObjectManager;
-import org.testng.asserts.SoftAssert;
 
-public class CategorySteps {
-    private ObjectManager api;
-     private AssertionManager assertionManager;
-    public CategorySteps(ObjectManager api, AssertionManager assertionManager) {
-        this.api = api;
-        this.assertionManager=assertionManager;
+import java.util.List;
+import java.util.Map;
+
+public class CategorySteps extends BaseSteps {
+
+    private final GenericClient genericClient;
+
+    public CategorySteps(GenericClient genericClient, ResponseValidator validator) {
+        super(validator);
+        this.genericClient = genericClient;
     }
 
-    public GetResponseCategoryDto createCategorySuccessfully(CreateCategoryRequestDto requestBody, SoftAssert softAssert) {
-        Response response = api.getCategoryClient().createCategory(requestBody);
-        assertionManager.getAssert().assertThat(response)
-                .hasStatusCode(HttpStatusCode.CREATED)
-                .hasContentType("application/json")
-                .time();
-
-        assertionManager.getValidator().ValidateJson(response, GetResponseCategoryDto.class,softAssert);
-        softAssert.assertAll();
-        return response.as(GetResponseCategoryDto.class);
-
+    public GetResponseCategoryDto createCategory(CreateCategoryRequestDto body) {
+        return createCategory(body, HttpStatusCode.CREATED);
     }
 
-
-    public void createCategoryBadRequest(CreateCategoryRequestDto requestBody) {
-        Response response = api.getCategoryClient().createCategory(requestBody);
-        assertionManager.getAssert().assertThat(response)
-                .hasStatusCode(HttpStatusCode.BAD_REQUEST)
-                .hasContentType("application/json")
-                .time();
+    public GetResponseCategoryDto createCategory(CreateCategoryRequestDto body,
+                                                 HttpStatusCode expectedStatus) {
+        step("კატეგორიის შექმნა");
+        return validator.validateSuccess(
+                genericClient.create(ApiEndpoint.CATEGORY, body),
+                expectedStatus, GetResponseCategoryDto.class);
     }
 
-public Response getCategoriesByLimit(GetCategoryLimitRequestDto limit ) {
-    Response response= api.getCategoryClient().getCategoryLimit(limit);
-    assertionManager.getAssert().assertThat(response)
-            .hasStatusCode(HttpStatusCode.OK)
-            .hasContentType("application/json")
-            .time();
-    return response;
+    public <T> T createCategoryExpectingError(CreateCategoryRequestDto body,
+                                              HttpStatusCode expectedStatus,
+                                              Class<T> errorDto) {
+        step("კატეგორიის შექმნის მცდელობა არავალიდური მონაცემებით");
+        return validator.validateSuccess(
+                genericClient.create(ApiEndpoint.CATEGORY, body),
+                expectedStatus, errorDto);
+    }
 
+    public List<GetResponseCategoryDto> getCategories(int limit) {
+        step("კატეგორიების სია limit=" + limit);
+        return validator.validateList(
+                genericClient.getByQuery(ApiEndpoint.CATEGORY, Map.of("limit", limit)),
+                HttpStatusCode.OK,
+                GetResponseCategoryDto[].class);
+    }
+
+    public GetResponseCategoryDto getCategory(int id) {
+        return validator.validateSuccess(
+                genericClient.getById(ApiEndpoint.CATEGORY_ID, id),
+                HttpStatusCode.OK, GetResponseCategoryDto.class);
+    }
+
+    public GetResponseCategoryDto getCategoryBySlug(String slug) {
+        return validator.validateSuccess(
+                genericClient.getByPath(ApiEndpoint.CATEGORY_SLUG, Map.of("slug", slug)),
+                HttpStatusCode.OK, GetResponseCategoryDto.class);
+    }
+
+    public <T> T getCategoryExpectingError(int id,
+                                           HttpStatusCode expectedStatus,
+                                           Class<T> errorDto) {
+        return validator.validateSuccess(
+                genericClient.getById(ApiEndpoint.CATEGORY_ID, id),
+                expectedStatus, errorDto);
+    }
+
+    public <T> T getCategoryBySlugExpectingError(String slug,
+                                                 HttpStatusCode expectedStatus,
+                                                 Class<T> errorDto) {
+        return validator.validateSuccess(
+                genericClient.getByPath(ApiEndpoint.CATEGORY_SLUG, Map.of("slug", slug)),
+                expectedStatus, errorDto);
+    }
+
+    public GetResponseCategoryDto updateCategory(int id, UpdateCategoryRequestDto body) {
+        step("კატეგორიის განახლება id=" + id);
+        return validator.validateSuccess(
+                genericClient.update(ApiEndpoint.CATEGORY_ID, id, body),
+                HttpStatusCode.OK, GetResponseCategoryDto.class);
+    }
+
+    public <T> T updateCategoryExpectingError(int id,
+                                              Object body,
+                                              HttpStatusCode expectedStatus,
+                                              Class<T> errorDto) {
+        step("კატეგორიის განახლების მცდელობა არავალიდური მონაცემებით, id=" + id);
+        return validator.validateSuccess(
+                genericClient.update(ApiEndpoint.CATEGORY_ID, id, body),
+                expectedStatus, errorDto);
+    }
+
+    public boolean deleteCategory(int id) {
+        step("კატეგორიის წაშლა id=" + id);
+        Response response = validator.validateWithoutSchema(
+                genericClient.delete(ApiEndpoint.CATEGORY_ID, id), HttpStatusCode.OK);
+        return Boolean.parseBoolean(response.asString().trim());
+    }
+
+    public <T> T deleteCategoryExpectingError(int id,
+                                              HttpStatusCode expectedStatus,
+                                              Class<T> errorDto) {
+        return validator.validateSuccess(
+                genericClient.delete(ApiEndpoint.CATEGORY_ID, id),
+                expectedStatus, errorDto);
+    }
 }
-
-
-public GetResponseCategoryDto getCategoryById(int id, SoftAssert softAssert){
-Response response=api.getCategoryClient().getCategoryById(id);
-
-
-    assertionManager.getValidator().ValidateJson(response, GetResponseCategoryDto.class,softAssert);
-    assertionManager.getAssert().assertThat(response)
-            .hasStatusCode(HttpStatusCode.OK)
-            .hasContentType("application/json")
-            .time();
-
-        return response.as(GetResponseCategoryDto.class);
-
-
-}
-
-    public DeleteCategoryResponseDto getCategoryByIdAfterDelete(int id,SoftAssert softAssert){
-        Response response=api.getCategoryClient().getCategoryById(id);
-
-        assertionManager.getValidator().ValidateJson(response,DeleteCategoryResponseDto.class,softAssert);
-        assertionManager.getAssert().assertThat(response)
-                .hasStatusCode(HttpStatusCode.BAD_REQUEST)
-                .time();
-
-        return response.as(DeleteCategoryResponseDto.class);
-
-
-    }
-    public BadRequestResponse getCategoryByWrongId(int id,SoftAssert softAssert){
-        Response response=api.getCategoryClient().getCategoryById(id);
-
-        assertionManager.getValidator().ValidateJson(response,BadRequestResponse.class,softAssert);
-        assertionManager.getAssert().assertThat(response)
-                .hasStatusCode(HttpStatusCode.BAD_REQUEST)
-                .hasContentType("application/json")
-                .time();
-        return response.as(BadRequestResponse.class);
-
-
-    }
-
-    public GetResponseCategoryDto putCategoryById(int id, Object body, SoftAssert softAssert){
-
-        Response response = api.getCategoryClient().putCategoryById(id, body);
-
-        assertionManager.getValidator().ValidateJson(response, GetResponseCategoryDto.class,softAssert);
-        assertionManager.getAssert().assertThat(response)
-                .hasStatusCode(HttpStatusCode.OK)
-                .hasContentType("application/json")
-                .time();
-
-        return response.as(GetResponseCategoryDto.class);
-
-    }
-
-    public PutBadRequestResponse putCategoryByIdBadRequest(int id, Object body,SoftAssert softAssert) {
-        Response response = api.getCategoryClient().putCategoryById(id, body);
-
-        assertionManager.getValidator().ValidateJson(response,PutBadRequestResponse.class,softAssert);
-
-        assertionManager.getAssert().assertThat(response).hasStatusCode(HttpStatusCode.BAD_REQUEST)
-                .time();
-
-        return response.as(PutBadRequestResponse.class);
-
-    }
-
-    public Response deleteCategory(int id){
-        Response response =  api.getCategoryClient().deleteCategoryById(id);
-        assertionManager.getAssert().assertThat(response)
-                .hasStatusCode(HttpStatusCode.OK)
-                .time();
-        return response;
-    }
-
-    public BadRequestResponse deleteWithWrongCategoryId(int id,SoftAssert softAssert){
-        Response response =  api.getCategoryClient().deleteCategoryById(id);
-
-        assertionManager.getValidator().ValidateJson(response,BadRequestResponse.class,softAssert);
-        assertionManager.getAssert().assertThat(response)
-                .hasStatusCode(HttpStatusCode.BAD_REQUEST)
-                .time();
-        return response.as(BadRequestResponse.class);
-    }
-
-
-
-public GetResponseCategoryDto getCategoryWithSlug(String slug, SoftAssert softAssert){
-    Response response =  api.getCategoryClient().getCategoryWithSlug(slug);
-
-    assertionManager.getValidator().ValidateJson(response, GetResponseCategoryDto.class,softAssert);
-    assertionManager.getAssert().assertThat(response)
-            .hasStatusCode(HttpStatusCode.OK)
-            .hasContentType("application/json")
-            .time();
-    return response.as(GetResponseCategoryDto.class);
-}
-
-    public BadRequestResponse getCategoryWithWrongSlug(String slug, SoftAssert softAssert){
-        Response response =  api.getCategoryClient().getCategoryWithSlug(slug);
-
-        assertionManager.getValidator().ValidateJson(response,BadRequestResponse.class,softAssert);
-        assertionManager.getAssert().assertThat(response)
-                .hasStatusCode(HttpStatusCode.BAD_REQUEST)
-                .hasContentType("application/json")
-                  .time();
-        return response.as(BadRequestResponse.class);
-    }
-
-    }

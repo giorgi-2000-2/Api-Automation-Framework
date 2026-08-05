@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Validation Error Schema",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "error": {
+      "type": "string"
+    },
+    "statusCode": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "message",
+    "error",
+    "statusCode"
+  ],
+  "additionalProperties": false
+}

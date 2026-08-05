@@ -11,13 +11,13 @@ public class TestListenerManager implements ITestListener {
         String testName = result.getMethod().getMethodName();
         ExtentReportManager.getTest().info("Test Started : " + testName);
     }
+
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("Test Success : " + result.getName());
         ExtentReportManager.getTest().pass("Test Passed");
         ExtentReportManager.unload();
     }
-
 
     @Override
     public void onTestFailure(ITestResult result) {
@@ -27,17 +27,18 @@ public class TestListenerManager implements ITestListener {
         ExtentReportManager.unload();
     }
 
-
     @Override
     public void onTestSkipped(ITestResult result) {
         ExtentReportManager.getTest().skip("Test Skipped");
         System.out.println("Test Skipped : " + result.getName());
         ExtentReportManager.unload();
     }
+
     @Override
     public void onStart(ITestContext context) {
         System.out.println("Test suite Started : " + context.getName());
     }
+
     @Override
     public void onFinish(ITestContext context) {
         System.out.println("Test suite finished : " + context.getName());

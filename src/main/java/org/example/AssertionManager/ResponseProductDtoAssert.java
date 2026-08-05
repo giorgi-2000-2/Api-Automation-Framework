@@ -1,7 +1,6 @@
 package org.example.AssertionManager;
 import com.aventstack.extentreports.ExtentTest;
 import io.restassured.response.Response;
-import org.example.DTOs.ResponseDto.GetResponseCategoryDto;
 import org.example.DTOs.ResponseDto.GetResponseProductDto;
 import org.testng.Assert;
 import java.util.List;
@@ -14,7 +13,7 @@ public class ResponseProductDtoAssert {
 
     public ResponseProductDtoAssert assertThat(GetResponseProductDto requestBody) {
         this.currentProduct =requestBody;
-         return this;
+        return this;
     }
 
 
@@ -30,11 +29,6 @@ public class ResponseProductDtoAssert {
         Assert.assertTrue(responseProduct.jsonPath().get(), " წაშლის შემოწმება ");
 
     }
-    public ResponseProductDtoAssert verifyIdIsCorrect(Integer expectedId) {
-        validationStep.info("მიმდინარეობს ID-ს შემოწმება");
-            Assert.assertEquals(currentProduct.getId(), expectedId, "ID არასწორია");
-        return this;
-    }
 
     public ResponseProductDtoAssert verifyTitleIsCorrect(String expectedTitle) {
         validationStep.info("მიმდინარეობს სათაურის (Title) შემოწმება");
@@ -42,15 +36,10 @@ public class ResponseProductDtoAssert {
         return this;
     }
 
-    public ResponseProductDtoAssert verifySlugIsCorrect(String expectedSlug) {
-        validationStep.info("მიმდინარეობს Slug-ის შემოწმება");
-        Assert.assertEquals(currentProduct.getSlug(), expectedSlug, "Slug არასწორია");
-        return this;
-    }
 
     public ResponseProductDtoAssert verifyPriceIsCorrect(Integer expectedPrice) {
         validationStep.info("მიმდინარეობს ფასის (Price) შემოწმება");
-          Assert.assertEquals(currentProduct.getPrice(), expectedPrice, "Price არასწორია");
+        Assert.assertEquals(currentProduct.getPrice(), expectedPrice, "Price არასწორია");
         return this;
     }
 
@@ -60,41 +49,20 @@ public class ResponseProductDtoAssert {
         return this;
     }
 
-    public ResponseProductDtoAssert verifyCategoryIsCorrect(GetResponseCategoryDto expectedCategory) {
-        validationStep.info("მიმდინარეობს კატეგორიის (Category) შემოწმება");
-        Assert.assertEquals(currentProduct.getCategory(), expectedCategory, "Category არასწორია");
-        return this;
-    }
 
     public ResponseProductDtoAssert verifyCategoryIdIsCorrect(Integer expectedCategoryId) {
         validationStep.info("მიმდინარეობს კატეგორიის ID-ს შემოწმება");
-           Assert.assertEquals(currentProduct.getCategory().getId(), expectedCategoryId, "Category ID არასწორია");
+        Assert.assertEquals(currentProduct.getCategory().getId(), expectedCategoryId, "Category ID არასწორია");
         return this;
     }
 
-    public ResponseProductDtoAssert verifyCategoryIdIsWrong(GetResponseCategoryDto expectedCategoryId) {
-        validationStep.info("მიმდინარეობს კატეგორიის ID-ს შემოწმება");
-        Assert.assertTrue(expectedCategoryId.getId()<=0, "Category ID არასწორია");
-        return this;
-    }
 
     public ResponseProductDtoAssert verifyImagesAreCorrect(List<String> expectedImages) {
         validationStep.info("მიმდინარეობს ფოტოების (Images) შემოწმება");
         Assert.assertEquals(currentProduct.getImages(), expectedImages, "Images არასწორია");
-         return this;
-    }
-
-    public ResponseProductDtoAssert verifyCreationAtIsCorrect(String expectedCreationAt) {
-        validationStep.info("მიმდინარეობს შექმნის თარიღის (CreationAt) შემოწმება");
-           Assert.assertEquals(currentProduct.getCreationAt(), expectedCreationAt, "CreationAt არასწორია");
         return this;
     }
 
-    public ResponseProductDtoAssert verifyUpdatedAtIsCorrect(String expectedUpdatedAt) {
-        validationStep.info("მიმდინარეობს განახლების თარიღის (UpdatedAt) შემოწმება");
-           Assert.assertEquals(currentProduct.getUpdatedAt(), expectedUpdatedAt, "UpdatedAt is wrong");
-        return this;
-    }
 
 
 }

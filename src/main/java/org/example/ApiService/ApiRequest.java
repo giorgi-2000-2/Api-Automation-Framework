@@ -1,87 +1,61 @@
 package org.example.ApiService;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.example.Managers.ObjectManager;
-import org.example.Utils.ConfigReader;
 import org.example.Utils.LogFilter;
-
 import java.util.Map;
 import static io.restassured.RestAssured.given;
 
 public class ApiRequest {
-    private ObjectManager api;
-    public ApiRequest(ObjectManager api) {
-        this.api = api;
-
-    }
 
 
-    public Response getWithQueryParams(String endpoint, RequestSpecification baseSpec, Map<String, ?> queryParams) {
+
+    public Response getWithQueryParams(String endpoint, Map<String, ?> queryParams) {
         return given()
-                .spec(baseSpec)
+                .spec(ApiConfig.base())
                 .queryParams(queryParams)
-                .log().all()
+                .filter(new LogFilter())
                 .when()
                 .get(endpoint)
                 .then()
-                .log().all()
                 .extract()
                 .response();
     }
 
-    public Response getWithPathParam(String endpoint, RequestSpecification baseSpec, Map<String, ?> patchParam) {
+    public Response getWithPathParam(String endpoint, Map<String, ?> patchParam) {
         return given()
-                .spec(baseSpec)
+                .spec(ApiConfig.base())
                 .pathParams(patchParam)
-                .log().all()
+                .filter(new LogFilter())
                 .when()
                 .get(endpoint)
                 .then()
-                .log().all()
                 .extract()
                 .response();
     }
 
 
-    public Response post(String endpoint, RequestSpecification baseSpec, Object body) {
+    public Response post(String endpoint, Object body) {
         return given()
-                .spec(baseSpec)
+                .spec(ApiConfig.base())
+                .filter(new LogFilter())
                 .body(body)
-                .log().all()
                 .when()
                 .post(endpoint)
                 .then()
-                .log().all()
                 .extract()
                 .response();
     }
 
 
 
-    public Response put(String endpoint, RequestSpecification baseSpec, Map<String, ?> pathParam, Object body) {
+    public Response put(String endpoint, Map<String, ?> pathParam, Object body) {
         return given()
-                .spec(baseSpec)
+                .spec(ApiConfig.base())
                 .pathParams(pathParam)
+                .filter(new LogFilter())
                 .body(body)
-                .log().all()
                 .when()
                 .put(endpoint)
                 .then()
-                .log().all()
-                .extract()
-                .response();
-    }
-
-    public Response delete(String endpoint, RequestSpecification baseSpec, int id) {
-        return given()
-                .pathParam("id", id)
-                .spec(baseSpec)
-                .log().all()
-                .when()
-                .delete(endpoint)
-                .then()
-                .log().all()
                 .extract()
                 .response();
     }
@@ -89,17 +63,15 @@ public class ApiRequest {
     public Response delete(String endpoint, int id) {
         return given()
                 .pathParam("id", id)
-                .baseUri(ConfigReader.get("BASE_URL"))
-                .accept(ContentType.ANY)
+                .spec(ApiConfig.base())
                 .filter(new LogFilter())
-                .log().all()
                 .when()
                 .delete(endpoint)
                 .then()
-                .log().all()
                 .extract()
                 .response();
     }
+
 
 
 }

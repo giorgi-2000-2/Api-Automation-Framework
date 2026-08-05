@@ -1,121 +1,111 @@
 package org.example.ApiTest;
-import io.restassured.response.Response;
+import org.example.ApiService.HttpStatusCode;
 import org.example.BaseApiTest;
 import org.example.DTOs.RequestDto.CreateCategoryRequestDto;
 import org.example.DTOs.RequestDto.GetCategoryLimitRequestDto;
 import org.example.DTOs.RequestDto.UpdateCategoryRequestDto;
-import org.example.DTOs.ResponseDto.GetResponseCategoryDto;
+import org.example.DTOs.ResponseDto.*;
 import org.example.annotations.RequiresCategory;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class CategoryTest extends BaseApiTest {
 
     @Test
     public void testCreateCategorySuccessfully() {
         CreateCategoryRequestDto requestBody = factory().categoryFactory().createCategoryWithData();
-        GetResponseCategoryDto responseBody = api().getCategorySteps().createCategorySuccessfully(requestBody,getSoft());
-
+        GetResponseCategoryDto responseBody = api().getCategorySteps().createCategory(requestBody);
         assertManager().getResponseCategoryDtoAssert().assertThat(responseBody)
                 .verifyTitleIsCorrect(requestBody.getName())
                 .verifyImageIsCorrect(requestBody.getImage());
-
-        getSoft().assertAll();
     }
 
 
     @Test
     public void testCreateCategoryBadRequest(){
         CreateCategoryRequestDto requestBody = factory().categoryFactory().createCategoryWithWrongData();
-         api().getCategorySteps().createCategoryBadRequest(requestBody);
+  api().getCategorySteps().createCategoryExpectingError(requestBody,HttpStatusCode.BAD_REQUEST,
+          PutBadRequestResponse.class);
     }
+
+
     @Test
     public void testCreateCategoryEmptyFields(){
         CreateCategoryRequestDto requestBody = factory().categoryFactory().createCategoryWithWrongDataEmpty();
-        api().getCategorySteps().createCategoryBadRequest(requestBody);
+       api().getCategorySteps().createCategoryExpectingError(requestBody, HttpStatusCode.BAD_REQUEST,
+               ValidationErrorDto.class);
     }
 
 @Test
     public void testGetCategoryLimit(){
     GetCategoryLimitRequestDto requestBody = factory().categoryFactory().getCategoryLimit();
-    Response responseCategoryLimit =  api().getCategorySteps().getCategoriesByLimit(requestBody);
-
-    assertManager().getResponseCategoryDtoAssert().assertCategoryValidator(responseCategoryLimit);
-    assertManager().getResponseCategoryDtoAssert().assertThat(responseCategoryLimit)
-            .assertCategoryValidator(responseCategoryLimit);
+   List<GetResponseCategoryDto>categories = api().getCategorySteps().getCategories(requestBody.getLimit());
+   assertManager().getResponseCategoryDtoAssert().assertThat(categories)
+            .assertCategoryValidator();
 }
 
     @Test
     @RequiresCategory
     public void testGetCategoryById(){
-    GetResponseCategoryDto response = api().getCategorySteps().getCategoryById(category.get().getId(),getSoft());
-
+    GetResponseCategoryDto response = api().getCategorySteps().getCategory(category.get().getId());
         assertManager().getResponseCategoryDtoAssert().assertThat(response)
                     .verifyIdIsCorrect(category.get().getId());
-        getSoft().assertAll();
 }
 
 @Test
     public void testGetCategoryIdBadRequest(){
-  api().getCategorySteps().getCategoryByWrongId(factory().categoryFactory().getWrongCategoryId(),getSoft());
-  getSoft().assertAll();
-
+  api().getCategorySteps().getCategoryExpectingError(factory().getRandomData().getWrongNumber(),HttpStatusCode.BAD_REQUEST,
+          BadRequestResponse.class);
 }
 
     @Test
     @RequiresCategory
     public void testPutCategoryUpdateSuccessfully(){
     UpdateCategoryRequestDto updateCategory = factory().categoryFactory().updateCategoryDto();
-    GetResponseCategoryDto response = api().getCategorySteps().putCategoryById(category.get().getId(),updateCategory,getSoft());
-
+    GetResponseCategoryDto response = api().getCategorySteps().updateCategory(category.get().getId(),updateCategory);
         assertManager().getResponseCategoryDtoAssert().assertThat(response)
                     .verifyTitleIsCorrect(updateCategory.getName());
-        getSoft().assertAll();
 }
 
     @Test
     @RequiresCategory
     public void testPutCategoryUpdateBadRequest() {
         UpdateCategoryRequestDto updateCategory = factory().categoryFactory().updateCategoryDtoBadRequest();
-      api().getCategorySteps().putCategoryByIdBadRequest(category.get().getId(), updateCategory,getSoft());
-      getSoft().assertAll();
-
+        api().getCategorySteps().updateCategoryExpectingError(category.get().getId(), updateCategory,HttpStatusCode.BAD_REQUEST,
+                PutBadRequestResponse.class);
     }
 
 
     @Test
     @RequiresCategory
     public void testDeleteCategorySuccessfully(){
-        Response response =  api().getCategorySteps().deleteCategory(category.get().getId());
+     api().getCategorySteps().deleteCategory(category.get().getId());
+     api().getCategorySteps().getCategoryExpectingError(category.get().getId(),HttpStatusCode.BAD_REQUEST,
+             BadRequestResponse.class);
 
-        assertManager().getResponseCategoryDtoAssert().assertThat(response)
-                .verifyBooleanResponseIsCorrect();
     }
 
 
     @Test
     public void testDeleteCategoryWrongIdBadRequest(){
-       api().getCategorySteps().deleteWithWrongCategoryId(factory().categoryFactory().getWrongCategoryId(),getSoft());
-       getSoft().assertAll();
-
+   api().getCategorySteps().deleteCategoryExpectingError(factory().getRandomData().getWrongNumber(),
+           HttpStatusCode.BAD_REQUEST,BadRequestResponse.class);
     }
 
 
     @Test
     @RequiresCategory
     public void testGetCategoryWithSlug(){
-GetResponseCategoryDto responseCategoryDTO = api().getCategorySteps().getCategoryWithSlug(category.get().getSlug(),getSoft());
-
-
-        assertManager().getResponseCategoryDtoAssert().assertThat(responseCategoryDTO)
+        GetResponseCategoryDto response = api().getCategorySteps().getCategoryBySlug(category.get().getSlug());
+        assertManager().getResponseCategoryDtoAssert().assertThat(response)
                 .verifyTitleIsCorrect(category.get().getName());
-        getSoft().assertAll();
 }
 
 @Test
     public void testGetCategoryWithWrongSlug(){
- api().getCategorySteps().getCategoryWithWrongSlug(factory().categoryFactory().emptyField(),getSoft());
- getSoft().assertAll();
-
+ api().getCategorySteps().getCategoryBySlugExpectingError(factory().categoryFactory().emptyField(),HttpStatusCode.BAD_REQUEST,
+         BadRequestResponse.class);
 }
 
 

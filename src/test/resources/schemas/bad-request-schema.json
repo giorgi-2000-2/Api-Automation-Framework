@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "BadRequestResponse",
+  "type": "object",
+  "required": ["path", "timestamp", "name", "message"],
+  "additionalProperties": false,
+  "properties": {
+    "path":      { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string" },
+    "name":      { "type": "string", "minLength": 1 },
+    "message":   { "type": "string", "minLength": 1 }
+  }
+}

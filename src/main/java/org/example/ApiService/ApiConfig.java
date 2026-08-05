@@ -1,6 +1,8 @@
-package org.example.Utils;
+package org.example.ApiService;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
+import org.example.Utils.ConfigReader;
+import org.example.Utils.LogFilter;
 
 public class ApiConfig {
 
@@ -12,8 +14,9 @@ public class ApiConfig {
                 .build();
     });
 
+    private ApiConfig() {}
 
-    public static RequestSpecification getBaseSpec() {
+    static RequestSpecification base() {   // package-private — მხოლოდ ApiRequest ხედავს
         return threadLocalSpec.get();
     }
 
