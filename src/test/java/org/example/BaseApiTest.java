@@ -1,13 +1,12 @@
 package org.example;
-import org.example.ApiService.HttpStatusCode;
-import org.example.DTOs.RequestDto.*;
-import org.example.DTOs.ResponseDto.*;
-import org.example.Managers.*;
-import org.example.ApiService.ApiConfig;
+import org.example.apiservice.HttpStatusCode;
+import org.example.dtos.requestdto.*;
+import org.example.dtos.responsedto.*;
+import org.example.managers.*;
+import org.example.apiservice.ApiConfig;
 import org.example.annotations.RequiresCategory;
-import org.example.Utils.ExtentReportManager;
+import org.example.utils.ExtentReportManager;
 import org.example.annotations.RequiresProduct;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
@@ -47,7 +46,6 @@ public abstract class BaseApiTest {
             this.category.set(api().getCategorySteps().createCategory(requestBodyCategory.get()));
         }
 
-
         if (method.isAnnotationPresent(RequiresCategory.class)&&method.isAnnotationPresent(RequiresProduct.class)){
             this.requestBodyProduct.set(factory().productFactory().createProductWithData(category.get().getId()));
             this.product.set(api().getProductSteps().createProduct(requestBodyProduct.get(), HttpStatusCode.CREATED));
@@ -84,22 +82,16 @@ public abstract class BaseApiTest {
 
     @AfterMethod(alwaysRun = true)
     public void removeApi() {
-        getSoft().assertAll();
         softAssertThreadLocal.remove();
         category.remove();
         product.remove();
         ApiConfig.clearSpec();
         assertionManagerThreadLocal.remove();
         apiObjectManagerThreadLocal.remove();
-    }
-
-
-
-
-    @AfterClass(alwaysRun = true)
-    public void afterClass(){
         factoryManagerThreadLocal.remove();
     }
+
+
 
 
 }  

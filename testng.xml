@@ -3,13 +3,13 @@
 <suite name="simpleTestCases" parallel="methods" thread-count="5">
 
     <listeners>
-        <listener class-name="org.example.Utils.TestListenerManager"/>
+        <listener class-name="org.example.utils.TestListenerManager"/>
     </listeners>
 
     <test name="API Tests">
         <classes>
-            <class name="org.example.ApiTest.CategoryTest"/>
-            <class name="org.example.ApiTest.ProductTest"/>
+            <class name="org.example.apiTest.CategoryTest"/>
+            <class name="org.example.apiTest.ProductTest"/>
 
         </classes>
     </test>
