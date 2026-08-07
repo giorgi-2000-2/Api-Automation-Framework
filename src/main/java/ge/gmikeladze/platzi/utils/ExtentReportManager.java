@@ -5,14 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-/**
- * Extent რეპორტის მენეჯერი.
- *
- * FIX C-5: დამატებულია null-safe log()/createNode() მეთოდები.
- *          ადრე ყველგან პირდაპირ getTest().info(...) იძახებოდა და თუ ExtentTest ჯერ არ იყო შექმნილი
- *          (მაგ. @BeforeMethod ჩავარდა createTest()-მდე), ვიღებდით NullPointerException-ს ლისენერში —
- *          რაც ნამდვილ მიზეზს სრულიად მალავდა. ახლა ასეთ დროს ლოგი კონსოლში გადადის და ინფორმაცია არ იკარგება.
- */
+
 public final class ExtentReportManager {
 
     private static ExtentReports extent;

@@ -9,15 +9,6 @@ import ge.gmikeladze.platzi.dtos.response.ValidationErrorDto;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * DTO ↔ JSON Schema-ს რეგისტრი.
- *
- * FIX L-7 (dead code): წაშლილია სამი გამოუყენებელი ჩანაწერი და მათი სქემები —
- *   • DELETE_CATEGORY  (DeleteCategoryResponseDto  → 0 გამოყენება; წაშლა validateWithoutSchema-ზე მიდის)
- *   • ERROR_RESPONSE   (ErrorResponseDto           → 0 გამოყენება; ValidationErrorDto იმავე კონტრაქტს ფარავს)
- *   • PRODUCT_LIST     (GetResponseProductDto[]    → 0 გამოყენება; პროდუქტების სიის ტესტი ჯერ არ არსებობს)
- * ჩანაწერი აქ უნდა დაბრუნდეს მაშინ, როცა შესაბამისი ტესტი დაიწერება (YAGNI).
- */
 public enum SchemaMapping {
 
     CATEGORY(GetResponseCategoryDto.class,        "schemas/category-success-schema.json"),

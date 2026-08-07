@@ -4,18 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * კონფიგურაციის წამკითხავი.
- *
- * FIX D-5: ადრე ფაილი იკითხებოდა ფარდობითი გზით — Files.newInputStream(Paths.get("config.properties")).
- *          ეს დამოკიდებული იყო working directory-ზე და მუშაობდა მხოლოდ იმიტომ, რომ pom.xml-ში
- *          surefire-ს <workingDirectory> ხელით ჰქონდა დაყენებული. ახლა ფაილი იკითხება classpath-იდან
- *          (src/main/resources/config.properties), ანუ IDE-დან, Maven-იდან და jar-იდანაც ერთნაირად მუშაობს.
- *
- * FIX D-4: ადრე get() კითხულობდა მხოლოდ ფაილს, ამიტომ pom.xml-ის <systemPropertyVariables><BASE_URL>
- *          მკვდარი კონფიგი იყო და `mvn test -DBASE_URL=...` არაფერს ცვლიდა.
- *          ახლა პრიორიტეტია: System property (-D) → environment variable → config.properties.
- */
+
 public final class ConfigReader {
 
     private static final String CONFIG_FILE = "config.properties";
@@ -43,12 +32,7 @@ public final class ConfigReader {
         // utility კლასი — ინსტანცირება არ არის საჭირო
     }
 
-    /**
-     * მნიშვნელობის წაკითხვა პრიორიტეტების მიხედვით:
-     * 1. System property   (მაგ. mvn test -DBASE_URL=https://staging.example.com)
-     * 2. Environment variable (CI/CD-ის secret-ები და გარემოს ცვლადები)
-     * 3. config.properties (default მნიშვნელობა)
-     */
+
     public static String get(String key) {
         String systemValue = System.getProperty(key);
         if (isUsable(systemValue)) {
@@ -63,10 +47,7 @@ public final class ConfigReader {
         return properties.getProperty(key);
     }
 
-    /**
-     * იგივე პრიორიტეტი, მაგრამ int-ად. არავალიდურ მნიშვნელობაზე მკაფიო შეცდომას აგდებს,
-     * NumberFormatException-ის მაგივრად, რომელიც არ ამბობს რომელი გასაღები გატყდა.
-     */
+
     public static int getInt(String key) {
         String value = get(key);
         if (value == null) {
@@ -80,7 +61,7 @@ public final class ConfigReader {
         }
     }
 
-    /** ცარიელი ან მხოლოდ ჰარებისგან შემდგარი მნიშვნელობა არ ჩაითვლება მითითებულად. */
+
     private static boolean isUsable(String value) {
         return value != null && !value.trim().isEmpty();
     }

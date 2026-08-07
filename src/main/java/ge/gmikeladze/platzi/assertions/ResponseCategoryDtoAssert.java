@@ -9,18 +9,6 @@ import org.testng.Assert;
 
 import java.util.List;
 
-/**
- * კატეგორიის ბიზნეს-ვალიდაციების fluent DSL.
- *
- * FIX C-5: ადრე კვანძი იქმნებოდა ველის ინიციალიზატორში —
- *              ExtentTest validationStep = getTest().createNode("...");
- *          ორი პრობლემა იყო:
- *            1. თუ getTest() null-ს აბრუნებდა, ობიექტის შექმნაზევე ვიღებდით NullPointerException-ს
- *               (და Guice-ის injection-ის სტეკტრეისში ნამდვილი მიზეზი საერთოდ არ ჩანდა);
- *            2. კვანძი იქმნებოდა მაშინაც, როცა ვერცერთი შემოწმება არ სრულდებოდა —
- *               რეპორტში რჩებოდა ცარიელი "კატეგორიის ბიზნეს სცენარის შემოწმება" ჩანაწერები.
- *          ახლა კვანძი იქმნება lazy-ად, პირველივე რეალურ შემოწმებაზე, და null-safe-ია.
- */
 @TestScoped
 public class ResponseCategoryDtoAssert {
 
@@ -29,7 +17,7 @@ public class ResponseCategoryDtoAssert {
     private GetResponseCategoryDto currentCategory;
     private List<GetResponseCategoryDto> responseCategoryDtos;
 
-    /** FIX C-5: აღარ არის ველის ინიციალიზატორი — კვანძი lazy-ად იქმნება. */
+
     private ExtentTest validationStep;
 
     public ResponseCategoryDtoAssert assertThat(GetResponseCategoryDto requestBody) {
@@ -49,8 +37,7 @@ public class ResponseCategoryDtoAssert {
     }
 
     public ResponseCategoryDtoAssert verifyIdIsCorrect(int expectedId) {
-        // FIX C-5: ადრე ეს მეთოდი getTest()-ში წერდა, დანარჩენები კი validationStep-ში —
-        //          რეპორტში კვანძები არასწორად იშლებოდა. ახლა ყველა ერთ step()-ს იყენებს.
+
         step("მიმდინარეობს კატეგორიის ID-ს შემოწმება");
         Assert.assertEquals(currentCategory.getId(), expectedId, "Category ID არასწორია");
         return this;
@@ -77,10 +64,6 @@ public class ResponseCategoryDtoAssert {
         }
     }
 
-    /**
-     * FIX C-5: lazy და null-safe კვანძის შექმნა.
-     * თუ მიმდინარე თრედზე ExtentTest არ არსებობს, ჩანაწერი კონსოლში გადადის.
-     */
     private void step(String message) {
         ExtentTest node = node();
         if (node != null) {

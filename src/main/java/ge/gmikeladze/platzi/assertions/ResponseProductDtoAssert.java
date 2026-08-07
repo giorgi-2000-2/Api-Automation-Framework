@@ -9,13 +9,6 @@ import org.testng.Assert;
 
 import java.util.List;
 
-/**
- * პროდუქტის ბიზნეს-ვალიდაციების fluent DSL.
- *
- * FIX C-5: კვანძი აღარ იქმნება ველის ინიციალიზატორში (getTest().createNode(...)),
- *          რაც NullPointerException-ს იწვევდა ობიექტის შექმნისთანავე, თუ ExtentTest ჯერ არ არსებობდა,
- *          და რეპორტში ტოვებდა ცარიელ კვანძებს. ახლა კვანძი lazy-ად და null-safe-ად იქმნება.
- */
 @TestScoped
 public class ResponseProductDtoAssert {
 
@@ -24,7 +17,7 @@ public class ResponseProductDtoAssert {
     private GetResponseProductDto currentProduct;
     private Response responseProduct;
 
-    /** FIX C-5: აღარ არის ველის ინიციალიზატორი — კვანძი lazy-ად იქმნება. */
+
     private ExtentTest validationStep;
 
     public ResponseProductDtoAssert assertThat(GetResponseProductDto requestBody) {
@@ -72,9 +65,6 @@ public class ResponseProductDtoAssert {
         return this;
     }
 
-    /**
-     * FIX C-5: lazy და null-safe კვანძის შექმნა.
-     */
     private void step(String message) {
         ExtentTest node = node();
         if (node != null) {

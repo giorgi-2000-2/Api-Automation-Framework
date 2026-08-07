@@ -5,15 +5,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-/**
- * TestNG-ის ლისენერი, რომელიც ტესტის სასიცოცხლო ციკლს რეპორტში ასახავს.
- *
- * FIX C-5: ყველა getTest().xxx(...) გამოძახება შეცვლილია null-safe
- *          ExtentReportManager.log(...)-ით. ადრე, თუ ExtentTest ჯერ არ იყო შექმნილი
- *          (მაგ. @BeforeMethod ჩავარდა createTest()-მდე და TestNG ტესტს skipped-ად ნიშნავდა),
- *          ლისენერი თვითონ ვარდებოდა NullPointerException-ით და ნამდვილი მიზეზი უხილავი რჩებოდა.
- *          ასევე onTestFailure-ში getThrowable()/getMessage() ახლა null-safe-ია.
- */
+
 public class TestListenerManager implements ITestListener {
 
     @Override
@@ -56,10 +48,7 @@ public class TestListenerManager implements ITestListener {
         ExtentReportManager.flushReports();
     }
 
-    /**
-     * FIX C-5: getThrowable() და getMessage() ორივე შეიძლება იყოს null —
-     * მაგალითად, როცა ტესტი დამოკიდებულების გამო გამოტოვდა.
-     */
+
     private String describeThrowable(ITestResult result) {
         Throwable throwable = result.getThrowable();
         if (throwable == null) {

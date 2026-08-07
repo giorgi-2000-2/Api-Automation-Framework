@@ -16,27 +16,9 @@ import java.util.List;
 
 import static ge.gmikeladze.platzi.assertions.SchemaMapping.getPath;
 
-/**
- * პასუხის ვალიდაციის ცენტრალური წერტილი.
- *
- * FIX C-1: assertion-ების თანმიმდევრობა და სიმკაცრე გადაწერილია.
- *
- *   იყო:  სტატუსი — SOFT, Content-Type — SOFT, სქემა — HARD (მაშინვე აგდებდა).
- *         ამის გამო არასწორი სტატუსის დროსაც კი ფრეიმვორკი აგრძელებდა და ცდილობდა
- *         წარმატებული (მაგ. 201) body-ის შედარებას error-სქემასთან. შედეგად ტესტი ეცემოდა
- *         სრულიად უაზრო შეტყობინებით ("object instance has properties which are not allowed..."),
- *         ხოლო ნამდვილი მიზეზი — "მოსალოდნელი 400, მიღებული 201" — soft იყო და იკარგებოდა.
- *
- *   არის: სტატუსი — HARD, fail-fast (preconditional assertion — თუ ის არასწორია, დანარჩენი უაზროა);
- *         Content-Type — HARD და null-safe;
- *         სქემა — SOFT (დამატებითი ინფორმაცია, ერთ გაშვებაზე ყველა კონტრაქტის დარღვევას ვხედავთ).
- *
- * FIX C-6: Content-Type-ის შემოწმება ახლა null-safe-ია validate()-შიც (ადრე მხოლოდ validateList()-ში იყო).
- */
 @TestScoped
 public class ResponseValidator {
 
-    /** რამდენი სიმბოლო მოხვდეს შეცდომის ტექსტში პასუხის სხეულიდან. */
     private static final int MAX_BODY_LENGTH_IN_MESSAGE = 1500;
 
     private final SoftAssert softAssert;
@@ -47,21 +29,20 @@ public class ResponseValidator {
     }
 
     public <T> T validate(Response response, HttpStatusCode expectedStatus, Class<T> dtoClass) {
-        // 1. სტატუსი — HARD. არასწორ სტატუსზე მაშინვე ვჩერდებით, სრული დიაგნოსტიკით.
+         verifyResponseTime(response);
         verifyStatus(response, expectedStatus);
 
-        // 2. Content-Type — HARD და null-safe.
+
         verifyJsonContentType(response);
 
-        // 3. სქემა — SOFT. კონტრაქტის დარღვევა ტესტს ჩააგდებს, მაგრამ არა assertion-ების შუაში.
+
         verifySchema(response, getPath(dtoClass));
 
         return response.as(dtoClass);
     }
 
     public Response validateWithoutSchema(Response response, HttpStatusCode expected) {
-        // FIX C-1: სტატუსის შემოწმება აქაც იმავე hard fail-fast ლოგიკას იყენებს,
-        //          რომ ორ გზას შორის ქცევა არ განსხვავდებოდეს.
+
         verifyStatus(response, expected);
         verifyResponseTime(response);
         return response;
@@ -77,11 +58,6 @@ public class ResponseValidator {
         return Arrays.asList(response.as(arrayClass));
     }
 
-    /**
-     * FIX C-1: სტატუს-კოდი ახლა HARD assertion-ია.
-     * შეცდომის ტექსტში შედის მოსალოდნელი კოდი, მიღებული კოდი და პასუხის სხეული —
-     * ანუ ერთი შეხედვით ჩანს რა მოხდა, დამატებითი გაშვების გარეშე.
-     */
     private void verifyStatus(Response response, HttpStatusCode expected) {
         int actual = response.statusCode();
 
@@ -98,11 +74,7 @@ public class ResponseValidator {
         Assert.fail(failure);
     }
 
-    /**
-     * FIX C-6: null-safe Content-Type შემოწმება.
-     * ადრე validate()-ში ეწერა response.getContentType().contains(...) — ცარიელ ან
-     * header-ის გარეშე პასუხზე ეს NullPointerException-ს იძლეოდა.
-     */
+
     private void verifyJsonContentType(Response response) {
         String contentType = response.getContentType();
 
@@ -122,11 +94,6 @@ public class ResponseValidator {
         report("Content-Type: " + contentType + " — ✔");
     }
 
-    /**
-     * FIX C-1: სქემის ვალიდაცია SOFT გახდა.
-     * JsonSchemaValidator AssertionError-ს აგდებს, ამიტომ ვიჭერთ და SoftAssert-ში ვწერთ —
-     * ასე ერთ გაშვებაზე ვხედავთ კონტრაქტის ყველა დარღვევას და არა მხოლოდ პირველს.
-     */
     private void verifySchema(Response response, String schemaPath) {
         try {
             response.then().assertThat().body(
@@ -148,7 +115,6 @@ public class ResponseValidator {
         report("პასუხის დრო: " + actual + "ms (ლიმიტი " + limit + "ms)");
     }
 
-    /** გრძელი პასუხის სხეული ისე იჭრება, რომ შეცდომის ტექსტი წასაკითხი დარჩეს. */
     private String truncatedBody(Response response) {
         String body = response.asString();
         if (body == null) {
@@ -159,7 +125,7 @@ public class ResponseValidator {
                 : body.substring(0, MAX_BODY_LENGTH_IN_MESSAGE) + "... (შემოკლებულია)";
     }
 
-    // FIX C-5: რეპორტში ჩაწერა ახლა null-safe wrapper-ით ხდება.
+
     private void report(String message) {
         ExtentReportManager.log(Status.PASS, message);
     }

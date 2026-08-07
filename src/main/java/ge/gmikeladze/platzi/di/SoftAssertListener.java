@@ -7,23 +7,6 @@ import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 import org.testng.asserts.SoftAssert;
 
-/**
- * ტესტის დასრულებისას აგროვებს SoftAssert-ის შედეგებს.
- *
- * FIX C-2: ადრე პირველივე ხაზი იყო `if (result.getStatus() != SUCCESS) return;`
- *          ანუ assertAll() მხოლოდ მაშინ იძახებოდა, თუ ტესტი უკვე მწვანე იყო.
- *          თუ ტესტი hard assertion-ზე ჩავარდებოდა, ყველა დაგროვილი soft შეცდომა ჩუმად იკარგებოდა.
- *
- *          ეს რეალურად მოხდა testCreateCategoryBadRequest-ზე: შეტყობინება
- *          "მოსალოდნელი 400, მიღებული 201" წაიშალა, ხოლო რეპორტში დარჩა მხოლოდ
- *          გაუგებარი სქემის შეცდომა.
- *
- *          ახლა assertAll() ყოველთვის სრულდება:
- *            • თუ ტესტი მწვანე იყო — soft შეცდომა მას აწითლებს (ძველი ქცევა);
- *            • თუ ტესტი უკვე წითელი იყო — soft შეცდომა ემატება addSuppressed()-ით
- *              თავდაპირველ გამონაკლისს და პარალელურად რეპორტშიც იწერება.
- *              ასე არც ერთი დიაგნოსტიკა აღარ იკარგება.
- */
 public class SoftAssertListener implements IInvokedMethodListener {
 
     @Override
@@ -36,13 +19,13 @@ public class SoftAssertListener implements IInvokedMethodListener {
         } catch (AssertionError softError) {
 
             if (result.getStatus() == ITestResult.SUCCESS) {
-                // ტესტი მწვანე იყო — soft შეცდომა ხდება ჩავარდნის მიზეზი
+
                 result.setStatus(ITestResult.FAILURE);
                 result.setThrowable(softError);
                 return;
             }
 
-            // ტესტი უკვე ჩავარდნილია — soft შეცდომებს ვინახავთ, არ ვკარგავთ
+
             Throwable primary = result.getThrowable();
             if (primary != null && primary != softError) {
                 primary.addSuppressed(softError);

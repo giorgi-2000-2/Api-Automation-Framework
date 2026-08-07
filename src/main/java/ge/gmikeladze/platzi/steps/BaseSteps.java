@@ -11,12 +11,7 @@ public abstract class BaseSteps {
         this.validator = validator;
     }
 
-    /**
-     * FIX C-5: ადრე აქ ორჯერ იძახებოდა ExtentReportManager.getTest() null-შემოწმებით,
-     *          ხოლო ExtentTest-ის არარსებობისას ნაბიჯი უბრალოდ იკარგებოდა.
-     *          ახლა გამოიყენება null-safe ExtentReportManager.info(...), რომელიც
-     *          ასეთ შემთხვევაში ჩანაწერს კონსოლში გადაიტანს და ინფორმაცია არ დაიკარგება.
-     */
+
     protected void step(String description) {
         ExtentReportManager.info("ნაბიჯი: " + description);
     }

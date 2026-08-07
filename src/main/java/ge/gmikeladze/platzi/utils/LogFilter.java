@@ -6,15 +6,6 @@ import io.restassured.response.Response;
 import io.restassured.specification.FilterableRequestSpecification;
 import io.restassured.specification.FilterableResponseSpecification;
 
-/**
- * ყოველ HTTP მოთხოვნა/პასუხს წერს Extent რეპორტში.
- *
- * FIX C-5: ადრე პირდაპირ ExtentReportManager.getTest().info(...) იძახებოდა null-შემოწმების გარეშე.
- *          თუ მოთხოვნა ტესტის კონტექსტის გარეთ შესრულდებოდა (მაგ. @BeforeMethod ჩავარდნის შემდეგ),
- *          ვიღებდით NullPointerException-ს სწორედ ლოგირების ეტაპზე — ანუ ის მექანიზმი, რომელიც
- *          დიაგნოსტიკისთვისაა, თვითონ ხდებოდა ჩავარდნის მიზეზი და მალავდა ნამდვილ შეცდომას.
- *          ახლა გამოიყენება null-safe ExtentReportManager.info(...).
- */
 public class LogFilter implements Filter {
 
     @Override
