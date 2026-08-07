@@ -3,13 +3,14 @@
 <suite name="simpleTestCases" parallel="methods" thread-count="5">
 
     <listeners>
-        <listener class-name="org.example.utils.TestListenerManager"/>
+        <listener class-name="ge.gmikeladze.platzi.utils.TestListenerManager"/>
+        <listener class-name="ge.gmikeladze.platzi.di.SoftAssertListener"/>
     </listeners>
 
     <test name="API Tests">
         <classes>
-            <class name="org.example.apiTest.CategoryTest"/>
-            <class name="org.example.apiTest.ProductTest"/>
+            <class name="ge.gmikeladze.platzi.tests.CategoryTest"/>
+            <class name="ge.gmikeladze.platzi.tests.ProductTest"/>
 
         </classes>
     </test>
