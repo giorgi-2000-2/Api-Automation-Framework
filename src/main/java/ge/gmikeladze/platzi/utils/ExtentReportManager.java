@@ -5,14 +5,12 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-
 public final class ExtentReportManager {
 
     private static ExtentReports extent;
     private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
     private ExtentReportManager() {
-        // utility კლასი
     }
 
     public static synchronized ExtentReports getExtentReports() {
@@ -40,11 +38,7 @@ public final class ExtentReportManager {
         return test.get();
     }
 
-    /**
-     * FIX C-5: ლოგირების ერთადერთი უსაფრთხო შესასვლელი.
-     * თუ მიმდინარე თრედზე ExtentTest არ არსებობს, შეტყობინება კონსოლში გადადის
-     * და არა NullPointerException-ში.
-     */
+
     public static void log(Status status, String message) {
         ExtentTest currentTest = test.get();
         if (currentTest != null) {
@@ -54,16 +48,10 @@ public final class ExtentReportManager {
         }
     }
 
-    /** მოკლე ჩანაწერი Status.INFO-თი. */
     public static void info(String message) {
         log(Status.INFO, message);
     }
 
-    /**
-     * FIX C-5: null-safe კვანძის შექმნა.
-     * აბრუნებს null-ს, თუ მიმდინარე თრედზე ტესტი ჯერ არ არსებობს —
-     * გამომძახებელი ამ შემთხვევაში log()-ზე უნდა გადავიდეს.
-     */
     public static ExtentTest createNode(String nodeName) {
         ExtentTest currentTest = test.get();
         return currentTest == null ? null : currentTest.createNode(nodeName);

@@ -26,21 +26,22 @@ public class ProductDataFactory {
     }
 
 
-    public UpdateProductRequestDto updateProductDto(GetResponseCategoryDto response) {
+    public UpdateProductRequestDto updateProductDto(int id) {
         return UpdateProductRequestDto.builder()
                 .title(randomDataFactory.uniqueTitle("updatedName"))
-                .price(randomDataFactory.randomInt(0,1000))
+                .price(randomDataFactory.randomInt(1,1000))
                 .description("description")
-                .categoryId(response.getId())
+                .categoryId(id)
                 .images(List.of(ConfigReader.get("categoryImage")))
                 .build();
 
     }
 
+
     public UpdateProductRequestDto updateProductWithWrongData() {
         return UpdateProductRequestDto.builder()
                 .title(" ")
-                .price(randomDataFactory.randomInt(0,1000))
+                .price(randomDataFactory.randomInt(1,1000))
                 .description("description")
                 .categoryId(-1)
                 .images(List.of(ConfigReader.get("categoryImage")))

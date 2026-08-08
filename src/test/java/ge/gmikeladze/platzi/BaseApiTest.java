@@ -1,5 +1,4 @@
 package ge.gmikeladze.platzi;
-
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import ge.gmikeladze.platzi.annotations.RequiresCategory;
@@ -20,8 +19,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Guice;
 import org.testng.asserts.SoftAssert;
-
 import java.lang.reflect.Method;
+
 
 @Guice(modules = FrameworkModule.class)
 public abstract class BaseApiTest {
@@ -30,7 +29,6 @@ public abstract class BaseApiTest {
     @Inject protected CategoryDataFactory categoryData;
     @Inject protected ProductDataFactory  productData;
     @Inject protected RandomDataFactory   randomData;
-
     @Inject protected Provider<CategorySteps> categorySteps;
     @Inject protected Provider<ProductSteps>  productSteps;
     @Inject protected Provider<SoftAssert>    soft;
@@ -42,7 +40,6 @@ public abstract class BaseApiTest {
     public void setUp(Method method, ITestResult result) {
         FrameworkModule.TEST_SCOPE.enter();
         ExtentReportManager.createTest(method.getName());
-
 
         result.setAttribute("softAssert", soft.get());
 

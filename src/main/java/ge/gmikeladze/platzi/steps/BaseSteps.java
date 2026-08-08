@@ -11,7 +11,6 @@ public abstract class BaseSteps {
         this.validator = validator;
     }
 
-
     protected void step(String description) {
         ExtentReportManager.info("ნაბიჯი: " + description);
     }

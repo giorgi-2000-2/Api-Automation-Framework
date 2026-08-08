@@ -1,11 +1,9 @@
 package ge.gmikeladze.platzi.assertions;
-
 import ge.gmikeladze.platzi.dtos.response.BadRequestResponse;
 import ge.gmikeladze.platzi.dtos.response.GetResponseCategoryDto;
 import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
 import ge.gmikeladze.platzi.dtos.response.PutBadRequestResponse;
 import ge.gmikeladze.platzi.dtos.response.ValidationErrorDto;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,8 +14,8 @@ public enum SchemaMapping {
     PRODUCT(GetResponseProductDto.class,          "schemas/product-schema.json"),
     BAD_REQUEST(BadRequestResponse.class,         "schemas/bad-request-schema.json"),
     PUT_BAD_REQUEST(PutBadRequestResponse.class,  "schemas/put-bad-request-schema.json"),
-    VALIDATION_ERROR(ValidationErrorDto.class,    "schemas/validation-error-schema.json");
-
+    VALIDATION_ERROR(ValidationErrorDto.class,    "schemas/validation-error-schema.json"),
+    PRODUCT_LIST(GetResponseProductDto[].class, "schemas/product-list.json");
     private final Class<?> dtoClass;
     private final String schemaPath;
 

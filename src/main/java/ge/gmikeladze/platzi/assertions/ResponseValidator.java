@@ -19,6 +19,7 @@ import static ge.gmikeladze.platzi.assertions.SchemaMapping.getPath;
 @TestScoped
 public class ResponseValidator {
 
+
     private static final int MAX_BODY_LENGTH_IN_MESSAGE = 1500;
 
     private final SoftAssert softAssert;
@@ -29,13 +30,11 @@ public class ResponseValidator {
     }
 
     public <T> T validate(Response response, HttpStatusCode expectedStatus, Class<T> dtoClass) {
-         verifyResponseTime(response);
+verifyResponseTime(response);
         verifyStatus(response, expectedStatus);
 
 
         verifyJsonContentType(response);
-
-
         verifySchema(response, getPath(dtoClass));
 
         return response.as(dtoClass);
@@ -94,6 +93,7 @@ public class ResponseValidator {
         report("Content-Type: " + contentType + " — ✔");
     }
 
+
     private void verifySchema(Response response, String schemaPath) {
         try {
             response.then().assertThat().body(
@@ -114,6 +114,7 @@ public class ResponseValidator {
                 "პასუხის დრო " + actual + "ms აჭარბებს ლიმიტს " + limit + "ms");
         report("პასუხის დრო: " + actual + "ms (ლიმიტი " + limit + "ms)");
     }
+
 
     private String truncatedBody(Response response) {
         String body = response.asString();

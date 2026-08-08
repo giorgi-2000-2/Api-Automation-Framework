@@ -5,7 +5,6 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-
 public class TestListenerManager implements ITestListener {
 
     @Override
@@ -47,7 +46,6 @@ public class TestListenerManager implements ITestListener {
         System.out.println("ტესტების ნაკრები დასრულდა: " + context.getName());
         ExtentReportManager.flushReports();
     }
-
 
     private String describeThrowable(ITestResult result) {
         Throwable throwable = result.getThrowable();

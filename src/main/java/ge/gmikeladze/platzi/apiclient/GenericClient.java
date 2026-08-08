@@ -2,9 +2,11 @@ package ge.gmikeladze.platzi.apiclient;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import io.restassured.response.Response;
 import ge.gmikeladze.platzi.apiservice.ApiRequest;
 
+import java.util.List;
 import java.util.Map;
 
 @Singleton
@@ -12,10 +14,9 @@ public class GenericClient {
     private final ApiRequest apiRequest;
 
     @Inject
-    public GenericClient(ApiRequest apiRequest) { this.apiRequest = apiRequest; }
-
-
-
+    public GenericClient(ApiRequest apiRequest) {
+        this.apiRequest = apiRequest;
+    }
 
     public Response create(ApiEndpoint endpoint, Object body) {
         return apiRequest.post(endpoint.path(), body);
@@ -29,21 +30,20 @@ public class GenericClient {
         return apiRequest.getWithQueryParams(endpoint.path(), queryParams);
     }
 
-    public Response update(ApiEndpoint endpoint, Map<String, ?> pathParams, Object body) {
-        return apiRequest.put(endpoint.path(), pathParams, body);
-    }
-
     public Response delete(ApiEndpoint endpoint, int id) {
         return apiRequest.delete(endpoint.path(), id);
     }
 
-    public Response getById(ApiEndpoint endpoint, int id) {
-        return getByPath(endpoint, Map.of("id", id));
+    public Response update(ApiEndpoint endpoint, int id, Object body) {
+        return apiRequest.put(endpoint.path(), Map.of("id", id), body);
+    }
+    public Response getByPathAndQuery(ApiEndpoint endpoint, int id, int limit, int offset) {
+        return apiRequest.getProductsByCategoryIdWithPagination(endpoint.path(), id, limit, offset);
     }
 
-    public Response update(ApiEndpoint endpoint, int id, Object body) {
-        return update(endpoint, Map.of("id", id), body);
-    }
+
+
+
 }
 
 

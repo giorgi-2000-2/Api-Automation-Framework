@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-
 public final class ConfigReader {
 
     private static final String CONFIG_FILE = "config.properties";
@@ -22,16 +21,14 @@ public final class ConfigReader {
             properties.load(inputStream);
 
         } catch (IOException e) {
-            // FIX D-5: აღარ არის e.printStackTrace() + throw (ორმაგი ლოგირება);
-            //          თავდაპირველი მიზეზი ინახება cause-ად.
+
             throw new IllegalStateException(CONFIG_FILE + "-ის წაკითხვა ვერ მოხერხდა", e);
         }
     }
 
     private ConfigReader() {
-        // utility კლასი — ინსტანცირება არ არის საჭირო
-    }
 
+    }
 
     public static String get(String key) {
         String systemValue = System.getProperty(key);
@@ -46,8 +43,6 @@ public final class ConfigReader {
 
         return properties.getProperty(key);
     }
-
-
     public static int getInt(String key) {
         String value = get(key);
         if (value == null) {
@@ -60,7 +55,6 @@ public final class ConfigReader {
                     "კონფიგის გასაღები \"" + key + "\" არ არის რიცხვი: \"" + value + "\"", e);
         }
     }
-
 
     private static boolean isUsable(String value) {
         return value != null && !value.trim().isEmpty();

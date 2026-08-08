@@ -1,5 +1,6 @@
 package ge.gmikeladze.platzi.steps;
 import com.google.inject.Inject;
+import ge.gmikeladze.platzi.dtos.request.GetCategoryLimitRequestDto;
 import io.restassured.response.Response;
 import ge.gmikeladze.platzi.apiclient.ApiEndpoint;
 import ge.gmikeladze.platzi.apiclient.GenericClient;
@@ -8,6 +9,9 @@ import ge.gmikeladze.platzi.assertions.ResponseValidator;
 import ge.gmikeladze.platzi.dtos.request.CreateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
+
+import java.util.List;
+import java.util.Map;
 
 public class ProductSteps extends BaseSteps {
     private final GenericClient genericClient;
@@ -40,7 +44,7 @@ public class ProductSteps extends BaseSteps {
 
     public GetResponseProductDto getProduct(int id) {
         return validator.validate(
-                genericClient.getById(ApiEndpoint.PRODUCT_ID, id),
+                genericClient.getByPath(ApiEndpoint.PRODUCT_ID, Map.of("id",id)),
                 HttpStatusCode.OK, GetResponseProductDto.class);
     }
 
@@ -48,7 +52,7 @@ public class ProductSteps extends BaseSteps {
                                           HttpStatusCode expectedStatus,
                                           Class<T> errorDto) {
         return validator.validate(
-                genericClient.getById(ApiEndpoint.PRODUCT_ID, id),
+                genericClient.getByPath(ApiEndpoint.PRODUCT_ID,  Map.of("id",id)),
                 expectedStatus, errorDto);
     }
 
@@ -82,4 +86,14 @@ public class ProductSteps extends BaseSteps {
                 genericClient.delete(ApiEndpoint.PRODUCT_ID, id),
                 expectedStatus, errorDto);
     }
+
+    public List<GetResponseProductDto> getProductsByCategoryId(Integer categoryId, HttpStatusCode expectedStatus) {
+        Response response = genericClient.getByPath(
+                ApiEndpoint.CATEGORY_ID_PRODUCTS,
+                Map.of("id", categoryId)
+        );
+
+        return validator.validateList(response, expectedStatus, GetResponseProductDto[].class);
+    }
+
 }

@@ -11,7 +11,7 @@
         <classes>
             <class name="ge.gmikeladze.platzi.tests.CategoryTest"/>
             <class name="ge.gmikeladze.platzi.tests.ProductTest"/>
-
+            <class name="ge.gmikeladze.platzi.tests.e2e.E2ETest"/>
         </classes>
     </test>
 

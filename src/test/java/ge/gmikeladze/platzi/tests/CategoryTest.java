@@ -20,10 +20,9 @@ public class CategoryTest extends BaseApiTest {
     public void testCreateCategorySuccessfully() {
         CreateCategoryRequestDto requestBody = categoryData.createCategoryWithData();
         GetResponseCategoryDto responseBody = categorySteps.get().createCategory(requestBody);
-        categoryAssert.get().assertThat(responseBody)
+        categoryAssert.get().assertThat(responseBody,soft.get())
                 .verifyTitleIsCorrect(requestBody.getName())
                 .verifyImageIsCorrect(requestBody.getImage());
-
     }
 
 
@@ -32,7 +31,6 @@ public class CategoryTest extends BaseApiTest {
         CreateCategoryRequestDto requestBody = categoryData.createCategoryWithWrongData();
         categorySteps.get().createCategoryExpectingError(requestBody,HttpStatusCode.BAD_REQUEST,
                 PutBadRequestResponse.class);
-
     }
 
 
@@ -42,33 +40,29 @@ public class CategoryTest extends BaseApiTest {
         CreateCategoryRequestDto requestBody = categoryData.createCategoryWithWrongDataEmpty();
         categorySteps.get().createCategoryExpectingError(requestBody, HttpStatusCode.BAD_REQUEST,
                ValidationErrorDto.class);
-
     }
 
 @Test
     public void testGetCategoryLimit(){
     GetCategoryLimitRequestDto requestBody = categoryData.getCategoryLimit();
    List<GetResponseCategoryDto>categories = categorySteps.get().getCategories(requestBody.getLimit());
-    categoryAssert.get().assertThat(categories)
+    categoryAssert.get().assertThat(categories,soft.get())
             .assertCategoryValidator();
-
 }
 
     @Test
     @RequiresCategory
     public void testGetCategoryById(){
         TestContext ctx = context.get();
-    GetResponseCategoryDto response = categorySteps.get().getCategory(ctx.getCategory().getId());
-        categoryAssert.get().assertThat(response)
+    GetResponseCategoryDto response = categorySteps.get().getCategoryById(ctx.getCategory().getId());
+        categoryAssert.get().assertThat(response,soft.get())
                     .verifyIdIsCorrect(ctx.getCategory().getId());
-
 }
 
 @Test
     public void testGetCategoryIdBadRequest(){
     categorySteps.get().getCategoryExpectingError(randomData.getWrongNumber(),HttpStatusCode.BAD_REQUEST,
           BadRequestResponse.class);
-
 }
 
     @Test
@@ -77,9 +71,8 @@ public class CategoryTest extends BaseApiTest {
         TestContext ctx = context.get();
     UpdateCategoryRequestDto updateCategory = categoryData.updateCategoryDto();
     GetResponseCategoryDto response = categorySteps.get().updateCategory(ctx.getCategory().getId(),updateCategory);
-        categoryAssert.get().assertThat(response)
+        categoryAssert.get().assertThat(response,soft.get())
                     .verifyTitleIsCorrect(updateCategory.getName());
-
 }
 
     @Test
@@ -89,7 +82,6 @@ public class CategoryTest extends BaseApiTest {
         UpdateCategoryRequestDto updateCategory = categoryData.updateCategoryDtoBadRequest();
         categorySteps.get().updateCategoryExpectingError(ctx.getCategory().getId(), updateCategory,HttpStatusCode.BAD_REQUEST,
                 PutBadRequestResponse.class);
-
     }
 
 
@@ -100,8 +92,6 @@ public class CategoryTest extends BaseApiTest {
         categorySteps.get().deleteCategory(ctx.getCategory().getId());
         categorySteps.get().getCategoryExpectingError(ctx.getCategory().getId(),HttpStatusCode.BAD_REQUEST,
              BadRequestResponse.class);
-
-
     }
 
 
@@ -109,7 +99,6 @@ public class CategoryTest extends BaseApiTest {
     public void testDeleteCategoryWrongIdBadRequest(){
         categorySteps.get().deleteCategoryExpectingError(randomData.getWrongNumber(),
            HttpStatusCode.BAD_REQUEST,BadRequestResponse.class);
-
     }
 
 
@@ -118,16 +107,14 @@ public class CategoryTest extends BaseApiTest {
     public void testGetCategoryWithSlug(){
         TestContext ctx = context.get();
         GetResponseCategoryDto response = categorySteps.get().getCategoryBySlug(ctx.getCategory().getSlug());
-        categoryAssert.get().assertThat(response)
+        categoryAssert.get().assertThat(response,soft.get())
                 .verifyTitleIsCorrect(ctx.getCategory().getName());
-
 }
 
 @Test
     public void testGetCategoryWithWrongSlug(){
     categorySteps.get().getCategoryBySlugExpectingError(categoryData.emptyField(),HttpStatusCode.BAD_REQUEST,
          BadRequestResponse.class);
-
 }
 
 

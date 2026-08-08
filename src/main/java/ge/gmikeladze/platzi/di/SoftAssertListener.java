@@ -7,6 +7,7 @@ import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 import org.testng.asserts.SoftAssert;
 
+
 public class SoftAssertListener implements IInvokedMethodListener {
 
     @Override
@@ -24,7 +25,6 @@ public class SoftAssertListener implements IInvokedMethodListener {
                 result.setThrowable(softError);
                 return;
             }
-
 
             Throwable primary = result.getThrowable();
             if (primary != null && primary != softError) {

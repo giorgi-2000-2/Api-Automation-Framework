@@ -6,7 +6,9 @@ public enum ApiEndpoint {
     CATEGORY_ID("/api/v1/categories/{id}"),
     CATEGORY_SLUG("/api/v1/categories/slug/{slug}"),
     PRODUCT("/api/v1/products"),
-    PRODUCT_ID("/api/v1/products/{id}");
+    PRODUCT_ID("/api/v1/products/{id}"),
+    CATEGORY_ID_PRODUCTS("/api/v1/categories/{id}/products");
+
 
     private final String path;
 

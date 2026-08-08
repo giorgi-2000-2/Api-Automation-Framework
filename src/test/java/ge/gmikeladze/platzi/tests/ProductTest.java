@@ -20,20 +20,18 @@ public class ProductTest extends BaseApiTest {
         TestContext ctx = context.get();
         CreateProductRequestDto requestBody = productData.createProductWithData(	ctx.getCategory().getId());
         GetResponseProductDto response =  	productSteps.get().createProduct(requestBody);
-        productAssert.get().assertThat(response)
+        productAssert.get().assertThat(response,soft.get())
                 .verifyTitleIsCorrect(requestBody.getTitle())
                 .verifyPriceIsCorrect(requestBody.getPrice())
                 .verifyDescriptionIsCorrect(requestBody.getDescription())
                 .verifyCategoryIdIsCorrect(requestBody.getCategoryId())
                 .verifyImagesAreCorrect(requestBody.getImages());
-
     }
 
     @Test
     public void testCreateProductInvalidCategoryId() {
         CreateProductRequestDto requestBody = productData.createProductWithData(randomData.getWrongNumber());
         productSteps.get().createProductExpectingError(requestBody,HttpStatusCode.BAD_REQUEST,BadRequestResponse.class);
-
     }
 
 
@@ -42,14 +40,13 @@ public class ProductTest extends BaseApiTest {
     @RequiresProduct
     public void testGetProductById() {
         TestContext ctx = context.get();
-      GetResponseProductDto response= 	productSteps.get().getProduct(	ctx.getProduct().getId());
-        productAssert.get().assertThat(response)
+      GetResponseProductDto response= 	productSteps.get().getProduct(ctx.getProduct().getId());
+        productAssert.get().assertThat(response,soft.get())
                 .verifyTitleIsCorrect(	ctx.getProductRequest().getTitle())
                 .verifyPriceIsCorrect(	ctx.getProductRequest().getPrice())
                 .verifyDescriptionIsCorrect(	ctx.getProductRequest().getDescription())
                 .verifyCategoryIdIsCorrect(	ctx.getProductRequest().getCategoryId())
                 .verifyImagesAreCorrect(	ctx.getProductRequest().getImages());
-
     }
 
 
@@ -57,7 +54,6 @@ public class ProductTest extends BaseApiTest {
     public void testGetProductByWrongId() {
         productSteps.get().getProductExpectingError(randomData.getWrongNumber(),HttpStatusCode.BAD_REQUEST,
                BadRequestResponse.class);
-
     }
 
     @Test
@@ -65,15 +61,14 @@ public class ProductTest extends BaseApiTest {
     @RequiresProduct
     public void testUpdateProductSuccessfully() {
         TestContext ctx = context.get();
-        UpdateProductRequestDto requests = productData.updateProductDto(	ctx.getCategory());
-        GetResponseProductDto response=  	productSteps.get().updateProduct(ctx.getProduct().getId(), requests);
-        productAssert.get().assertThat(response)
+        UpdateProductRequestDto requests = productData.updateProductDto(ctx.getCategory().getId());
+        GetResponseProductDto response = productSteps.get().updateProduct(ctx.getProduct().getId(), requests);
+        productAssert.get().assertThat(response,soft.get())
                 .verifyTitleIsCorrect(requests.getTitle())
                  .verifyPriceIsCorrect(requests.getPrice())
                 .verifyDescriptionIsCorrect(requests.getDescription())
                 .verifyCategoryIdIsCorrect(requests.getCategoryId())
                 .verifyImagesAreCorrect(requests.getImages());
-
     }
 
     @Test
@@ -85,7 +80,6 @@ public class ProductTest extends BaseApiTest {
         productSteps.get().updateProductExpectingError(ctx.getProduct().getId(),requests,HttpStatusCode.BAD_REQUEST,
              PutBadRequestResponse.class);
         //put ერორს და create bad request ს ერთნაირი dto აქვს.
-
     }
 
     @Test
@@ -94,15 +88,13 @@ public class ProductTest extends BaseApiTest {
     public void testDeleteProductSuccessfully() {
         TestContext ctx = context.get();
        Response response = 	productSteps.get().deleteProduct(ctx.getProduct().getId());
-        productAssert.get().assertThat(response)
+        productAssert.get().assertThat(response,soft.get())
                .verifyBooleanResponseIsCorrect();
-
     }
 
     @Test
     public void testDeleteProductWrongIdBadRequest() {
         productSteps.get().deleteProductExpectingError(randomData.getWrongNumber(), HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
-
     }
 
 
