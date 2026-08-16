@@ -1,4 +1,6 @@
 package ge.gmikeladze.platzi.dtos.response;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,19 +12,19 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PutBadRequestResponse implements ApiError {
-    private   String path;
-    private   String timestamp;
-    private   String name;
-    private   String message;
-    private   String code;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class InternalServerErrorDto implements ApiError{
+
+    private Integer statusCode;
+    private String message;
+
     @Override
     public List<String> messages() {
-        if (this.message == null) {
+        if (message == null || message.isBlank()) {
             return List.of();
-        } else {
-            return List.of(this.message);
         }
+        return List.of(message);
     }
+
 
 }

@@ -7,7 +7,7 @@ import com.google.inject.Scope;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class TestScope implements Scope {
+public class TestScope implements Scope {
 
     private final ThreadLocal<Map<Key<?>, Object>> scopedObjects = new ThreadLocal<>();
 
@@ -27,21 +27,24 @@ public final class TestScope implements Scope {
 
     @Override
     public <T> Provider<T> scope(Key<T> key, Provider<T> unscoped) {
-        return () -> {
-            Map<Key<?>, Object> objects = scopedObjects.get();
-            if (objects == null) {
-                throw new IllegalStateException(
-                        "TestScope-ის გარეთ მოთხოვნილია: " + key +
-                                "\nდარწმუნდი, რომ @BeforeMethod-ში TEST_SCOPE.enter() გამოიძახე " +
-                                "და რომ ეს კოდი ტესტის თრედზე სრულდება.");
+        return new Provider<T>() {
+            @Override
+            public T get() {
+                Map<Key<?>, Object> objects = scopedObjects.get();
+                if (objects == null) {
+                    throw new IllegalStateException(
+                            "TestScope-ის გარეთ მოთხოვნილია: " + key +
+                                    "\nდარწმუნდი, რომ @BeforeMethod-ში TEST_SCOPE.enter() გამოიძახე " +
+                                    "და რომ ეს კოდი ტესტის თრედზე სრულდება.");
+                }
+                @SuppressWarnings("unchecked")
+                T existing = (T) objects.get(key);
+                if (existing == null && !objects.containsKey(key)) {
+                    existing = unscoped.get();
+                    objects.put(key, existing);
+                }
+                return existing;
             }
-            @SuppressWarnings("unchecked")
-            T existing = (T) objects.get(key);
-            if (existing == null && !objects.containsKey(key)) {
-                existing = unscoped.get();
-                objects.put(key, existing);
-            }
-            return existing;
         };
     }
 

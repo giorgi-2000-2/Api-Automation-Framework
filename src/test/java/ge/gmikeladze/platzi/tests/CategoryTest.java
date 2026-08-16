@@ -2,122 +2,141 @@ package ge.gmikeladze.platzi.tests;
 import ge.gmikeladze.platzi.BaseApiTest;
 import ge.gmikeladze.platzi.annotations.RequiresCategory;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
-import ge.gmikeladze.platzi.di.TestContext;
+import ge.gmikeladze.platzi.datafactories.CategoryNegativeData;
+import ge.gmikeladze.platzi.datafactories.NegativeCase;
 import ge.gmikeladze.platzi.dtos.request.CreateCategoryRequestDto;
 import ge.gmikeladze.platzi.dtos.request.GetCategoryLimitRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateCategoryRequestDto;
+import ge.gmikeladze.platzi.dtos.response.ApiError;
 import ge.gmikeladze.platzi.dtos.response.BadRequestResponse;
 import ge.gmikeladze.platzi.dtos.response.GetResponseCategoryDto;
-import ge.gmikeladze.platzi.dtos.response.PutBadRequestResponse;
-import ge.gmikeladze.platzi.dtos.response.ValidationErrorDto;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class CategoryTest extends BaseApiTest {
 
-    @Test
+
+    @Test(groups = {"smoke", "regression","positive"})
     public void testCreateCategorySuccessfully() {
+
         CreateCategoryRequestDto requestBody = categoryData.createCategoryWithData();
         GetResponseCategoryDto responseBody = categorySteps.get().createCategory(requestBody);
-        categoryAssert.get().assertThat(responseBody,soft.get())
+        categoryAssert.get().assertThat(responseBody)
                 .verifyTitleIsCorrect(requestBody.getName())
                 .verifyImageIsCorrect(requestBody.getImage());
+
+
     }
 
-
-    @Test
-    public void testCreateCategoryBadRequest(){
-        CreateCategoryRequestDto requestBody = categoryData.createCategoryWithWrongData();
-        categorySteps.get().createCategoryExpectingError(requestBody,HttpStatusCode.BAD_REQUEST,
-                PutBadRequestResponse.class);
+    @Test(groups = { "regression","positive"})
+    public void testGetCategoryLimit() {
+        GetCategoryLimitRequestDto requestBody = categoryData.getCategoryLimit();
+        List<GetResponseCategoryDto> categories = categorySteps.get().getCategories(requestBody.getLimit());
+        categoryAssert.get().assertThat(categories)
+                .assertCategoryValidator(requestBody.getLimit());
     }
 
-
-
-    @Test
-    public void testCreateCategoryEmptyFields(){
-        CreateCategoryRequestDto requestBody = categoryData.createCategoryWithWrongDataEmpty();
-        categorySteps.get().createCategoryExpectingError(requestBody, HttpStatusCode.BAD_REQUEST,
-               ValidationErrorDto.class);
-    }
-
-@Test
-    public void testGetCategoryLimit(){
-    GetCategoryLimitRequestDto requestBody = categoryData.getCategoryLimit();
-   List<GetResponseCategoryDto>categories = categorySteps.get().getCategories(requestBody.getLimit());
-    categoryAssert.get().assertThat(categories,soft.get())
-            .assertCategoryValidator();
-}
-
-    @Test
+    @Test(groups = {"smoke", "regression","positive"})
     @RequiresCategory
-    public void testGetCategoryById(){
-        TestContext ctx = context.get();
-    GetResponseCategoryDto response = categorySteps.get().getCategoryById(ctx.getCategory().getId());
-        categoryAssert.get().assertThat(response,soft.get())
-                    .verifyIdIsCorrect(ctx.getCategory().getId());
-}
+    public void testGetCategoryById() {
 
-@Test
-    public void testGetCategoryIdBadRequest(){
-    categorySteps.get().getCategoryExpectingError(randomData.getWrongNumber(),HttpStatusCode.BAD_REQUEST,
-          BadRequestResponse.class);
-}
+        GetResponseCategoryDto response = categorySteps.get().getCategoryById(context.get().getCategory().getId());
+        categoryAssert.get().assertThat(response)
+                .verifyIdIsCorrect(context.get().getCategory().getId());
 
-    @Test
+    }
+
+    @Test(groups = {"smoke", "regression","positive"})
     @RequiresCategory
-    public void testPutCategoryUpdateSuccessfully(){
-        TestContext ctx = context.get();
-    UpdateCategoryRequestDto updateCategory = categoryData.updateCategoryDto();
-    GetResponseCategoryDto response = categorySteps.get().updateCategory(ctx.getCategory().getId(),updateCategory);
-        categoryAssert.get().assertThat(response,soft.get())
-                    .verifyTitleIsCorrect(updateCategory.getName());
-}
+    public void testPutCategoryUpdateSuccessfully() {
 
-    @Test
+        UpdateCategoryRequestDto updateCategory = categoryData.updateCategoryDto();
+        GetResponseCategoryDto response = categorySteps.get().updateCategory(context.get().getCategory().getId(), updateCategory);
+        categoryAssert.get().assertThat(response)
+                .verifyTitleIsCorrect(updateCategory.getName());
+
+    }
+
+    @Test(groups = {"smoke", "regression","positive"})
     @RequiresCategory
-    public void testPutCategoryUpdateBadRequest() {
-        TestContext ctx = context.get();
-        UpdateCategoryRequestDto updateCategory = categoryData.updateCategoryDtoBadRequest();
-        categorySteps.get().updateCategoryExpectingError(ctx.getCategory().getId(), updateCategory,HttpStatusCode.BAD_REQUEST,
-                PutBadRequestResponse.class);
+    public void testDeleteCategorySuccessfully() {
+
+        categorySteps.get().deleteCategory(context.get().getCategory().getId());
+        categorySteps.get().getCategoryExpectingError(context.get().getCategory().getId(),
+                HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
+
+    }
+
+    @Test(groups = {"smoke", "regression","positive"})
+    @RequiresCategory
+
+    public void testGetCategoryWithSlug() {
+
+        GetResponseCategoryDto response = categorySteps.get().getCategoryBySlug(context.get().getCategory().getSlug());
+        categoryAssert.get().assertThat(response)
+                .verifyTitleIsCorrect(context.get().getCategory().getName());
+
     }
 
 
-    @Test
-    @RequiresCategory
-    public void testDeleteCategorySuccessfully(){
-        TestContext ctx = context.get();
-        categorySteps.get().deleteCategory(ctx.getCategory().getId());
-        categorySteps.get().getCategoryExpectingError(ctx.getCategory().getId(),HttpStatusCode.BAD_REQUEST,
-             BadRequestResponse.class);
+    @Test(groups = {"regression","negative"},
+            dataProvider = "invalidCategoryCreate", dataProviderClass = CategoryNegativeData.class)
+    public void testCreateCategoryNegative(NegativeCase<CreateCategoryRequestDto> testCase) {
+        ApiError error = categorySteps.get().createCategoryExpectingError(
+                testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
+
+        errorAssert.get().assertThat(error)
+                .messageIsNotBlank()
+                .messageMentionsAll(testCase.getMessageFragments());
     }
 
+    @Test(groups = {"regression","negative"},
+            dataProvider = "invalidCategoryId", dataProviderClass = CategoryNegativeData.class)
+    public void testGetCategoryByIdNegative(NegativeCase<Integer> testCase) {
+        ApiError error = categorySteps.get().getCategoryExpectingError(
+                testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
 
-    @Test
-    public void testDeleteCategoryWrongIdBadRequest(){
-        categorySteps.get().deleteCategoryExpectingError(randomData.getWrongNumber(),
-           HttpStatusCode.BAD_REQUEST,BadRequestResponse.class);
+        errorAssert.get().assertThat(error)
+                .messageIsNotBlank()
+                .messageMentionsAll(testCase.getMessageFragments());
     }
 
+    @Test(groups = {"regression","negative"},
+            dataProvider = "invalidCategoryId", dataProviderClass = CategoryNegativeData.class)
+    public void testDeleteCategoryNegative(NegativeCase<Integer> testCase) {
+        ApiError error = categorySteps.get().deleteCategoryExpectingError(
+                testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
 
-    @Test
+        errorAssert.get().assertThat(error)
+                .messageIsNotBlank()
+                .messageMentionsAll(testCase.getMessageFragments());
+
+    }
+
+    @Test(groups = {"regression","negative"},
+            dataProvider = "invalidCategoryUpdate", dataProviderClass = CategoryNegativeData.class)
     @RequiresCategory
-    public void testGetCategoryWithSlug(){
-        TestContext ctx = context.get();
-        GetResponseCategoryDto response = categorySteps.get().getCategoryBySlug(ctx.getCategory().getSlug());
-        categoryAssert.get().assertThat(response,soft.get())
-                .verifyTitleIsCorrect(ctx.getCategory().getName());
-}
+    public void testUpdateCategoryNegative(NegativeCase<UpdateCategoryRequestDto> testCase) {
 
-@Test
-    public void testGetCategoryWithWrongSlug(){
-    categorySteps.get().getCategoryBySlugExpectingError(categoryData.emptyField(),HttpStatusCode.BAD_REQUEST,
-         BadRequestResponse.class);
-}
+        ApiError error = categorySteps.get().updateCategoryExpectingError(
+                context.get().getCategory().getId(), testCase.getPayload(),
+                testCase.getExpectedStatus(), testCase.getErrorDto());
 
+        errorAssert.get().assertThat(error)
+                .messageIsNotBlank()
+                .messageMentionsAll(testCase.getMessageFragments());
 
+    }
 
+    @Test(groups = {"regression","negative"},
+            dataProvider = "invalidCategorySlug", dataProviderClass = CategoryNegativeData.class)
+    public void testGetCategoryBySlugNegative(NegativeCase<String> testCase) {
+        ApiError error = categorySteps.get().getCategoryBySlugExpectingError(
+                testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
 
+        errorAssert.get().assertThat(error)
+                .messageIsNotBlank()
+                .messageMentionsAll(testCase.getMessageFragments());
+    }
 }

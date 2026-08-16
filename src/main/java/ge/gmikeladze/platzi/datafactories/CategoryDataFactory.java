@@ -6,8 +6,6 @@ import ge.gmikeladze.platzi.dtos.request.GetCategoryLimitRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateCategoryRequestDto;
 import ge.gmikeladze.platzi.utils.ConfigReader;
 
-import java.util.List;
-
 @Singleton
 public class CategoryDataFactory {
     private final RandomDataFactory randomDataFactory;
@@ -20,21 +18,7 @@ public class CategoryDataFactory {
     public CreateCategoryRequestDto createCategoryWithData() {
         return CreateCategoryRequestDto.builder()
                 .name(randomDataFactory.uniqueTitle(ConfigReader.get("categoryName")))
-                .image(((ConfigReader.get("categoryImage"))))
-                .build();
-    }
-
-    public CreateCategoryRequestDto createCategoryWithWrongData() {
-        return CreateCategoryRequestDto.builder()
-                .name((" "))
-                .image(ConfigReader.get("categoryImage"))
-                .build();
-    }
-
-    public CreateCategoryRequestDto createCategoryWithWrongDataEmpty() {
-        return CreateCategoryRequestDto.builder()
-                .name("")
-                .image("")
+                .image((ConfigReader.get("categoryImage")))
                 .build();
     }
 
@@ -47,24 +31,15 @@ public class CategoryDataFactory {
 
     }
 
-
     public UpdateCategoryRequestDto updateCategoryDto() {
         return UpdateCategoryRequestDto.builder()
                 .name(randomDataFactory.uniqueTitle(ConfigReader.get("categoryName")))
-                .image(((ConfigReader.get("categoryImage"))))
+                .image((ConfigReader.get("categoryImage")))
                 .build();
     }
 
-    public UpdateCategoryRequestDto updateCategoryDtoBadRequest() {
-        return UpdateCategoryRequestDto.builder()
-                .name(" ")
-                .image(((ConfigReader.get("categoryImage"))))
-                .build();
-    }
 
-    public String emptyField(){
-        return " ";
-    }
+
 
 
 }

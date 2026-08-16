@@ -4,10 +4,17 @@
   "type": "object",
   "properties": {
     "message": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
     },
     "error": {
       "type": "string"

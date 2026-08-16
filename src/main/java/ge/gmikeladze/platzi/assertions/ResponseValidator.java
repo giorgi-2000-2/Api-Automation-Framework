@@ -3,7 +3,7 @@ package ge.gmikeladze.platzi.assertions;
 import com.aventstack.extentreports.Status;
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
-import ge.gmikeladze.platzi.di.TestScoped;
+import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.utils.ConfigReader;
 import ge.gmikeladze.platzi.utils.ExtentReportManager;
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -16,11 +16,10 @@ import java.util.List;
 
 import static ge.gmikeladze.platzi.assertions.SchemaMapping.getPath;
 
+
 @TestScoped
 public class ResponseValidator {
 
-
-    private static final int MAX_BODY_LENGTH_IN_MESSAGE = 1500;
 
     private final SoftAssert softAssert;
 
@@ -30,67 +29,51 @@ public class ResponseValidator {
     }
 
     public <T> T validate(Response response, HttpStatusCode expectedStatus, Class<T> dtoClass) {
-verifyResponseTime(response);
+        verifyResponseTime(response);
         verifyStatus(response, expectedStatus);
-
-
         verifyJsonContentType(response);
         verifySchema(response, getPath(dtoClass));
-
         return response.as(dtoClass);
     }
 
     public Response validateWithoutSchema(Response response, HttpStatusCode expected) {
-
-        verifyStatus(response, expected);
         verifyResponseTime(response);
+        verifyStatus(response, expected);
         return response;
     }
 
     public <T> List<T> validateList(Response response, HttpStatusCode expectedStatus,
                                     Class<T[]> arrayClass) {
-
+        verifyResponseTime(response);
         verifyStatus(response, expectedStatus);
         verifyJsonContentType(response);
         verifySchema(response, getPath(arrayClass));
-
         return Arrays.asList(response.as(arrayClass));
     }
 
     private void verifyStatus(Response response, HttpStatusCode expected) {
         int actual = response.statusCode();
-
         String message = "სტატუს კოდი: მოსალოდნელი [" + expected.getCode()
                 + " " + expected.getDescription() + "], მიღებული [" + actual + "]";
+            Assert.assertEquals(actual,expected.getCode(),message + "  " + bodyResponseMessage(response));
 
-        if (actual == expected.getCode()) {
-            report(message + " — ✔");
-            return;
-        }
-
-        String failure = message + " — ✘\nპასუხის სხეული: " + truncatedBody(response);
-        reportFail(failure);
-        Assert.fail(failure);
     }
 
 
-    private void verifyJsonContentType(Response response) {
+    private boolean verifyJsonContentType(Response response) {
         String contentType = response.getContentType();
-
-        if (contentType == null || contentType.trim().isEmpty()) {
-            String failure = "Content-Type ჰედერი არ მოვიდა პასუხში";
-            reportFail(failure);
-            Assert.fail(failure);
+        if (contentType == null || contentType.isBlank()) {
+            reportFail("Content-Type ჰედერი არ მოვიდა პასუხში");
+            softAssert.fail("Content-Type ჰედერი არ მოვიდა პასუხში");
+            return false;
         }
-
         if (!contentType.contains("application/json")) {
-            String failure = "Content-Type არასწორია: მოსალოდნელი [application/json], მიღებული ["
-                    + contentType + "]";
-            reportFail(failure);
-            Assert.fail(failure);
+            String fail = "Content-Type არასწორია: მიღებული [" + contentType + "]";
+            reportFail(fail); softAssert.fail(fail);
+            return false;
         }
-
-        report("Content-Type: " + contentType + " — ✔");
+        reportPass("Content-Type: " + contentType);
+        return true;
     }
 
 
@@ -98,10 +81,9 @@ verifyResponseTime(response);
         try {
             response.then().assertThat().body(
                     JsonSchemaValidator.matchesJsonSchemaInClasspath(schemaPath));
-            report("JSON სქემა შეესაბამება: " + schemaPath + " — ✔");
-        } catch (AssertionError schemaError) {
-            String failure = "JSON სქემა არ ემთხვევა (" + schemaPath + ") — ✘\n"
-                    + schemaError.getMessage();
+            reportPass("JSON სქემა შეესაბამება: " + schemaPath);
+        } catch (AssertionError | RuntimeException e) {
+            String failure = "JSON სქემა არ ემთხვევა " + schemaPath + "  " +e.getMessage();
             reportFail(failure);
             softAssert.fail(failure);
         }
@@ -112,22 +94,26 @@ verifyResponseTime(response);
         long actual = response.time();
         softAssert.assertTrue(actual < limit,
                 "პასუხის დრო " + actual + "ms აჭარბებს ლიმიტს " + limit + "ms");
-        report("პასუხის დრო: " + actual + "ms (ლიმიტი " + limit + "ms)");
+        reportPass("პასუხის დრო: " + actual + "ms (ლიმიტი " + limit + "ms)");
     }
 
 
-    private String truncatedBody(Response response) {
+    private String bodyResponseMessage(Response response) {
         String body = response.asString();
+
         if (body == null) {
             return "(ცარიელი)";
         }
-        return body.length() <= MAX_BODY_LENGTH_IN_MESSAGE
-                ? body
-                : body.substring(0, MAX_BODY_LENGTH_IN_MESSAGE) + "... (შემოკლებულია)";
+        int maxBodyLengthInMessage = ConfigReader.getInt("maxBodyLengthInMessage");
+        if (body.length() <= maxBodyLengthInMessage) {
+            return body;
+        } else {
+            return body.substring(0, maxBodyLengthInMessage) + "... (შემოკლებულია)";
+        }
     }
 
 
-    private void report(String message) {
+    private void reportPass(String message) {
         ExtentReportManager.log(Status.PASS, message);
     }
 

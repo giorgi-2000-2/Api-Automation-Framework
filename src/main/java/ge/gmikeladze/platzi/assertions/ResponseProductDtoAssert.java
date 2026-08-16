@@ -1,35 +1,36 @@
 package ge.gmikeladze.platzi.assertions;
-import com.aventstack.extentreports.ExtentTest;
-import ge.gmikeladze.platzi.di.TestScoped;
+import com.google.inject.Inject;
+import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
-import ge.gmikeladze.platzi.utils.ExtentReportManager;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
 import java.util.List;
 
 @TestScoped
-public class ResponseProductDtoAssert {
-    private static final String NODE_NAME = "პროდუქტის ბიზნეს სცენარის შემოწმება";
+public class ResponseProductDtoAssert extends BaseAssert {
     private GetResponseProductDto currentProduct;
     private Response responseProduct;
-    private SoftAssert softAssert;
-    private ExtentTest validationStep;
 
-    public ResponseProductDtoAssert assertThat(GetResponseProductDto requestBody,SoftAssert softAssert) {
+    @Inject
+    ResponseProductDtoAssert(SoftAssert softAssert) {
+        super(softAssert,"პროდუქტის ბიზნეს სცენარის შემოწმება");
+
+    }
+
+    public ResponseProductDtoAssert assertThat(GetResponseProductDto requestBody) {
         this.currentProduct = requestBody;
-        this.softAssert = softAssert;
         return this;
     }
 
-    public ResponseProductDtoAssert assertThat(Response response,SoftAssert softAssert) {
+    public ResponseProductDtoAssert assertThat(Response response) {
         this.responseProduct = response;
-        this.softAssert = softAssert;
         return this;
     }
 
     public void verifyBooleanResponseIsCorrect() {
         step("მიმდინარეობს წაშლის შემოწმება");
-        softAssert.assertTrue(responseProduct.jsonPath().get(), "წაშლის შემოწმება");
+        Object BoolResponse = responseProduct.jsonPath().get();
+        softAssert.assertEquals(BoolResponse, Boolean.TRUE, "წაშლის პასუხი უნდა იყოს true, მიღებულია: " + BoolResponse);
     }
 
     public ResponseProductDtoAssert verifyTitleIsCorrect(String expectedTitle) {
@@ -63,19 +64,5 @@ public class ResponseProductDtoAssert {
     }
 
 
-    private void step(String message) {
-        ExtentTest node = node();
-        if (node != null) {
-            node.info(message);
-        } else {
-            ExtentReportManager.info(message);
-        }
-    }
 
-    private ExtentTest node() {
-        if (validationStep == null) {
-            validationStep = ExtentReportManager.createNode(NODE_NAME);
-        }
-        return validationStep;
-    }
 }

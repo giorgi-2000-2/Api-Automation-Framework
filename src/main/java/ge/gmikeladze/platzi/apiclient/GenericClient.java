@@ -1,12 +1,8 @@
 package ge.gmikeladze.platzi.apiclient;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import io.restassured.response.Response;
 import ge.gmikeladze.platzi.apiservice.ApiRequest;
-
-import java.util.List;
 import java.util.Map;
 
 @Singleton
@@ -38,7 +34,7 @@ public class GenericClient {
         return apiRequest.put(endpoint.path(), Map.of("id", id), body);
     }
     public Response getByPathAndQuery(ApiEndpoint endpoint, int id, int limit, int offset) {
-        return apiRequest.getProductsByCategoryIdWithPagination(endpoint.path(), id, limit, offset);
+        return apiRequest.getIdWithPagination(endpoint.path(), id, limit, offset);
     }
 
 

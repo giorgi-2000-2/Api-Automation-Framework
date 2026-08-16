@@ -1,38 +1,39 @@
 package ge.gmikeladze.platzi.assertions;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import ge.gmikeladze.platzi.di.TestScoped;
+import com.google.inject.Inject;
+import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.dtos.response.GetResponseCategoryDto;
-import ge.gmikeladze.platzi.utils.ExtentReportManager;
 import io.restassured.response.Response;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import java.util.List;
-import java.util.Optional;
+import java.util.List; 
 
 @TestScoped
-public class ResponseCategoryDtoAssert {
-    private static final String NODE_NAME = "კატეგორიის ბიზნეს სცენარის შემოწმება";
+public class ResponseCategoryDtoAssert extends BaseAssert{
     private GetResponseCategoryDto currentCategory;
     private List<GetResponseCategoryDto> responseCategoryDtos;
-    private Response responseProduct;
-    private ExtentTest validationStep;
-    private SoftAssert softAssert;
+    private Response responseCategory;
 
-    public ResponseCategoryDtoAssert assertThat(Response response,SoftAssert softAssert) {
-        this.responseProduct = response;
-        this.softAssert = softAssert;
+
+    @Inject
+    ResponseCategoryDtoAssert(SoftAssert softAssert) {
+        super(softAssert,"კატეგორიის ბიზნეს სცენარის შემოწმება");
+
+      }
+
+
+    public ResponseCategoryDtoAssert assertThat(Response response) {
+        this.responseCategory = response;
         return this;
     }
 
-    public ResponseCategoryDtoAssert assertThat(GetResponseCategoryDto requestBody,SoftAssert softAssert) {
+    public ResponseCategoryDtoAssert assertThat(GetResponseCategoryDto requestBody) {
         this.currentCategory = requestBody;
-        this.softAssert = softAssert;
         return this;
     }
 
-    public ResponseCategoryDtoAssert assertThat(List<GetResponseCategoryDto> responseCategoryDtos,SoftAssert softAssert) {
+    public ResponseCategoryDtoAssert assertThat(List<GetResponseCategoryDto> responseCategoryDtos) {
         this.responseCategoryDtos = responseCategoryDtos;
-        this.softAssert = softAssert;
         return this;
     }
 
@@ -45,7 +46,7 @@ public class ResponseCategoryDtoAssert {
     public ResponseCategoryDtoAssert verifyIdIsCorrect(int expectedId) {
 
         step("მიმდინარეობს კატეგორიის ID-ს შემოწმება");
-        softAssert.assertEquals(Optional.ofNullable(currentCategory.getId()), expectedId, "Category ID არასწორია");
+        Assert.assertEquals(currentCategory.getId(), expectedId, "Category ID არასწორია");
         return this;
     }
 
@@ -57,10 +58,12 @@ public class ResponseCategoryDtoAssert {
 
     public void verifyBooleanResponseIsCorrect() {
         step("მიმდინარეობს წაშლის შემოწმება");
-        softAssert.assertTrue(responseProduct.jsonPath().get(), "წაშლის შემოწმება");
+        Object BoolResponse = responseCategory.jsonPath().get();
+        softAssert.assertEquals(BoolResponse, Boolean.TRUE, "წაშლის პასუხი უნდა იყოს true, მიღებულია: " + BoolResponse);
     }
 
-    public void assertCategoryValidator() {
+    public void assertCategoryValidator(int limit) {
+        softAssert.assertEquals(responseCategoryDtos.size(),limit);
         for (GetResponseCategoryDto category : responseCategoryDtos) {
 
             int id = category.getId();
@@ -76,28 +79,5 @@ public class ResponseCategoryDtoAssert {
     }
 
 
-    private void step(String message) {
-        ExtentTest node = node();
-        if (node != null) {
-            node.info(message);
-        } else {
-            ExtentReportManager.info(message);
-        }
-    }
 
-    private void log(Status status, String message) {
-        ExtentTest node = node();
-        if (node != null) {
-            node.log(status, message);
-        } else {
-            ExtentReportManager.log(status, message);
-        }
-    }
-
-    private ExtentTest node() {
-        if (validationStep == null) {
-            validationStep = ExtentReportManager.createNode(NODE_NAME);
-        }
-        return validationStep;
-    }
 }

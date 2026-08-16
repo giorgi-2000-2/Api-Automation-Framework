@@ -1,9 +1,5 @@
 package ge.gmikeladze.platzi.assertions;
-import ge.gmikeladze.platzi.dtos.response.BadRequestResponse;
-import ge.gmikeladze.platzi.dtos.response.GetResponseCategoryDto;
-import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
-import ge.gmikeladze.platzi.dtos.response.PutBadRequestResponse;
-import ge.gmikeladze.platzi.dtos.response.ValidationErrorDto;
+import ge.gmikeladze.platzi.dtos.response.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,29 +11,24 @@ public enum SchemaMapping {
     BAD_REQUEST(BadRequestResponse.class,         "schemas/bad-request-schema.json"),
     PUT_BAD_REQUEST(PutBadRequestResponse.class,  "schemas/put-bad-request-schema.json"),
     VALIDATION_ERROR(ValidationErrorDto.class,    "schemas/validation-error-schema.json"),
-    PRODUCT_LIST(GetResponseProductDto[].class, "schemas/product-list.json");
+    PRODUCT_LIST(GetResponseProductDto[].class, "schemas/product-list.json"),
+    INTERNAL_SERVER_ERROR(InternalServerErrorDto.class, "schemas/internal-server-error-schema.json");
     private final Class<?> dtoClass;
     private final String schemaPath;
-
     SchemaMapping(Class<?> dtoClass, String schemaPath) {
         this.dtoClass = dtoClass;
         this.schemaPath = schemaPath;
     }
-
     private static final Map<Class<?>, String> INDEX = buildIndex();
-
     private static Map<Class<?>, String> buildIndex() {
         Map<Class<?>, String> index = new HashMap<>();
-
         for (SchemaMapping m : values()) {
-
             String previous = index.put(m.dtoClass, m.schemaPath);
             if (previous != null) {
                 throw new IllegalStateException(
-                        "SchemaMapping: " + m.dtoClass.getName() + " ორჯერაა რეგისტრირებული — \""
-                                + previous + "\" და \"" + m.schemaPath + "\"");
+                        "SchemaMapping: " + m.dtoClass.getName() + " ორჯერაა რეგისტრირებული — "
+                                + previous + " და " + m.schemaPath );
             }
-
             if (SchemaMapping.class.getClassLoader().getResource(m.schemaPath) == null) {
                 throw new IllegalStateException(
                         "SchemaMapping." + m.name() + ": ფაილი არ არსებობს classpath-ზე → " + m.schemaPath);
@@ -45,7 +36,6 @@ public enum SchemaMapping {
         }
         return Map.copyOf(index);
     }
-
     public static String getPath(Class<?> dtoClass) {
         String path = INDEX.get(dtoClass);
         if (path == null) {
