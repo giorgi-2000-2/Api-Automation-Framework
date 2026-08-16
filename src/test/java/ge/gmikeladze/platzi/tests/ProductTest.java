@@ -1,26 +1,30 @@
 package ge.gmikeladze.platzi.tests;
-import io.restassured.response.Response;
-import ge.gmikeladze.platzi.di.TestContext;
-import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import ge.gmikeladze.platzi.BaseApiTest;
-import ge.gmikeladze.platzi.dtos.request.CreateProductRequestDto;
-import ge.gmikeladze.platzi.dtos.request.UpdateProductRequestDto;
-import ge.gmikeladze.platzi.dtos.response.BadRequestResponse;
-import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
-import ge.gmikeladze.platzi.dtos.response.PutBadRequestResponse;
 import ge.gmikeladze.platzi.annotations.RequiresCategory;
 import ge.gmikeladze.platzi.annotations.RequiresProduct;
+import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
+import ge.gmikeladze.platzi.datafactories.NegativeCase;
+import ge.gmikeladze.platzi.datafactories.ProductNegativeData;
+import ge.gmikeladze.platzi.di.TestContext;
+import ge.gmikeladze.platzi.dtos.request.CreateProductRequestDto;
+import ge.gmikeladze.platzi.dtos.request.UpdateProductRequestDto;
+import ge.gmikeladze.platzi.dtos.response.ApiError;
+import ge.gmikeladze.platzi.dtos.response.BadRequestResponse;
+import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
+
+import java.util.function.IntFunction;
 
 public class ProductTest extends BaseApiTest {
 
-    @Test
+
+    @Test(groups = {"smoke", "regression","positive"})
     @RequiresCategory
     public void testCreateProductValidData() {
-        TestContext ctx = context.get();
-        CreateProductRequestDto requestBody = productData.createProductWithData(	ctx.getCategory().getId());
-        GetResponseProductDto response =  	productSteps.get().createProduct(requestBody);
-        productAssert.get().assertThat(response,soft.get())
+        CreateProductRequestDto requestBody = productData.createProductWithData(context.get().getCategory().getId());
+        GetResponseProductDto response = productSteps.get().createProduct(requestBody);
+        productAssert.get().assertThat(response)
                 .verifyTitleIsCorrect(requestBody.getTitle())
                 .verifyPriceIsCorrect(requestBody.getPrice())
                 .verifyDescriptionIsCorrect(requestBody.getDescription())
@@ -28,74 +32,102 @@ public class ProductTest extends BaseApiTest {
                 .verifyImagesAreCorrect(requestBody.getImages());
     }
 
-    @Test
-    public void testCreateProductInvalidCategoryId() {
-        CreateProductRequestDto requestBody = productData.createProductWithData(randomData.getWrongNumber());
-        productSteps.get().createProductExpectingError(requestBody,HttpStatusCode.BAD_REQUEST,BadRequestResponse.class);
-    }
-
-
-    @Test
     @RequiresCategory
     @RequiresProduct
+    @Test(groups = {"smoke", "regression","positive"})
     public void testGetProductById() {
-        TestContext ctx = context.get();
-      GetResponseProductDto response= 	productSteps.get().getProduct(ctx.getProduct().getId());
-        productAssert.get().assertThat(response,soft.get())
-                .verifyTitleIsCorrect(	ctx.getProductRequest().getTitle())
-                .verifyPriceIsCorrect(	ctx.getProductRequest().getPrice())
-                .verifyDescriptionIsCorrect(	ctx.getProductRequest().getDescription())
-                .verifyCategoryIdIsCorrect(	ctx.getProductRequest().getCategoryId())
-                .verifyImagesAreCorrect(	ctx.getProductRequest().getImages());
+        GetResponseProductDto response = productSteps.get().getProduct(context.get().getProduct().getId());
+        productAssert.get().assertThat(response)
+                .verifyTitleIsCorrect(context.get().getProductRequest().getTitle())
+                .verifyPriceIsCorrect(context.get().getProductRequest().getPrice())
+                .verifyDescriptionIsCorrect(context.get().getProductRequest().getDescription())
+                .verifyCategoryIdIsCorrect(context.get().getProductRequest().getCategoryId())
+                .verifyImagesAreCorrect(context.get().getProductRequest().getImages());
     }
 
-
-    @Test
-    public void testGetProductByWrongId() {
-        productSteps.get().getProductExpectingError(randomData.getWrongNumber(),HttpStatusCode.BAD_REQUEST,
-               BadRequestResponse.class);
-    }
-
-    @Test
+    @Test(groups = {"smoke", "regression","positive"})
     @RequiresCategory
     @RequiresProduct
     public void testUpdateProductSuccessfully() {
-        TestContext ctx = context.get();
-        UpdateProductRequestDto requests = productData.updateProductDto(ctx.getCategory().getId());
-        GetResponseProductDto response = productSteps.get().updateProduct(ctx.getProduct().getId(), requests);
-        productAssert.get().assertThat(response,soft.get())
+
+        UpdateProductRequestDto requests = productData.updateProductDto(context.get().getCategory().getId());
+        GetResponseProductDto response = productSteps.get().updateProduct(context.get().getProduct().getId(), requests);
+        context.get().setProduct(response);
+        productAssert.get().assertThat(response)
                 .verifyTitleIsCorrect(requests.getTitle())
-                 .verifyPriceIsCorrect(requests.getPrice())
+                .verifyPriceIsCorrect(requests.getPrice())
                 .verifyDescriptionIsCorrect(requests.getDescription())
                 .verifyCategoryIdIsCorrect(requests.getCategoryId())
                 .verifyImagesAreCorrect(requests.getImages());
+
     }
 
-    @Test
-    @RequiresCategory
-    @RequiresProduct
-    public void testUpdateProductBadRequest() {
-        TestContext ctx = context.get();
-        UpdateProductRequestDto requests = productData.updateProductWithWrongData();
-        productSteps.get().updateProductExpectingError(ctx.getProduct().getId(),requests,HttpStatusCode.BAD_REQUEST,
-             PutBadRequestResponse.class);
-        //put ერორს და create bad request ს ერთნაირი dto აქვს.
-    }
-
-    @Test
+    @Test(groups = {"smoke", "regression","positive"})
     @RequiresCategory
     @RequiresProduct
     public void testDeleteProductSuccessfully() {
-        TestContext ctx = context.get();
-       Response response = 	productSteps.get().deleteProduct(ctx.getProduct().getId());
-        productAssert.get().assertThat(response,soft.get())
-               .verifyBooleanResponseIsCorrect();
-    }
-
-    @Test
-    public void testDeleteProductWrongIdBadRequest() {
-        productSteps.get().deleteProductExpectingError(randomData.getWrongNumber(), HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
+        Response response = productSteps.get().deleteProduct(context.get().getProduct().getId());
+        productAssert.get().assertThat(response)
+                .verifyBooleanResponseIsCorrect();
+        productSteps.get().deleteProductExpectingError(context.get().getProduct().getId(),
+                HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
     }
 
 
+
+    @Test(groups = {"regression","negative"},
+            dataProvider = "invalidProductCreate", dataProviderClass = ProductNegativeData.class)
+    @RequiresCategory
+    public void testCreateProductNegative(NegativeCase<IntFunction<CreateProductRequestDto>> testCase) {
+
+        CreateProductRequestDto requestBody = testCase.getPayload().apply(context.get().getCategory().getId());
+
+        ApiError error = productSteps.get().createProductExpectingError(
+                requestBody, testCase.getExpectedStatus(), testCase.getErrorDto());
+
+        errorAssert.get().assertThat(error)
+                .messageIsNotBlank()
+                .messageMentionsAll(testCase.getMessageFragments());
+    }
+
+    @Test(groups = {"regression","negative"},
+            dataProvider = "invalidProductId", dataProviderClass = ProductNegativeData.class)
+    public void testGetProductByIdNegative(NegativeCase<Integer> testCase) {
+        ApiError error = productSteps.get().getProductExpectingError(
+                testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
+
+        errorAssert.get().assertThat(error)
+                .messageIsNotBlank()
+                .messageMentionsAll(testCase.getMessageFragments());
+    }
+
+    @Test(groups = {"regression","negative"},
+            dataProvider = "invalidProductId", dataProviderClass = ProductNegativeData.class)
+
+    public void testDeleteProductNegative(NegativeCase<Integer> testCase) {
+        ApiError error = productSteps.get().deleteProductExpectingError(
+                testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
+
+        errorAssert.get().assertThat(error)
+                .messageIsNotBlank()
+                .messageMentionsAll(testCase.getMessageFragments());
+    }
+
+    @Test(groups = {"regression","negative"},
+            dataProvider = "invalidProductUpdate", dataProviderClass = ProductNegativeData.class)
+    @RequiresCategory
+    @RequiresProduct
+    public void testUpdateProductNegative(NegativeCase<IntFunction<UpdateProductRequestDto>> testCase) {
+
+        UpdateProductRequestDto requestBody = testCase.getPayload().apply(context.get().getCategory().getId());
+
+        ApiError error = productSteps.get().updateProductExpectingError(
+                context.get().getProduct().getId(), requestBody,
+                testCase.getExpectedStatus(), testCase.getErrorDto());
+
+        errorAssert.get().assertThat(error)
+                .messageIsNotBlank()
+                .messageMentionsAll(testCase.getMessageFragments());
+
+    }
 }
