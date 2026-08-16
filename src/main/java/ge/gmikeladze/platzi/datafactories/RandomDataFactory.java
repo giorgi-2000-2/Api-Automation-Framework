@@ -19,7 +19,4 @@ public class RandomDataFactory {
         return base + "-" + UUID.randomUUID();
     }
 
-    public int getWrongNumber() {
-        return randomInt(-1, 0);
-    }
 }

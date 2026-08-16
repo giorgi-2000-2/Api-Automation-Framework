@@ -3,7 +3,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.dtos.request.CreateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateProductRequestDto;
-import ge.gmikeladze.platzi.dtos.response.GetResponseCategoryDto;
 import ge.gmikeladze.platzi.utils.ConfigReader;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class ProductDataFactory {
     }
     public CreateProductRequestDto createProductWithData(int id) {
         return CreateProductRequestDto.builder()
-                .title(randomDataFactory.uniqueTitle(ConfigReader.get("categoryName")))
+                .title(randomDataFactory.uniqueTitle(ConfigReader.get("productName")))
                 .price(randomDataFactory.randomInt(1,100))
                 .description(randomDataFactory.uniqueTitle("description"))
                 .categoryId(id)
@@ -37,17 +36,6 @@ public class ProductDataFactory {
 
     }
 
-
-    public UpdateProductRequestDto updateProductWithWrongData() {
-        return UpdateProductRequestDto.builder()
-                .title(" ")
-                .price(randomDataFactory.randomInt(1,1000))
-                .description("description")
-                .categoryId(-1)
-                .images(List.of(ConfigReader.get("categoryImage")))
-                .build();
-
-    }
 
 
 }
