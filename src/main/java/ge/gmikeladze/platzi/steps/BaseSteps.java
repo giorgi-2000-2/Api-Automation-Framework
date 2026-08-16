@@ -1,5 +1,4 @@
 package ge.gmikeladze.platzi.steps;
-
 import ge.gmikeladze.platzi.assertions.ResponseValidator;
 import ge.gmikeladze.platzi.utils.ExtentReportManager;
 

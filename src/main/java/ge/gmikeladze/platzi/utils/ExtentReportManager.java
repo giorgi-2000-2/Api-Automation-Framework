@@ -5,7 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-public final class ExtentReportManager {
+public class ExtentReportManager {
 
     private static ExtentReports extent;
     private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();

@@ -18,7 +18,7 @@ public class TestListenerManager implements ITestListener {
     public void onTestSuccess(ITestResult result) {
         System.out.println("ტესტი წარმატებულია: " + result.getName());
         ExtentReportManager.log(Status.PASS, "ტესტი წარმატებულია");
-        ExtentReportManager.unload();
+
     }
 
     @Override
@@ -26,14 +26,14 @@ public class TestListenerManager implements ITestListener {
         String testName = result.getMethod().getMethodName();
         System.out.println("ტესტი ჩავარდა: " + testName);
         ExtentReportManager.log(Status.FAIL, "ტესტი ჩავარდა: " + describeThrowable(result));
-        ExtentReportManager.unload();
+
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         System.out.println("ტესტი გამოტოვებულია: " + result.getName());
         ExtentReportManager.log(Status.SKIP, "ტესტი გამოტოვებულია: " + describeThrowable(result));
-        ExtentReportManager.unload();
+
     }
 
     @Override

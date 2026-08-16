@@ -8,8 +8,8 @@ import lombok.Getter;
 public enum HttpStatusCode {
     OK(200, "OK"),
     CREATED(201, "Created"),
-    BAD_REQUEST(400, "Bad Request");
-
+    BAD_REQUEST(400, "Bad Request"),
+    SERVER_ERROR (500, "Internal server error");
     private final int code;
     private final String description;
 }

@@ -1,12 +1,8 @@
 package ge.gmikeladze.platzi.apiservice;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
-import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
-import java.util.List;
 import java.util.Map;
 import static io.restassured.RestAssured.given;
 @Singleton
@@ -75,7 +71,7 @@ public class ApiRequest {
                 .response();
     }
 
-    public Response getProductsByCategoryIdWithPagination(String endpoint,int categoryId, int limit,
+    public Response getIdWithPagination(String endpoint,int categoryId, int limit,
                                                                              int offset) {
         return given()
                 .pathParam("id", categoryId)
