@@ -7,7 +7,7 @@ import ge.gmikeladze.platzi.utils.ConfigReader;
 
 import java.util.List;
 @Singleton
-public class ProductDataFactory {
+public class ProductDataFactory extends RandomDataFactory {
     private final RandomDataFactory randomDataFactory;
     @Inject
     public ProductDataFactory(RandomDataFactory randomDataFactory) {

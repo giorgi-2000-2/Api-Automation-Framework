@@ -1,23 +1,24 @@
-package ge.gmikeladze.platzi.datafactories;
+package ge.gmikeladze.platzi.datafactories.negative;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
+import ge.gmikeladze.platzi.datafactories.RandomDataFactory;
 import ge.gmikeladze.platzi.dtos.request.CreateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateProductRequestDto;
-import ge.gmikeladze.platzi.dtos.response.BadRequestResponse;
-import ge.gmikeladze.platzi.dtos.response.InternalServerErrorDto;
-import ge.gmikeladze.platzi.dtos.response.PutBadRequestResponse;
-import ge.gmikeladze.platzi.dtos.response.ValidationErrorDto;
+import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
+import ge.gmikeladze.platzi.dtos.response.error.InternalServerErrorDto;
+import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponse;
+import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
 import ge.gmikeladze.platzi.utils.ConfigReader;
 import org.testng.annotations.DataProvider;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.IntFunction;
-import static ge.gmikeladze.platzi.datafactories.NegativeCase.of;
+import static ge.gmikeladze.platzi.datafactories.negative.NegativeCase.of;
 
 @Singleton
-public class ProductNegativeData{
+public class ProductNegativeData extends RandomDataFactory{
     private final RandomDataFactory randomDataFactory;
 
     @Inject
@@ -28,11 +29,11 @@ public class ProductNegativeData{
     private final int VALID_PRICE = 100;
     private final String VALID_DESCRIPTION = "valid description";
 
-    private String image() {
+    public String image() {
         return ConfigReader.get("categoryImage");
     }
 
-    private String validTitle() {
+    public String validTitle() {
         return randomDataFactory.uniqueTitle(ConfigReader.get("categoryName"));
     }
 

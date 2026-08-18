@@ -1,6 +1,6 @@
-package ge.gmikeladze.platzi.datafactories;
+package ge.gmikeladze.platzi.datafactories.negative;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
-import ge.gmikeladze.platzi.dtos.response.ApiError;
+import ge.gmikeladze.platzi.dtos.response.error.ApiError;
 import lombok.Getter;
 import lombok.Setter;
 

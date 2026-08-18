@@ -1,14 +1,15 @@
-package ge.gmikeladze.platzi.datafactories;
-import static ge.gmikeladze.platzi.datafactories.NegativeCase.of;
+package ge.gmikeladze.platzi.datafactories.negative;
+import static ge.gmikeladze.platzi.datafactories.negative.NegativeCase.of;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
+import ge.gmikeladze.platzi.datafactories.RandomDataFactory;
 import ge.gmikeladze.platzi.dtos.request.CreateCategoryRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateCategoryRequestDto;
-import ge.gmikeladze.platzi.dtos.response.BadRequestResponse;
-import ge.gmikeladze.platzi.dtos.response.InternalServerErrorDto;
-import ge.gmikeladze.platzi.dtos.response.PutBadRequestResponse;
-import ge.gmikeladze.platzi.dtos.response.ValidationErrorDto;
+import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
+import ge.gmikeladze.platzi.dtos.response.error.InternalServerErrorDto;
+import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponse;
+import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
 import ge.gmikeladze.platzi.utils.ConfigReader;
 import org.testng.annotations.DataProvider;
 @Singleton

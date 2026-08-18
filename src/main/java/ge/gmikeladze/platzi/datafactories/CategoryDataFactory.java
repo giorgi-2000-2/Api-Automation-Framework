@@ -7,7 +7,7 @@ import ge.gmikeladze.platzi.dtos.request.UpdateCategoryRequestDto;
 import ge.gmikeladze.platzi.utils.ConfigReader;
 
 @Singleton
-public class CategoryDataFactory {
+public class CategoryDataFactory extends RandomDataFactory{
     private final RandomDataFactory randomDataFactory;
 
     @Inject
