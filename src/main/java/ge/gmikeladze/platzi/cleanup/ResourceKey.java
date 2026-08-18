@@ -5,10 +5,10 @@ import lombok.Setter;
 
 import java.util.Objects;
 @Getter
-@Setter
 public final class ResourceKey {
     public static  String TYPE_CATEGORY = "CATEGORY";
     public static  String TYPE_PRODUCT = "PRODUCT";
+    public static String TYPE_USER = "USER";
     private String type;
     private int id;
 
