@@ -1,4 +1,5 @@
 package ge.gmikeladze.platzi.dtos.response;
+import ge.gmikeladze.platzi.dtos.Identifiable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetResponseProductDto {
+public class GetResponseProductDto implements Identifiable {
     private Integer id;
     private String title;
     private String slug;

@@ -1,4 +1,4 @@
-package ge.gmikeladze.platzi.dtos.response;
+package ge.gmikeladze.platzi.dtos.response.error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

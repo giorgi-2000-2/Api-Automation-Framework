@@ -1,4 +1,4 @@
-package ge.gmikeladze.platzi.dtos.response;
+package ge.gmikeladze.platzi.dtos.response.error;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class InternalServerErrorDto implements ApiError{
+public class InternalServerErrorDto implements ApiError {
 
     private Integer statusCode;
     private String message;
