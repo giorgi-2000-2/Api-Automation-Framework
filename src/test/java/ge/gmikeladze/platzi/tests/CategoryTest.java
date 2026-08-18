@@ -2,13 +2,13 @@ package ge.gmikeladze.platzi.tests;
 import ge.gmikeladze.platzi.BaseApiTest;
 import ge.gmikeladze.platzi.annotations.RequiresCategory;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
-import ge.gmikeladze.platzi.datafactories.CategoryNegativeData;
-import ge.gmikeladze.platzi.datafactories.NegativeCase;
+import ge.gmikeladze.platzi.datafactories.negative.CategoryNegativeData;
+import ge.gmikeladze.platzi.datafactories.negative.NegativeCase;
 import ge.gmikeladze.platzi.dtos.request.CreateCategoryRequestDto;
 import ge.gmikeladze.platzi.dtos.request.GetCategoryLimitRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateCategoryRequestDto;
-import ge.gmikeladze.platzi.dtos.response.ApiError;
-import ge.gmikeladze.platzi.dtos.response.BadRequestResponse;
+import ge.gmikeladze.platzi.dtos.response.error.ApiError;
+import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
 import ge.gmikeladze.platzi.dtos.response.GetResponseCategoryDto;
 import org.testng.annotations.Test;
 
@@ -21,7 +21,7 @@ public class CategoryTest extends BaseApiTest {
     public void testCreateCategorySuccessfully() {
 
         CreateCategoryRequestDto requestBody = categoryData.createCategoryWithData();
-        GetResponseCategoryDto responseBody = categorySteps.get().createCategory(requestBody);
+        GetResponseCategoryDto responseBody = categorySteps.get().create(requestBody);
         categoryAssert.get().assertThat(responseBody)
                 .verifyTitleIsCorrect(requestBody.getName())
                 .verifyImageIsCorrect(requestBody.getImage());
@@ -41,7 +41,7 @@ public class CategoryTest extends BaseApiTest {
     @RequiresCategory
     public void testGetCategoryById() {
 
-        GetResponseCategoryDto response = categorySteps.get().getCategoryById(context.get().getCategory().getId());
+        GetResponseCategoryDto response = categorySteps.get().getById(context.get().getCategory().getId());
         categoryAssert.get().assertThat(response)
                 .verifyIdIsCorrect(context.get().getCategory().getId());
 
@@ -52,7 +52,7 @@ public class CategoryTest extends BaseApiTest {
     public void testPutCategoryUpdateSuccessfully() {
 
         UpdateCategoryRequestDto updateCategory = categoryData.updateCategoryDto();
-        GetResponseCategoryDto response = categorySteps.get().updateCategory(context.get().getCategory().getId(), updateCategory);
+        GetResponseCategoryDto response = categorySteps.get().update(context.get().getCategory().getId(), updateCategory);
         categoryAssert.get().assertThat(response)
                 .verifyTitleIsCorrect(updateCategory.getName());
 
@@ -62,8 +62,8 @@ public class CategoryTest extends BaseApiTest {
     @RequiresCategory
     public void testDeleteCategorySuccessfully() {
 
-        categorySteps.get().deleteCategory(context.get().getCategory().getId());
-        categorySteps.get().getCategoryExpectingError(context.get().getCategory().getId(),
+        categorySteps.get().delete(context.get().getCategory().getId());
+        categorySteps.get().getExpectingError(context.get().getCategory().getId(),
                 HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
 
     }
@@ -83,7 +83,7 @@ public class CategoryTest extends BaseApiTest {
     @Test(groups = {"regression","negative"},
             dataProvider = "invalidCategoryCreate", dataProviderClass = CategoryNegativeData.class)
     public void testCreateCategoryNegative(NegativeCase<CreateCategoryRequestDto> testCase) {
-        ApiError error = categorySteps.get().createCategoryExpectingError(
+        ApiError error = categorySteps.get().createExpectingError(
                 testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
 
         errorAssert.get().assertThat(error)
@@ -94,7 +94,7 @@ public class CategoryTest extends BaseApiTest {
     @Test(groups = {"regression","negative"},
             dataProvider = "invalidCategoryId", dataProviderClass = CategoryNegativeData.class)
     public void testGetCategoryByIdNegative(NegativeCase<Integer> testCase) {
-        ApiError error = categorySteps.get().getCategoryExpectingError(
+        ApiError error = categorySteps.get().getExpectingError(
                 testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
 
         errorAssert.get().assertThat(error)
@@ -105,7 +105,7 @@ public class CategoryTest extends BaseApiTest {
     @Test(groups = {"regression","negative"},
             dataProvider = "invalidCategoryId", dataProviderClass = CategoryNegativeData.class)
     public void testDeleteCategoryNegative(NegativeCase<Integer> testCase) {
-        ApiError error = categorySteps.get().deleteCategoryExpectingError(
+        ApiError error = categorySteps.get().deleteExpectingError(
                 testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
 
         errorAssert.get().assertThat(error)
@@ -119,7 +119,7 @@ public class CategoryTest extends BaseApiTest {
     @RequiresCategory
     public void testUpdateCategoryNegative(NegativeCase<UpdateCategoryRequestDto> testCase) {
 
-        ApiError error = categorySteps.get().updateCategoryExpectingError(
+        ApiError error = categorySteps.get().updateExpectingError(
                 context.get().getCategory().getId(), testCase.getPayload(),
                 testCase.getExpectedStatus(), testCase.getErrorDto());
 

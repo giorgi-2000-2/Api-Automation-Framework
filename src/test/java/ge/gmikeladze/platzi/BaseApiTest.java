@@ -8,13 +8,16 @@ import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import ge.gmikeladze.platzi.assertions.ResponseCategoryDtoAssert;
 import ge.gmikeladze.platzi.assertions.ResponseErrorAssert;
 import ge.gmikeladze.platzi.assertions.ResponseProductDtoAssert;
+import ge.gmikeladze.platzi.assertions.ResponseUserDtoAssert;
 import ge.gmikeladze.platzi.datafactories.CategoryDataFactory;
 import ge.gmikeladze.platzi.datafactories.ProductDataFactory;
+import ge.gmikeladze.platzi.datafactories.UserDataFactory;
 import ge.gmikeladze.platzi.di.FrameworkModule;
 import ge.gmikeladze.platzi.di.SoftAssertListener;
 import ge.gmikeladze.platzi.di.TestContext;
 import ge.gmikeladze.platzi.steps.CategorySteps;
 import ge.gmikeladze.platzi.steps.ProductSteps;
+import ge.gmikeladze.platzi.steps.UserSteps;
 import ge.gmikeladze.platzi.utils.ExtentReportManager;
 import ge.gmikeladze.platzi.utils.TestListenerManager;
 import org.testng.ITestResult;
@@ -31,13 +34,16 @@ import java.lang.reflect.Method;
 public abstract class BaseApiTest {
     @Inject protected CategoryDataFactory categoryData;
     @Inject protected ProductDataFactory productData;
+    @Inject protected UserDataFactory userData;
     @Inject protected Provider<ResponseErrorAssert> errorAssert;
     @Inject protected Provider<CategorySteps> categorySteps;
+    @Inject protected Provider<UserSteps> userSteps;
     @Inject protected Provider<ProductSteps> productSteps;
     @Inject protected Provider<SoftAssert> soft;
     @Inject protected Provider<TestContext> context;
     @Inject protected Provider<ResponseCategoryDtoAssert> categoryAssert;
     @Inject protected Provider<ResponseProductDtoAssert> productAssert;
+    @Inject protected Provider<ResponseUserDtoAssert> userAssert;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp(Method method, ITestResult result) {
@@ -49,12 +55,12 @@ public abstract class BaseApiTest {
 
         if (needsCategory) {
             context.get().setCategoryRequest(categoryData.createCategoryWithData());
-            context.get().setCategory(categorySteps.get().createCategory(context.get().getCategoryRequest()));
+            context.get().setCategory(categorySteps.get().create(context.get().getCategoryRequest()));
         }
         if (needsProduct) {
             context.get().setProductRequest(productData.createProductWithData(context.get().getCategory().getId()));
             context.get().setProduct(productSteps.get()
-                    .createProduct(context.get().getProductRequest(), HttpStatusCode.CREATED));
+                    .create(context.get().getProductRequest(), HttpStatusCode.CREATED));
         }
     }
 

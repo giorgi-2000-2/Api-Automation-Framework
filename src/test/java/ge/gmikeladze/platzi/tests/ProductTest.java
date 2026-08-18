@@ -3,13 +3,12 @@ import ge.gmikeladze.platzi.BaseApiTest;
 import ge.gmikeladze.platzi.annotations.RequiresCategory;
 import ge.gmikeladze.platzi.annotations.RequiresProduct;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
-import ge.gmikeladze.platzi.datafactories.NegativeCase;
-import ge.gmikeladze.platzi.datafactories.ProductNegativeData;
-import ge.gmikeladze.platzi.di.TestContext;
+import ge.gmikeladze.platzi.datafactories.negative.NegativeCase;
+import ge.gmikeladze.platzi.datafactories.negative.ProductNegativeData;
 import ge.gmikeladze.platzi.dtos.request.CreateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateProductRequestDto;
-import ge.gmikeladze.platzi.dtos.response.ApiError;
-import ge.gmikeladze.platzi.dtos.response.BadRequestResponse;
+import ge.gmikeladze.platzi.dtos.response.error.ApiError;
+import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
 import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
@@ -23,7 +22,7 @@ public class ProductTest extends BaseApiTest {
     @RequiresCategory
     public void testCreateProductValidData() {
         CreateProductRequestDto requestBody = productData.createProductWithData(context.get().getCategory().getId());
-        GetResponseProductDto response = productSteps.get().createProduct(requestBody);
+        GetResponseProductDto response = productSteps.get().create(requestBody);
         productAssert.get().assertThat(response)
                 .verifyTitleIsCorrect(requestBody.getTitle())
                 .verifyPriceIsCorrect(requestBody.getPrice())
@@ -36,7 +35,7 @@ public class ProductTest extends BaseApiTest {
     @RequiresProduct
     @Test(groups = {"smoke", "regression","positive"})
     public void testGetProductById() {
-        GetResponseProductDto response = productSteps.get().getProduct(context.get().getProduct().getId());
+        GetResponseProductDto response = productSteps.get().getById(context.get().getProduct().getId());
         productAssert.get().assertThat(response)
                 .verifyTitleIsCorrect(context.get().getProductRequest().getTitle())
                 .verifyPriceIsCorrect(context.get().getProductRequest().getPrice())
@@ -51,7 +50,7 @@ public class ProductTest extends BaseApiTest {
     public void testUpdateProductSuccessfully() {
 
         UpdateProductRequestDto requests = productData.updateProductDto(context.get().getCategory().getId());
-        GetResponseProductDto response = productSteps.get().updateProduct(context.get().getProduct().getId(), requests);
+        GetResponseProductDto response = productSteps.get().update(context.get().getProduct().getId(), requests);
         context.get().setProduct(response);
         productAssert.get().assertThat(response)
                 .verifyTitleIsCorrect(requests.getTitle())
@@ -66,10 +65,10 @@ public class ProductTest extends BaseApiTest {
     @RequiresCategory
     @RequiresProduct
     public void testDeleteProductSuccessfully() {
-        Response response = productSteps.get().deleteProduct(context.get().getProduct().getId());
+        Response response = productSteps.get().delete(context.get().getProduct().getId());
         productAssert.get().assertThat(response)
                 .verifyBooleanResponseIsCorrect();
-        productSteps.get().deleteProductExpectingError(context.get().getProduct().getId(),
+        productSteps.get().deleteExpectingError(context.get().getProduct().getId(),
                 HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
     }
 
@@ -82,7 +81,7 @@ public class ProductTest extends BaseApiTest {
 
         CreateProductRequestDto requestBody = testCase.getPayload().apply(context.get().getCategory().getId());
 
-        ApiError error = productSteps.get().createProductExpectingError(
+        ApiError error = productSteps.get().createExpectingError(
                 requestBody, testCase.getExpectedStatus(), testCase.getErrorDto());
 
         errorAssert.get().assertThat(error)
@@ -93,7 +92,7 @@ public class ProductTest extends BaseApiTest {
     @Test(groups = {"regression","negative"},
             dataProvider = "invalidProductId", dataProviderClass = ProductNegativeData.class)
     public void testGetProductByIdNegative(NegativeCase<Integer> testCase) {
-        ApiError error = productSteps.get().getProductExpectingError(
+        ApiError error = productSteps.get().getExpectingError(
                 testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
 
         errorAssert.get().assertThat(error)
@@ -105,7 +104,7 @@ public class ProductTest extends BaseApiTest {
             dataProvider = "invalidProductId", dataProviderClass = ProductNegativeData.class)
 
     public void testDeleteProductNegative(NegativeCase<Integer> testCase) {
-        ApiError error = productSteps.get().deleteProductExpectingError(
+        ApiError error = productSteps.get().deleteExpectingError(
                 testCase.getPayload(), testCase.getExpectedStatus(), testCase.getErrorDto());
 
         errorAssert.get().assertThat(error)
@@ -121,7 +120,7 @@ public class ProductTest extends BaseApiTest {
 
         UpdateProductRequestDto requestBody = testCase.getPayload().apply(context.get().getCategory().getId());
 
-        ApiError error = productSteps.get().updateProductExpectingError(
+        ApiError error = productSteps.get().updateExpectingError(
                 context.get().getProduct().getId(), requestBody,
                 testCase.getExpectedStatus(), testCase.getErrorDto());
 
