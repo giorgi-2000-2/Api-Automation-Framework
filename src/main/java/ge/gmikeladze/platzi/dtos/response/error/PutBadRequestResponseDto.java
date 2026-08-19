@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PutBadRequestResponse implements ApiError {
+public class PutBadRequestResponseDto implements ApiError {
     private   String path;
     private   String timestamp;
     private   String name;

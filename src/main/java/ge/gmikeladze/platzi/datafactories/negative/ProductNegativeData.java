@@ -8,7 +8,7 @@ import ge.gmikeladze.platzi.dtos.request.CreateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
 import ge.gmikeladze.platzi.dtos.response.error.InternalServerErrorDto;
-import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponse;
+import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponseDto;
 import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
 import ge.gmikeladze.platzi.utils.ConfigReader;
 import org.testng.annotations.DataProvider;
@@ -130,7 +130,7 @@ public class ProductNegativeData extends RandomDataFactory{
                 {of("update title — null ",
                         (IntFunction<UpdateProductRequestDto>) id ->
                                 validUpdate(id).title(null).build(),
-                        HttpStatusCode.BAD_REQUEST, PutBadRequestResponse.class, "title")},
+                        HttpStatusCode.BAD_REQUEST, PutBadRequestResponseDto.class, "title")},
         };
     }
 

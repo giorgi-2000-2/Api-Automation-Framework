@@ -8,7 +8,7 @@ import ge.gmikeladze.platzi.dtos.request.CreateCategoryRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateCategoryRequestDto;
 import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
 import ge.gmikeladze.platzi.dtos.response.error.InternalServerErrorDto;
-import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponse;
+import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponseDto;
 import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
 import ge.gmikeladze.platzi.utils.ConfigReader;
 import org.testng.annotations.DataProvider;
@@ -90,12 +90,12 @@ public class CategoryNegativeData{
 
                 {of("update image — null (NOT NULL)",
                         validUpdate().image(null).build(),
-                        HttpStatusCode.BAD_REQUEST, PutBadRequestResponse.class, "image")},
+                        HttpStatusCode.BAD_REQUEST, PutBadRequestResponseDto.class, "image")},
 
 
                 {of("update name — null → 500",
                         validUpdate().name(null).build(),
-                        HttpStatusCode.BAD_REQUEST, PutBadRequestResponse.class, "name")},
+                        HttpStatusCode.BAD_REQUEST, PutBadRequestResponseDto.class, "name")},
         };
     }
 

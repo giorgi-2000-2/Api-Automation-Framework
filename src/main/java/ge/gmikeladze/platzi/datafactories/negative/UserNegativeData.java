@@ -1,5 +1,4 @@
 package ge.gmikeladze.platzi.datafactories.negative;
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import ge.gmikeladze.platzi.datafactories.RandomDataFactory;
@@ -7,7 +6,7 @@ import ge.gmikeladze.platzi.dtos.request.CreateUserDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateUserDto;
 import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
 import ge.gmikeladze.platzi.dtos.response.error.InternalServerErrorDto;
-import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponse;
+import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponseDto;
 import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
 import org.testng.annotations.DataProvider;
 
@@ -15,11 +14,7 @@ import static ge.gmikeladze.platzi.datafactories.negative.NegativeCase.of;
 
 @Singleton
 public class UserNegativeData extends RandomDataFactory {
-    private final RandomDataFactory randomDataFactory;
-    @Inject
-    public UserNegativeData(RandomDataFactory randomDataFactory) {
-        this.randomDataFactory = randomDataFactory;
-    }
+
 
     private CreateUserDto.CreateUserDtoBuilder validCreate() {
         return CreateUserDto.builder()
@@ -163,7 +158,7 @@ public class UserNegativeData extends RandomDataFactory {
 
                 {of("update email — null",
                         validUpdate().email(null).build(),
-                        HttpStatusCode.BAD_REQUEST, PutBadRequestResponse.class)},
+                        HttpStatusCode.BAD_REQUEST, PutBadRequestResponseDto.class)},
 
                 {of("update avatar — არავალიდური URL",
                         validUpdate().avatar("not-a-url").build(),
@@ -175,7 +170,7 @@ public class UserNegativeData extends RandomDataFactory {
 
                 {of("update avatar — null",
                         validUpdate().avatar(null).build(),
-                        HttpStatusCode.BAD_REQUEST, PutBadRequestResponse.class)},
+                        HttpStatusCode.BAD_REQUEST, PutBadRequestResponseDto.class)},
         };
     }
 
