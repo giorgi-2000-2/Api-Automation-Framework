@@ -2,6 +2,7 @@ package ge.gmikeladze.platzi.assertions;
 
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.annotations.TestScoped;
+import ge.gmikeladze.platzi.assertions.assertsbusiness.BaseAssert;
 import ge.gmikeladze.platzi.dtos.response.error.ApiError;
 import org.testng.asserts.SoftAssert;
 import java.util.List;

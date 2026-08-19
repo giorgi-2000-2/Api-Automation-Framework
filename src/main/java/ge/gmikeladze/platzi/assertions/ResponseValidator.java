@@ -1,5 +1,4 @@
 package ge.gmikeladze.platzi.assertions;
-
 import com.aventstack.extentreports.Status;
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
@@ -10,10 +9,8 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
 import java.util.Arrays;
 import java.util.List;
-
 import static ge.gmikeladze.platzi.assertions.SchemaMapping.getPath;
 
 
