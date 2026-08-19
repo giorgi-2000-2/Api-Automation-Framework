@@ -28,6 +28,4 @@ public interface IBaseAssert<T, Self extends IBaseAssert<T, Self>> {
 
     void isDeletedSuccessfully();
 
-
-
 }

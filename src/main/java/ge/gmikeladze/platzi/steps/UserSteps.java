@@ -10,14 +10,16 @@ import ge.gmikeladze.platzi.di.TestContext;
 import ge.gmikeladze.platzi.dtos.request.CreateUserDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateUserDto;
 import ge.gmikeladze.platzi.dtos.response.GetUserResponseDto;
+import ge.gmikeladze.platzi.utils.ITestReporter;
 import io.restassured.response.Response;
 
 
 @TestScoped
 public class UserSteps  extends AbstractResourceSteps<CreateUserDto, GetUserResponseDto, UpdateUserDto> {
     @Inject
-    public UserSteps(ResponseValidator validator, GenericClient genericClient, TestContext testContext) {
-        super(genericClient, validator, testContext);
+    public UserSteps(GenericClient genericClient,
+                     ResponseValidator validator, ITestReporter reporter, TestContext testContext) {
+        super(genericClient, validator,reporter, testContext);
     }
 
 

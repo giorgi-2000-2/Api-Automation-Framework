@@ -1,5 +1,4 @@
 package ge.gmikeladze.platzi.dtos.response;
-import ge.gmikeladze.platzi.dtos.Identifiable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

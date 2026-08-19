@@ -1,4 +1,4 @@
-package ge.gmikeladze.platzi.dtos;
+package ge.gmikeladze.platzi.dtos.response;
 
 public interface Identifiable {
     Integer getId();

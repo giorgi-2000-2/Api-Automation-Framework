@@ -6,19 +6,21 @@ import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import ge.gmikeladze.platzi.assertions.ResponseValidator;
 import ge.gmikeladze.platzi.cleanup.ResourceKey;
 import ge.gmikeladze.platzi.di.TestContext;
-import ge.gmikeladze.platzi.dtos.Identifiable;
-import ge.gmikeladze.platzi.utils.ExtentReportManager;
+import ge.gmikeladze.platzi.dtos.response.Identifiable;
+import ge.gmikeladze.platzi.utils.ITestReporter;
 import io.restassured.response.Response;
 
 import java.util.Map;
 
 public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifiable, TUpdate> extends BaseSteps implements IResourceSteps<TRequest, TResponse, TUpdate> {
+    private final ITestReporter reporter;
     protected final TestContext testContext;
     protected final GenericClient genericClient;
     protected AbstractResourceSteps(GenericClient genericClient,
-                                    ResponseValidator validator, TestContext testContext) {
-        super(validator);
+                                    ResponseValidator validator, ITestReporter reporter, TestContext testContext) {
+        super(reporter,validator);
         this.genericClient = genericClient;
+        this.reporter = reporter;
         this.testContext = testContext;
     }
 
@@ -141,7 +143,7 @@ public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifi
 
     protected void logBestEffortFailure(int id, int statusCode) {
 
-        ExtentReportManager.info(
+        reporter.info(
                 "cleanup: " + resourceType() + " " + id +
                         " ვერ წაიშალა სტატუსი " + statusCode);
     }

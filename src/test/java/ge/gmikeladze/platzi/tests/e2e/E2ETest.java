@@ -102,7 +102,7 @@ public void ProductAndCategoryLifecycle(){
         productAssert.get().assertThat(paginatedProducts)
                 .hasSize(3);
 
-productSteps.get().delete(thirdProduct.getId());
+       productSteps.get().delete(thirdProduct.getId());
 
         List<GetResponseProductDto> paginatedProductsAfterDelete = categorySteps.get()
                 .getProductsByCategoryIdWithPagination(context.get().getCategory().getId(), 0, 0, HttpStatusCode.OK);

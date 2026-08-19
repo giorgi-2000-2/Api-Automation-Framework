@@ -12,6 +12,7 @@ import ge.gmikeladze.platzi.dtos.request.CreateCategoryRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateCategoryRequestDto;
 import ge.gmikeladze.platzi.dtos.response.GetResponseCategoryDto;
 import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
+import ge.gmikeladze.platzi.utils.ITestReporter;
 import io.restassured.response.Response;
 
 import java.util.List;
@@ -21,10 +22,8 @@ import java.util.Map;
 public class CategorySteps extends AbstractResourceSteps<CreateCategoryRequestDto, GetResponseCategoryDto, UpdateCategoryRequestDto> {
 
     @Inject
-    public CategorySteps(GenericClient genericClient,
-                         ResponseValidator validator,
-                         TestContext testContext) {
-        super(genericClient, validator, testContext);
+    public CategorySteps(GenericClient genericClient, ResponseValidator validator, ITestReporter reporter, TestContext testContext) {
+        super(genericClient, validator,reporter, testContext);
     }
 
     @Override

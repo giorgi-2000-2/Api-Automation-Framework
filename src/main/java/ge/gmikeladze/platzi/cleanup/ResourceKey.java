@@ -9,14 +9,10 @@ public final class ResourceKey {
     private final String type;
     private final int id;
 
-
     public ResourceKey(String type, int id) {
         this.type = type;
         this.id = id;
     }
-
-
-
 
     @Override
     public boolean equals(Object o) {

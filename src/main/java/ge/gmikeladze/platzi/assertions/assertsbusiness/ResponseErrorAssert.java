@@ -1,7 +1,6 @@
-package ge.gmikeladze.platzi.assertions;
+package ge.gmikeladze.platzi.assertions.assertsbusiness;
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.annotations.TestScoped;
-import ge.gmikeladze.platzi.assertions.assertsbusiness.BaseAssert;
 import ge.gmikeladze.platzi.dtos.response.error.ApiError;
 import ge.gmikeladze.platzi.utils.ITestReporter;
 import org.testng.asserts.SoftAssert;

@@ -1,10 +1,10 @@
 package ge.gmikeladze.platzi.assertions;
-import com.aventstack.extentreports.Status;
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.utils.ConfigReader;
-import ge.gmikeladze.platzi.utils.ExtentReportManager;
+import ge.gmikeladze.platzi.utils.ITestReporter;
+import ge.gmikeladze.platzi.utils.ReportStatus;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -17,11 +17,12 @@ import static ge.gmikeladze.platzi.assertions.SchemaMapping.getPath;
 @TestScoped
 public class ResponseValidator {
 
-
+    private final ITestReporter reporter;
     private final SoftAssert softAssert;
 
     @Inject
-    public ResponseValidator(SoftAssert softAssert) {
+    public ResponseValidator(ITestReporter reporter, SoftAssert softAssert) {
+        this.reporter = reporter;
         this.softAssert = softAssert;
     }
 
@@ -75,11 +76,8 @@ public class ResponseValidator {
 
 
     private void verifySchema(Response response, String schemaPath) {
-        try {
-            response.then().assertThat().body(
-                    JsonSchemaValidator.matchesJsonSchemaInClasspath(schemaPath));
-            reportPass("JSON სქემა შეესაბამება: " + schemaPath);
-        } catch (AssertionError | RuntimeException e) {
+        try { response.then().assertThat().body(JsonSchemaValidator.matchesJsonSchemaInClasspath(schemaPath));
+            reportPass("JSON სქემა შეესაბამება: " + schemaPath);} catch (AssertionError | RuntimeException e) {
             String failure = "JSON სქემა არ ემთხვევა " + schemaPath + "  " +e.getMessage();
             reportFail(failure);
             softAssert.fail(failure);
@@ -89,8 +87,7 @@ public class ResponseValidator {
     private void verifyResponseTime(Response response) {
         long limit = ConfigReader.getInt("response.time");
         long actual = response.time();
-        softAssert.assertTrue(actual < limit,
-                "პასუხის დრო " + actual + "ms აჭარბებს ლიმიტს " + limit + "ms");
+        softAssert.assertTrue(actual < limit, "პასუხის დრო " + actual + "ms აჭარბებს ლიმიტს " + limit + "ms");
         reportPass("პასუხის დრო: " + actual + "ms (ლიმიტი " + limit + "ms)");
     }
 
@@ -111,10 +108,10 @@ public class ResponseValidator {
 
 
     private void reportPass(String message) {
-        ExtentReportManager.log(Status.PASS, message);
+        reporter.log(ReportStatus.PASS, message);
     }
 
     private void reportFail(String message) {
-        ExtentReportManager.log(Status.FAIL, message);
+        reporter.log(ReportStatus.FAIL, message);
     }
 }

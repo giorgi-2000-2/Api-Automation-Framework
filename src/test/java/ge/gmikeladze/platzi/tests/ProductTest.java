@@ -109,6 +109,7 @@ public class ProductTest extends BaseApiTest {
                 .messageMentionsAll(testCase.getMessageFragments());
     }
 
+
     @Test(groups = {"regression","negative"},
             dataProvider = "invalidProductUpdate", dataProviderClass = ProductNegativeData.class)
     @RequiresCategory

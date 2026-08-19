@@ -1,7 +1,7 @@
 package ge.gmikeladze.platzi.assertions.assertsbusiness;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import ge.gmikeladze.platzi.utils.ExtentReportManager;
+import ge.gmikeladze.platzi.utils.ITestReporter;
+import ge.gmikeladze.platzi.utils.ReportStatus;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 
 public abstract class BaseAssert<T, Self extends BaseAssert<T, Self>>
         implements IBaseAssert<T, Self> {
-
+    private final ITestReporter reporter;
     protected final SoftAssert softAssert;
     private final String nodeName;
     private ExtentTest node;
@@ -21,9 +21,12 @@ public abstract class BaseAssert<T, Self extends BaseAssert<T, Self>>
     protected List<T> dtoList;
     protected Response rawResponse;
 
-    protected BaseAssert(SoftAssert softAssert, String nodeName) {
+    protected BaseAssert(ITestReporter reporter, SoftAssert softAssert, String nodeName) {
+        this.reporter = reporter;
         this.softAssert = softAssert;
         this.nodeName = nodeName;
+
+        reporter.createNode(nodeName);
     }
 
 
@@ -116,9 +119,9 @@ public abstract class BaseAssert<T, Self extends BaseAssert<T, Self>>
             Integer id = idExtractor.apply(item);
             boolean valid = id != null && id > 0;
             if (valid) {
-                log(Status.PASS, "ID ვალიდურია: " + id);
+                log(ReportStatus.PASS, "ID ვალიდურია: " + id);
             } else {
-                log(Status.FAIL, "არავალიდური ID: " + id);
+                log(ReportStatus.FAIL, "არავალიდური ID: " + id);
             }
             return valid;
         }, "ID უნდა იყოს 0-ზე მეტი");
@@ -136,24 +139,13 @@ public abstract class BaseAssert<T, Self extends BaseAssert<T, Self>>
 
 
     protected void step(String message) {
-        log(Status.INFO, message);
+        log(ReportStatus.INFO, message);
     }
 
-    protected void log(Status status, String message) {
-        ExtentTest current = node();
-        if (current != null) {
-            current.log(status, message);
-        } else {
-            ExtentReportManager.log(status, message);
-        }
+    protected void log(ReportStatus status, String message) {
+        reporter.log(status, message);
     }
 
-    private ExtentTest node() {
-        if (node == null) {
-            node = ExtentReportManager.createNode(nodeName);
-        }
-        return node;
-    }
 
 
 

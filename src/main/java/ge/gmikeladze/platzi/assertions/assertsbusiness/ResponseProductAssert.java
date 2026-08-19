@@ -2,6 +2,7 @@ package ge.gmikeladze.platzi.assertions.assertsbusiness;
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
+import ge.gmikeladze.platzi.utils.ITestReporter;
 import org.testng.asserts.SoftAssert;
 import java.util.List;
 
@@ -9,8 +10,8 @@ import java.util.List;
 public class ResponseProductAssert extends BaseAssert<GetResponseProductDto, ResponseProductAssert> {
 
     @Inject
-    public ResponseProductAssert(SoftAssert softAssert) {
-        super(softAssert, "პროდუქტის ბიზნეს სცენარის შემოწმება");
+    public ResponseProductAssert(ITestReporter reporter,SoftAssert softAssert) {
+        super(reporter,softAssert, "პროდუქტის ბიზნეს სცენარის შემოწმება");
     }
 
     public ResponseProductAssert hasTitle(String expectedTitle) {
@@ -32,4 +33,5 @@ public class ResponseProductAssert extends BaseAssert<GetResponseProductDto, Res
     public ResponseProductAssert hasImages(List<String> expectedImages) {
         return hasField(GetResponseProductDto::getImages, expectedImages, "Images");
     }
+
 }

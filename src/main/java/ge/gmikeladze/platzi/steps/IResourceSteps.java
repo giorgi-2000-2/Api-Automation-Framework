@@ -5,7 +5,6 @@ import io.restassured.response.Response;
 
 public interface IResourceSteps<TRequest, TResponse, TUpdate> {
 
-
     TResponse create(TRequest body);
 
     TResponse create(TRequest body, HttpStatusCode expectedStatus);
@@ -15,6 +14,7 @@ public interface IResourceSteps<TRequest, TResponse, TUpdate> {
     TResponse update(int id, TUpdate body);
 
     Response delete(int id);
+
 
     <T> T createExpectingError(TRequest body,
                                HttpStatusCode expectedStatus,

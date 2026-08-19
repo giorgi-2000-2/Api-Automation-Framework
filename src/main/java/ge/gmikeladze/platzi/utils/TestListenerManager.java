@@ -1,23 +1,22 @@
 package ge.gmikeladze.platzi.utils;
-
-import com.aventstack.extentreports.Status;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class TestListenerManager implements ITestListener {
 
+
     @Override
     public void onTestStart(ITestResult result) {
         String testName = result.getMethod().getMethodName();
         System.out.println("ტესტი დაიწყო: " + testName);
-        ExtentReportManager.info("ტესტი დაიწყო: " + testName);
+        TestReporterContext.get().info("ტესტი დაიწყო: " + testName);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("ტესტი წარმატებულია: " + result.getName());
-        ExtentReportManager.log(Status.PASS, "ტესტი წარმატებულია");
+        TestReporterContext.get().log(ReportStatus.PASS, "ტესტი წარმატებულია");
 
     }
 
@@ -25,14 +24,14 @@ public class TestListenerManager implements ITestListener {
     public void onTestFailure(ITestResult result) {
         String testName = result.getMethod().getMethodName();
         System.out.println("ტესტი ჩავარდა: " + testName);
-        ExtentReportManager.log(Status.FAIL, "ტესტი ჩავარდა: " + describeThrowable(result));
+        TestReporterContext.get().log(ReportStatus.FAIL, "ტესტი ჩავარდა: " + describeThrowable(result));
 
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         System.out.println("ტესტი გამოტოვებულია: " + result.getName());
-        ExtentReportManager.log(Status.SKIP, "ტესტი გამოტოვებულია: " + describeThrowable(result));
+        TestReporterContext.get().log(ReportStatus.SKIP, "ტესტი გამოტოვებულია: " + describeThrowable(result));
 
     }
 
@@ -44,7 +43,7 @@ public class TestListenerManager implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         System.out.println("ტესტების ნაკრები დასრულდა: " + context.getName());
-        ExtentReportManager.flushReports();
+        TestReporterContext.get().flush();
     }
 
     private String describeThrowable(ITestResult result) {
@@ -53,8 +52,9 @@ public class TestListenerManager implements ITestListener {
             return "მიზეზი მითითებული არ არის";
         }
         String message = throwable.getMessage();
-        return (message == null || message.isBlank())
-                ? throwable.getClass().getSimpleName()
-                : message;
+        if (message == null || message.isBlank()) {
+            return throwable.getClass().getSimpleName();
+        }
+        return message;
     }
 }

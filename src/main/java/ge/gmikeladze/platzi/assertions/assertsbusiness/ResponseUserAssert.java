@@ -2,14 +2,15 @@ package ge.gmikeladze.platzi.assertions.assertsbusiness;
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.dtos.response.GetUserResponseDto;
+import ge.gmikeladze.platzi.utils.ITestReporter;
 import org.testng.asserts.SoftAssert;
 
 @TestScoped
 public class ResponseUserAssert extends BaseAssert<GetUserResponseDto, ResponseUserAssert> {
 
     @Inject
-    public ResponseUserAssert(SoftAssert softAssert) {
-        super(softAssert, "იუზერის ბიზნეს სცენარის შემოწმება");
+    public ResponseUserAssert(ITestReporter reporter,SoftAssert softAssert) {
+        super(reporter,softAssert, "იუზერის ბიზნეს სცენარის შემოწმება");
     }
 
     public ResponseUserAssert hasId(Integer expectedId) {
