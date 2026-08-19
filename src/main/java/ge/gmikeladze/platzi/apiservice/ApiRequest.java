@@ -7,7 +7,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 @Singleton
 public class ApiRequest {
-    private RequestSpecification spec;
+    private final RequestSpecification spec;
 
     @Inject
         public ApiRequest(RequestSpecification spec) {

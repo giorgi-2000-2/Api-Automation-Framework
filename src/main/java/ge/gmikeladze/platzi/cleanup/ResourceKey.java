@@ -1,16 +1,13 @@
 package ge.gmikeladze.platzi.cleanup;
-
 import lombok.Getter;
-import lombok.Setter;
-
 import java.util.Objects;
 @Getter
 public final class ResourceKey {
     public static  String TYPE_CATEGORY = "CATEGORY";
     public static  String TYPE_PRODUCT = "PRODUCT";
     public static String TYPE_USER = "USER";
-    private String type;
-    private int id;
+    private final String type;
+    private final int id;
 
 
     public ResourceKey(String type, int id) {

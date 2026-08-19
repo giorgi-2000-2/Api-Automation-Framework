@@ -1,5 +1,4 @@
 package ge.gmikeladze.platzi.apiservice;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
