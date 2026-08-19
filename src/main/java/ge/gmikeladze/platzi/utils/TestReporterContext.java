@@ -4,6 +4,8 @@ public final class TestReporterContext {
     private static final ThreadLocal<ITestReporter> REPORTER = new ThreadLocal<>();
 
     private TestReporterContext() {}
+
+
     public static void set(ITestReporter reporter) {
         REPORTER.set(reporter);
     }

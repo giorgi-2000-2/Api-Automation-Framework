@@ -19,10 +19,7 @@ import ge.gmikeladze.platzi.utils.ReportStatus;
 import ge.gmikeladze.platzi.utils.TestListenerManager;
 import ge.gmikeladze.platzi.utils.TestReporterContext;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Guice;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import java.lang.reflect.Method;
 
@@ -51,7 +48,7 @@ public abstract class BaseApiTest {
         TestReporterContext.set(reporter);
 
         reporter.createTest(displayName(method, result));
-
+        TestReporterContext.get().info("ტესტი დაიწყო: " + displayName(method, result));
         result.setAttribute("softAssert", soft.get());
 
         dataPreparer.get().prepare(method);
@@ -88,7 +85,9 @@ public abstract class BaseApiTest {
             }
         }
     }
-
-
+    @AfterClass(alwaysRun = true)
+    public void tearDownAfterClass() {
+                reporter.flush();
+    }
 
 }

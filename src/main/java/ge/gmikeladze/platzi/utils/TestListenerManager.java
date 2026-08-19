@@ -10,7 +10,6 @@ public class TestListenerManager implements ITestListener {
     public void onTestStart(ITestResult result) {
         String testName = result.getMethod().getMethodName();
         System.out.println("ტესტი დაიწყო: " + testName);
-        TestReporterContext.get().info("ტესტი დაიწყო: " + testName);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class TestListenerManager implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         System.out.println("ტესტების ნაკრები დასრულდა: " + context.getName());
-        TestReporterContext.get().flush();
+
     }
 
     private String describeThrowable(ITestResult result) {

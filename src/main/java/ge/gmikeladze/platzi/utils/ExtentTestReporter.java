@@ -8,13 +8,11 @@ public class ExtentTestReporter implements ITestReporter {
     private static ExtentReports extent;
     private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
     private static final ThreadLocal<ExtentTest> node = new ThreadLocal<>();
+
     private ExtentReports getExtentReports() {
-        if (extent == null) {
-            synchronized (ExtentTestReporter.class) {
+        if (extent == null) { synchronized (ExtentTestReporter.class) {
                 if (extent == null) {
-                    String reportPath =
-                            System.getProperty("user.dir")
-                                    + "/report/extentReport.html";
+                    String reportPath = System.getProperty("user.dir") + "/report/extentReport.html";
                     ExtentSparkReporter sparkReporter = new ExtentSparkReporter(reportPath);
                     sparkReporter.config().setReportName("Automation Tester: Giorgi Mikeladze - Reports");
                     sparkReporter.config().setDocumentTitle("Test Execution Report");
