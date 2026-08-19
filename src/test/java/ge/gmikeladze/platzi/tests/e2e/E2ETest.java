@@ -22,8 +22,8 @@ public class E2ETest extends BaseApiTest {
 public void ProductAndCategoryLifecycle(){
     GetResponseProductDto response = productSteps.get().getById(context.get().getProduct().getId());
     productAssert.get().assertThat(response)
-            .verifyCategoryIdIsCorrect(context.get().getProductRequest().getCategoryId())
-            .verifyTitleIsCorrect(context.get().getProductRequest().getTitle());
+            .hasCategoryId(context.get().getProductRequest().getCategoryId())
+            .hasTitle(context.get().getProductRequest().getTitle());
 
     UpdateCategoryRequestDto updateCategoryRequestDto = categoryData.updateCategoryDto();
     GetResponseCategoryDto responseCategoryDto = categorySteps.get().update(context.get().getCategory().getId(),updateCategoryRequestDto);
@@ -32,20 +32,20 @@ public void ProductAndCategoryLifecycle(){
     GetResponseProductDto responseProductDto = productSteps.get().update(context.get().getProduct().getId(),requestDto);
 
     categoryAssert.get().assertThat(responseCategoryDto)
-            .verifyIdIsCorrect(context.get().getCategory().getId())
-            .verifyTitleIsCorrect(updateCategoryRequestDto.getName());
+            .hasId(context.get().getCategory().getId())
+            .hasName(updateCategoryRequestDto.getName());
 
     productAssert.get().assertThat(responseProductDto)
-            .verifyPriceIsCorrect(requestDto.getPrice())
-            .verifyCategoryIdIsCorrect(responseCategoryDto.getId());
+            .hasPrice(requestDto.getPrice())
+            .hasCategoryId(responseCategoryDto.getId());
 
     Response responseDeleteProduct = productSteps.get().delete(responseProductDto.getId());
     productAssert.get().assertThat(responseDeleteProduct)
-            .verifyBooleanResponseIsCorrect();
+            .isDeletedSuccessfully();
 
     Response responseDeleteCategory = categorySteps.get().delete(responseCategoryDto.getId());
     categoryAssert.get().assertThat(responseDeleteCategory)
-            .verifyBooleanResponseIsCorrect();
+            .isDeletedSuccessfully();
 
    productSteps.get().getExpectingError(responseProductDto.getId(), HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
    categorySteps.get().getExpectingError(responseCategoryDto.getId(), HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
@@ -66,18 +66,20 @@ public void ProductAndCategoryLifecycle(){
 
         List<GetResponseProductDto> responseProductDtos = productSteps.get().getProductsByCategoryId(context.get().getCategory().getId(),HttpStatusCode.OK);
 
-        soft.get().assertEquals(responseProductDtos.size(),2);
+        productAssert.get().assertThat(responseProductDtos)
+                .hasSize(2);
 
         UpdateProductRequestDto responseUpdatedProductDto = productData.updateProductDto(context.get().getCategory().getId());
 
         GetResponseProductDto getResponseUpdatedProduct = productSteps.get().update(secondProductDto.getId(),responseUpdatedProductDto);
 
         productAssert.get().assertThat(getResponseUpdatedProduct)
-                        .verifyTitleIsCorrect(responseUpdatedProductDto.getTitle());
+                .hasTitle(responseUpdatedProductDto.getTitle());
 
         List<GetResponseProductDto> responseProductAfterUpdate = productSteps.get().getProductsByCategoryId(context.get().getCategory().getId(),HttpStatusCode.OK);
 
-        soft.get().assertEquals(responseProductAfterUpdate.size(),2);
+        productAssert.get().assertThat(responseProductAfterUpdate)
+                .hasSize(2);
 
       productSteps.get().delete(getResponseUpdatedProduct.getId());
        productSteps.get().getExpectingError(getResponseUpdatedProduct.getId(),HttpStatusCode.BAD_REQUEST,BadRequestResponse.class);
@@ -97,14 +99,16 @@ public void ProductAndCategoryLifecycle(){
         List<GetResponseProductDto> paginatedProducts = categorySteps.get()
                 .getProductsByCategoryIdWithPagination(context.get().getCategory().getId(), 0, 0, HttpStatusCode.OK);
 
-        soft.get().assertEquals(paginatedProducts.size(), 3);
+        productAssert.get().assertThat(paginatedProducts)
+                .hasSize(3);
 
 productSteps.get().delete(thirdProduct.getId());
 
         List<GetResponseProductDto> paginatedProductsAfterDelete = categorySteps.get()
                 .getProductsByCategoryIdWithPagination(context.get().getCategory().getId(), 0, 0, HttpStatusCode.OK);
 
-soft.get().assertEquals(paginatedProductsAfterDelete.size(),2);
+        productAssert.get().assertThat(paginatedProductsAfterDelete)
+                .hasSize(2);
 
         soft.get().assertNotEquals(thirdProduct.getTitle(), secondProduct.getTitle());
 

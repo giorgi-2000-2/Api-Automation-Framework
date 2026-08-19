@@ -77,7 +77,7 @@ public class UserTest extends BaseApiTest {
         GetUserResponseDto created = userSteps.get().create(request, HttpStatusCode.CREATED);
 
         Response deleteResponse = userSteps.get().delete(created.getId());
-        userAssert.get().assertThat(deleteResponse).verifyBooleanResponseIsCorrect();
+        userAssert.get().assertThat(deleteResponse).isDeletedSuccessfully();
 
         userSteps.get().getExpectingError(
                 created.getId(),
@@ -138,14 +138,10 @@ public class UserTest extends BaseApiTest {
 
     @Test(groups = {"regression", "negative"})
     public void testDeleteAlreadyDeletedUser() {
-        // ჯერ ვქმნით იუზერს
         CreateUserDto createRequest = userData.createUserWithData();
         GetUserResponseDto created = userSteps.get().create(createRequest, HttpStatusCode.CREATED);
 
-        // პირველი წაშლა — წარმატებული
         userSteps.get().delete(created.getId());
-
-        // მეორე წაშლა იმავე id-ით — უნდა ჩავარდეს
         ApiError error = userSteps.get().deleteExpectingError(
                 created.getId(),
                 HttpStatusCode.BAD_REQUEST,

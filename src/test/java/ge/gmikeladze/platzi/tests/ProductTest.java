@@ -24,11 +24,11 @@ public class ProductTest extends BaseApiTest {
         CreateProductRequestDto requestBody = productData.createProductWithData(context.get().getCategory().getId());
         GetResponseProductDto response = productSteps.get().create(requestBody);
         productAssert.get().assertThat(response)
-                .verifyTitleIsCorrect(requestBody.getTitle())
-                .verifyPriceIsCorrect(requestBody.getPrice())
-                .verifyDescriptionIsCorrect(requestBody.getDescription())
-                .verifyCategoryIdIsCorrect(requestBody.getCategoryId())
-                .verifyImagesAreCorrect(requestBody.getImages());
+                .hasTitle(requestBody.getTitle())
+                .hasPrice(requestBody.getPrice())
+                .hasDescription(requestBody.getDescription())
+                .hasCategoryId(requestBody.getCategoryId())
+                .hasImages(requestBody.getImages());
     }
 
     @RequiresCategory
@@ -37,11 +37,11 @@ public class ProductTest extends BaseApiTest {
     public void testGetProductById() {
         GetResponseProductDto response = productSteps.get().getById(context.get().getProduct().getId());
         productAssert.get().assertThat(response)
-                .verifyTitleIsCorrect(context.get().getProductRequest().getTitle())
-                .verifyPriceIsCorrect(context.get().getProductRequest().getPrice())
-                .verifyDescriptionIsCorrect(context.get().getProductRequest().getDescription())
-                .verifyCategoryIdIsCorrect(context.get().getProductRequest().getCategoryId())
-                .verifyImagesAreCorrect(context.get().getProductRequest().getImages());
+                .hasTitle(context.get().getProductRequest().getTitle())
+                .hasPrice(context.get().getProductRequest().getPrice())
+                .hasDescription(context.get().getProductRequest().getDescription())
+                .hasCategoryId(context.get().getProductRequest().getCategoryId())
+                .hasImages(context.get().getProductRequest().getImages());
     }
 
     @Test(groups = {"smoke", "regression","positive"})
@@ -53,11 +53,11 @@ public class ProductTest extends BaseApiTest {
         GetResponseProductDto response = productSteps.get().update(context.get().getProduct().getId(), requests);
         context.get().setProduct(response);
         productAssert.get().assertThat(response)
-                .verifyTitleIsCorrect(requests.getTitle())
-                .verifyPriceIsCorrect(requests.getPrice())
-                .verifyDescriptionIsCorrect(requests.getDescription())
-                .verifyCategoryIdIsCorrect(requests.getCategoryId())
-                .verifyImagesAreCorrect(requests.getImages());
+                .hasTitle(requests.getTitle())
+                .hasPrice(requests.getPrice())
+                .hasDescription(requests.getDescription())
+                .hasCategoryId(requests.getCategoryId())
+                .hasImages(requests.getImages());
 
     }
 
@@ -67,7 +67,7 @@ public class ProductTest extends BaseApiTest {
     public void testDeleteProductSuccessfully() {
         Response response = productSteps.get().delete(context.get().getProduct().getId());
         productAssert.get().assertThat(response)
-                .verifyBooleanResponseIsCorrect();
+                .isDeletedSuccessfully();
         productSteps.get().deleteExpectingError(context.get().getProduct().getId(),
                 HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
     }
@@ -78,12 +78,9 @@ public class ProductTest extends BaseApiTest {
             dataProvider = "invalidProductCreate", dataProviderClass = ProductNegativeData.class)
     @RequiresCategory
     public void testCreateProductNegative(NegativeCase<IntFunction<CreateProductRequestDto>> testCase) {
-
         CreateProductRequestDto requestBody = testCase.getPayload().apply(context.get().getCategory().getId());
-
         ApiError error = productSteps.get().createExpectingError(
                 requestBody, testCase.getExpectedStatus(), testCase.getErrorDto());
-
         errorAssert.get().assertThat(error)
                 .messageIsNotBlank()
                 .messageMentionsAll(testCase.getMessageFragments());

@@ -23,8 +23,8 @@ public class CategoryTest extends BaseApiTest {
         CreateCategoryRequestDto requestBody = categoryData.createCategoryWithData();
         GetResponseCategoryDto responseBody = categorySteps.get().create(requestBody);
         categoryAssert.get().assertThat(responseBody)
-                .verifyTitleIsCorrect(requestBody.getName())
-                .verifyImageIsCorrect(requestBody.getImage());
+                .hasName(requestBody.getName())
+                .hasImage(requestBody.getImage());
 
 
     }
@@ -43,7 +43,7 @@ public class CategoryTest extends BaseApiTest {
 
         GetResponseCategoryDto response = categorySteps.get().getById(context.get().getCategory().getId());
         categoryAssert.get().assertThat(response)
-                .verifyIdIsCorrect(context.get().getCategory().getId());
+                .hasId(context.get().getCategory().getId());
 
     }
 
@@ -54,7 +54,7 @@ public class CategoryTest extends BaseApiTest {
         UpdateCategoryRequestDto updateCategory = categoryData.updateCategoryDto();
         GetResponseCategoryDto response = categorySteps.get().update(context.get().getCategory().getId(), updateCategory);
         categoryAssert.get().assertThat(response)
-                .verifyTitleIsCorrect(updateCategory.getName());
+                .hasName(updateCategory.getName());
 
     }
 
@@ -75,7 +75,7 @@ public class CategoryTest extends BaseApiTest {
 
         GetResponseCategoryDto response = categorySteps.get().getCategoryBySlug(context.get().getCategory().getSlug());
         categoryAssert.get().assertThat(response)
-                .verifyTitleIsCorrect(context.get().getCategory().getName());
+                .hasName(context.get().getCategory().getName());
 
     }
 
