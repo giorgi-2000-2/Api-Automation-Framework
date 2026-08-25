@@ -1,5 +1,5 @@
 package ge.gmikeladze.platzi.datafactories.negative;
-import static ge.gmikeladze.platzi.datafactories.negative.NegativeCase.of;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
@@ -10,41 +10,34 @@ import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
 import ge.gmikeladze.platzi.dtos.response.error.InternalServerErrorDto;
 import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponseDto;
 import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
-import ge.gmikeladze.platzi.utils.ConfigReader;
 import org.testng.annotations.DataProvider;
-@Singleton
-public class CategoryNegativeData{
 
+import static ge.gmikeladze.platzi.datafactories.negative.NegativeCase.of;
+
+@Singleton
+public class CategoryNegativeData {
     private final RandomDataFactory randomDataFactory;
+
     @Inject
     public CategoryNegativeData(RandomDataFactory randomDataFactory) {
         this.randomDataFactory = randomDataFactory;
     }
 
-    private  String image() {
-        return ConfigReader.get("categoryImage");
-    }
-
-    private  String validName() {
-        return  randomDataFactory.uniqueTitle(ConfigReader.get("categoryName"));
-    }
-
-    private  CreateCategoryRequestDto.CreateCategoryRequestDtoBuilder validCreate() {
+    private CreateCategoryRequestDto.CreateCategoryRequestDtoBuilder validCreate() {
         return CreateCategoryRequestDto.builder()
-                .name(validName())
-                .image(image());
+                .name(randomDataFactory.validTitle())
+                .image(randomDataFactory.image());
     }
 
-    private  UpdateCategoryRequestDto.UpdateCategoryRequestDtoBuilder validUpdate() {
+    private UpdateCategoryRequestDto.UpdateCategoryRequestDtoBuilder validUpdate() {
         return UpdateCategoryRequestDto.builder()
-                .name(validName())
-                .image(image());
+                .name(randomDataFactory.validTitle())
+                .image(randomDataFactory.image());
     }
 
     @DataProvider(name = "invalidCategoryCreate")
     public Object[][] invalidCategoryCreate() {
         return new Object[][]{
-
                 {of("image — არავალიდური URL",
                         validCreate().image("not-a-url").build(),
                         HttpStatusCode.BAD_REQUEST, ValidationErrorDto.class, "image")},
@@ -57,11 +50,9 @@ public class CategoryNegativeData{
                         validCreate().image("http://").build(),
                         HttpStatusCode.BAD_REQUEST, ValidationErrorDto.class, "image")},
 
-
                 {of("image — null (NOT NULL)",
                         validCreate().image(null).build(),
                         HttpStatusCode.BAD_REQUEST, ValidationErrorDto.class, "image")},
-
 
                 {of("name — null → 500",
                         validCreate().name(null).build(),
@@ -73,12 +64,9 @@ public class CategoryNegativeData{
         };
     }
 
-
-
     @DataProvider(name = "invalidCategoryUpdate")
     public Object[][] invalidCategoryUpdate() {
         return new Object[][]{
-
                 {of("update image — არავალიდური URL",
                         validUpdate().image("not-a-url").build(),
                         HttpStatusCode.BAD_REQUEST, ValidationErrorDto.class, "image")},
@@ -87,11 +75,9 @@ public class CategoryNegativeData{
                         validUpdate().image("").build(),
                         HttpStatusCode.BAD_REQUEST, ValidationErrorDto.class, "image")},
 
-
                 {of("update image — null (NOT NULL)",
                         validUpdate().image(null).build(),
                         HttpStatusCode.BAD_REQUEST, PutBadRequestResponseDto.class, "image")},
-
 
                 {of("update name — null → 500",
                         validUpdate().name(null).build(),

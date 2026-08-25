@@ -19,7 +19,6 @@ public class CategoryTest extends BaseApiTest {
 
     @Test(groups = {"smoke", "regression","positive"})
     public void testCreateCategorySuccessfully() {
-
         CreateCategoryRequestDto requestBody = categoryData.createCategoryWithData();
         GetResponseCategoryDto responseBody = categorySteps.get().create(requestBody);
         categoryAssert.get().assertThat(responseBody)
@@ -55,7 +54,6 @@ public class CategoryTest extends BaseApiTest {
         GetResponseCategoryDto response = categorySteps.get().update(context.get().getCategory().getId(), updateCategory);
         categoryAssert.get().assertThat(response)
                 .hasName(updateCategory.getName());
-
     }
 
     @Test(groups = {"smoke", "regression","positive"})

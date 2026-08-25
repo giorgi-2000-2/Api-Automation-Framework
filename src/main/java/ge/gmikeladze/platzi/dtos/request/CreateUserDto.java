@@ -1,5 +1,4 @@
 package ge.gmikeladze.platzi.dtos.request;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

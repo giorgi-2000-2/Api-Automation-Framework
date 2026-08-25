@@ -1,10 +1,8 @@
 package ge.gmikeladze.platzi.cleanup;
-
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.annotations.TestScoped;
-import ge.gmikeladze.platzi.utils.ITestReporter;
-import ge.gmikeladze.platzi.utils.ReportStatus;
-
+import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
+import ge.gmikeladze.platzi.utils.reporter.ReportStatus;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;

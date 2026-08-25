@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.apiclient.ApiEndpoint;
 import ge.gmikeladze.platzi.apiclient.GenericClient;
+import ge.gmikeladze.platzi.apiclient.Pagination;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import ge.gmikeladze.platzi.assertions.ResponseValidator;
 import ge.gmikeladze.platzi.cleanup.ResourceKey;
@@ -12,7 +13,7 @@ import ge.gmikeladze.platzi.dtos.request.CreateCategoryRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateCategoryRequestDto;
 import ge.gmikeladze.platzi.dtos.response.GetResponseCategoryDto;
 import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
-import ge.gmikeladze.platzi.utils.ITestReporter;
+import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.response.Response;
 
 import java.util.List;
@@ -82,13 +83,18 @@ public class CategorySteps extends AbstractResourceSteps<CreateCategoryRequestDt
         );
     }
 
-    public List<GetResponseProductDto> getProductsByCategoryIdWithPagination(
-            int id, int limit, int offset, HttpStatusCode expectedStatus) {
-        step("კატეგორიის პროდუქტების სია id=" + id + ", limit=" + limit + ", offset=" + offset);
+
+    public List<GetResponseProductDto> getProductsByCategoryId(
+            int categoryId, Pagination pagination, HttpStatusCode expectedStatus) {
+
+        step("კატეგორიის პროდუქტების სია id=" + categoryId + ", limit=" + pagination.limit() + ", offset=" + pagination.offset());
+
         return validator.validateList(
-                genericClient.getByPathAndQuery(ApiEndpoint.CATEGORY_ID_PRODUCTS, id, limit, offset),
+                genericClient.get(
+                        ApiEndpoint.CATEGORY_ID_PRODUCTS,
+                        Map.of("id", categoryId),
+                        pagination.asQueryParams()),
                 expectedStatus,
-                GetResponseProductDto[].class
-        );
+                GetResponseProductDto[].class);
     }
 }

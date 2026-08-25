@@ -3,9 +3,9 @@ import lombok.Getter;
 import java.util.Objects;
 @Getter
 public final class ResourceKey {
-    public static  String TYPE_CATEGORY = "CATEGORY";
-    public static  String TYPE_PRODUCT = "PRODUCT";
-    public static String TYPE_USER = "USER";
+    public final static  String TYPE_CATEGORY = "CATEGORY";
+    public final static  String TYPE_PRODUCT = "PRODUCT";
+    public final static String TYPE_USER = "USER";
     private final String type;
     private final int id;
 
@@ -15,10 +15,10 @@ public final class ResourceKey {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ResourceKey that = (ResourceKey) o;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ResourceKey that = (ResourceKey) obj;
 
         return id == that.id && Objects.equals(type, that.type);
     }

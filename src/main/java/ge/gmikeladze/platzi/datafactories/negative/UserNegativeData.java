@@ -1,4 +1,5 @@
 package ge.gmikeladze.platzi.datafactories.negative;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import ge.gmikeladze.platzi.datafactories.RandomDataFactory;
@@ -13,25 +14,30 @@ import org.testng.annotations.DataProvider;
 import static ge.gmikeladze.platzi.datafactories.negative.NegativeCase.of;
 
 @Singleton
-public class UserNegativeData extends RandomDataFactory {
+public class UserNegativeData{
+    private final RandomDataFactory randomDataFactory;
 
+    @Inject
+    public UserNegativeData(RandomDataFactory randomDataFactory) {
+        this.randomDataFactory = randomDataFactory;
+    }
 
     private CreateUserDto.CreateUserDtoBuilder validCreate() {
         return CreateUserDto.builder()
-                .email(validEmail())
-                .name(validName())
-                .password(validPassword())
+                .email(randomDataFactory.validEmail())
+                .name(randomDataFactory.validUserName())
+                .password(randomDataFactory.validPassword())
                 .role("customer")
-                .avatar(avatar());
+                .avatar(randomDataFactory.avatar());
     }
 
     private UpdateUserDto.UpdateUserDtoBuilder validUpdate() {
         return UpdateUserDto.builder()
-                .email("updated" + validEmail())
-                .name("updated" + validName())
-                .password(validPassword())
+                .email("updated" + randomDataFactory.validEmail())
+                .name("updated" + randomDataFactory.validUserName())
+                .password(randomDataFactory.validPassword())
                 .role("admin")
-                .avatar(avatar());
+                .avatar(randomDataFactory.avatar());
     }
 
     @DataProvider(name = "invalidUserCreate")
@@ -102,9 +108,9 @@ public class UserNegativeData extends RandomDataFactory {
                         CreateUserDto.builder()
                                 .email(null)
                                 .name(null)
-                                .password(validPassword())
+                                .password(randomDataFactory.validPassword())
                                 .role("customer")
-                                .avatar(avatar())
+                                .avatar(randomDataFactory.avatar())
                                 .build(),
                         HttpStatusCode.SERVER_ERROR, InternalServerErrorDto.class, "Internal")},
 

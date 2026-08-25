@@ -1,5 +1,4 @@
 package ge.gmikeladze.platzi.steps;
-
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import io.restassured.response.Response;
 

@@ -4,8 +4,8 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.cleanup.CleanupRegistry;
-import ge.gmikeladze.platzi.utils.ExtentTestReporter;
-import ge.gmikeladze.platzi.utils.ITestReporter;
+import ge.gmikeladze.platzi.utils.reporter.ExtentTestReporter;
+import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import ge.gmikeladze.platzi.utils.ConfigReader;
@@ -40,7 +40,7 @@ public class FrameworkModule extends AbstractModule {
             ITestReporter reporter
     ) {
         return new RequestSpecBuilder()
-                .setBaseUri(ConfigReader.get("BASE_URL"))
+                .setBaseUri(ConfigReader.get("base.url"))
                 .setContentType("application/json")
                 .addFilter(new LogFilter(reporter))
                 .build();

@@ -1,4 +1,4 @@
-package ge.gmikeladze.platzi;
+package ge.gmikeladze.platzi.testdata;
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.annotations.RequiresCategory;
 import ge.gmikeladze.platzi.annotations.RequiresProduct;

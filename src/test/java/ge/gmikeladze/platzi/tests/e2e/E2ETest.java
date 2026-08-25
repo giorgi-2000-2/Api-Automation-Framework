@@ -2,6 +2,7 @@ package ge.gmikeladze.platzi.tests.e2e;
 import ge.gmikeladze.platzi.BaseApiTest;
 import ge.gmikeladze.platzi.annotations.RequiresCategory;
 import ge.gmikeladze.platzi.annotations.RequiresProduct;
+import ge.gmikeladze.platzi.apiclient.Pagination;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import ge.gmikeladze.platzi.dtos.request.CreateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateCategoryRequestDto;
@@ -19,7 +20,7 @@ public class E2ETest extends BaseApiTest {
 @Test(groups = {"e2e", "regression"})
 @RequiresCategory
 @RequiresProduct
-public void ProductAndCategoryLifecycle(){
+public void productAndCategoryLifecycle(){
     GetResponseProductDto response = productSteps.get().getById(context.get().getProduct().getId());
     productAssert.get().assertThat(response)
             .hasCategoryId(context.get().getProductRequest().getCategoryId())
@@ -96,16 +97,16 @@ public void ProductAndCategoryLifecycle(){
        GetResponseProductDto secondProduct =  productSteps.get().create(productData.createProductWithData(context.get().getCategory().getId()));
        GetResponseProductDto thirdProduct =  productSteps.get().create(productData.createProductWithData(context.get().getCategory().getId()));
 
-        List<GetResponseProductDto> paginatedProducts = categorySteps.get()
-                .getProductsByCategoryIdWithPagination(context.get().getCategory().getId(), 0, 0, HttpStatusCode.OK);
+        List<GetResponseProductDto> paginatedProducts = categorySteps.get().getProductsByCategoryId(
+                context.get().getCategory().getId(), Pagination.none(), HttpStatusCode.OK);
 
         productAssert.get().assertThat(paginatedProducts)
                 .hasSize(3);
 
        productSteps.get().delete(thirdProduct.getId());
 
-        List<GetResponseProductDto> paginatedProductsAfterDelete = categorySteps.get()
-                .getProductsByCategoryIdWithPagination(context.get().getCategory().getId(), 0, 0, HttpStatusCode.OK);
+        List<GetResponseProductDto> paginatedProductsAfterDelete = categorySteps.get().getProductsByCategoryId(
+                context.get().getCategory().getId(), Pagination.none(), HttpStatusCode.OK);
 
         productAssert.get().assertThat(paginatedProductsAfterDelete)
                 .hasSize(2);

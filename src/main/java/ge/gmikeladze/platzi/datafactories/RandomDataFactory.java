@@ -1,17 +1,17 @@
 package ge.gmikeladze.platzi.datafactories;
+
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.utils.ConfigReader;
 import net.datafaker.Faker;
 
 import java.util.UUID;
 
-
 @Singleton
 public class RandomDataFactory {
 
     private final Faker faker = new Faker();
 
-    protected Integer randomInt(int numb1, int numb2) {
+    public Integer randomInt(int numb1, int numb2) {
         return faker.random().nextInt(numb1, numb2);
     }
 
@@ -19,27 +19,27 @@ public class RandomDataFactory {
         return base + "-" + UUID.randomUUID();
     }
 
-    protected String avatar() {
-        return ConfigReader.get("avatar");
+    public String avatar() {
+        return ConfigReader.get("user.avatar");
     }
 
-    protected String validEmail() {
+    public String validEmail() {
         return "user" + randomInt(10000, 99999) + "@gmail.com";
     }
 
-    protected String validName() {
+    public String validUserName() {
         return uniqueTitle("giorgi");
     }
 
-    protected String validPassword() {
+    public String validPassword() {
         return "Pass" + randomInt(1000, 9999);
     }
-    protected String image() {
-        return ConfigReader.get("categoryImage");
+
+    public String image() {
+        return ConfigReader.get("category.image");
     }
 
-    protected String validTitle() {
-        return uniqueTitle(ConfigReader.get("categoryName"));
+    public String validTitle() {
+        return uniqueTitle(ConfigReader.get("category.name"));
     }
-
 }

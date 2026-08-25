@@ -10,7 +10,7 @@ import ge.gmikeladze.platzi.di.TestContext;
 import ge.gmikeladze.platzi.dtos.request.CreateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
-import ge.gmikeladze.platzi.utils.ITestReporter;
+import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.response.Response;
 
 import java.util.List;
@@ -18,13 +18,11 @@ import java.util.Map;
 
 @TestScoped
 public class ProductSteps extends AbstractResourceSteps<CreateProductRequestDto, GetResponseProductDto, UpdateProductRequestDto> {
-    private final GenericClient genericClient;
 
     @Inject
     public ProductSteps(GenericClient genericClient,
                         ResponseValidator validator, ITestReporter reporter,TestContext testContext) {
         super(genericClient, validator,reporter, testContext);
-        this.genericClient = genericClient;
     }
 
     @Override

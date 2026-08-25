@@ -10,7 +10,7 @@ import ge.gmikeladze.platzi.di.TestContext;
 import ge.gmikeladze.platzi.dtos.request.CreateUserDto;
 import ge.gmikeladze.platzi.dtos.request.UpdateUserDto;
 import ge.gmikeladze.platzi.dtos.response.GetUserResponseDto;
-import ge.gmikeladze.platzi.utils.ITestReporter;
+import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.response.Response;
 
 

@@ -16,16 +16,6 @@ import java.util.List;
 
 public class UserTest extends BaseApiTest {
 
-    @Test(groups = {"smoke", "regression","positive"})
-    public void createUserTest(){
-        CreateUserDto createUserDto = userData.createUserWithData();
-        GetUserResponseDto responseDto=  userSteps.get().create(createUserDto, HttpStatusCode.CREATED);
-        userAssert.get().assertThat(responseDto)
-                .hasEmail(createUserDto.getEmail())
-                .hasName(createUserDto.getName())
-                .hasRole(createUserDto.getRole())
-                .hasCreationDatesPopulated();
-    }
     @Test(groups = {"smoke", "regression", "positive"})
     public void createUserSuccessfully() {
         CreateUserDto request = userData.createUserWithData();
@@ -109,7 +99,7 @@ public class UserTest extends BaseApiTest {
 
     @Test(groups = {"regression","negative"},
             dataProvider = "invalidUserUpdate", dataProviderClass = UserNegativeData.class)
-    public void testUpdateCategoryNegative(NegativeCase<CreateUserDto> testCase) {
+    public void testUpdateUserNegative(NegativeCase<UpdateUserDto> testCase) {
 
         CreateUserDto createUserDto = userData.createUserWithData();
         GetUserResponseDto responseDto = userSteps.get().create(createUserDto, HttpStatusCode.CREATED);

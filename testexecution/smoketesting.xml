@@ -2,10 +2,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="simpleTestCases" parallel="methods" thread-count="10">
 
-    <listeners>
-        <listener class-name="ge.gmikeladze.platzi.utils.TestListenerManager"/>
-        <listener class-name="ge.gmikeladze.platzi.di.SoftAssertListener"/>
-    </listeners>
     <test name="Smoke Testing">
         <groups>
             <run>
@@ -13,7 +9,6 @@
             </run>
         </groups>
         <classes>
-            <class name="ge.gmikeladze.platzi.tests.e2e.E2ETest"/>
             <class name="ge.gmikeladze.platzi.tests.CategoryTest"/>
             <class name="ge.gmikeladze.platzi.tests.ProductTest"/>
             <class name="ge.gmikeladze.platzi.tests.UserTest"/>

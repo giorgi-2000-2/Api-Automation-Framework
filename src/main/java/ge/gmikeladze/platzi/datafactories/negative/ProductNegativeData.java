@@ -12,13 +12,15 @@ import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponseDto;
 import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
 import ge.gmikeladze.platzi.utils.ConfigReader;
 import org.testng.annotations.DataProvider;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.function.IntFunction;
+
 import static ge.gmikeladze.platzi.datafactories.negative.NegativeCase.of;
 
 @Singleton
-public class ProductNegativeData extends RandomDataFactory{
+public class ProductNegativeData {
     private final RandomDataFactory randomDataFactory;
 
     @Inject
@@ -26,15 +28,17 @@ public class ProductNegativeData extends RandomDataFactory{
         this.randomDataFactory = randomDataFactory;
     }
 
+
+
     private final int VALID_PRICE = 100;
     private final String VALID_DESCRIPTION = "valid description";
 
     public String image() {
-        return ConfigReader.get("categoryImage");
+        return ConfigReader.get("category.image");
     }
 
     public String validTitle() {
-        return randomDataFactory.uniqueTitle(ConfigReader.get("categoryName"));
+        return randomDataFactory.uniqueTitle(ConfigReader.get("product.name"));
     }
 
     private CreateProductRequestDto.CreateProductRequestDtoBuilder validCreate(int categoryId) {
@@ -55,11 +59,9 @@ public class ProductNegativeData extends RandomDataFactory{
                 .images(List.of(image()));
     }
 
-
     @DataProvider(name = "invalidProductCreate")
     public Object[][] invalidProductCreate() {
         return new Object[][]{
-
                 {of("price — უარყოფითი",
                         (IntFunction<CreateProductRequestDto>) id ->
                                 validCreate(id).price(-10).build(),
@@ -102,11 +104,9 @@ public class ProductNegativeData extends RandomDataFactory{
         };
     }
 
-
     @DataProvider(name = "invalidProductUpdate")
     public Object[][] invalidProductUpdate() {
         return new Object[][]{
-
                 {of("update price — უარყოფითი",
                         (IntFunction<UpdateProductRequestDto>) id ->
                                 validUpdate(id).price(-20).build(),

@@ -7,20 +7,18 @@ import ge.gmikeladze.platzi.assertions.ResponseValidator;
 import ge.gmikeladze.platzi.cleanup.ResourceKey;
 import ge.gmikeladze.platzi.di.TestContext;
 import ge.gmikeladze.platzi.dtos.response.Identifiable;
-import ge.gmikeladze.platzi.utils.ITestReporter;
+import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.response.Response;
 
 import java.util.Map;
 
 public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifiable, TUpdate> extends BaseSteps implements IResourceSteps<TRequest, TResponse, TUpdate> {
-    private final ITestReporter reporter;
     protected final TestContext testContext;
     protected final GenericClient genericClient;
     protected AbstractResourceSteps(GenericClient genericClient,
                                     ResponseValidator validator, ITestReporter reporter, TestContext testContext) {
         super(reporter,validator);
         this.genericClient = genericClient;
-        this.reporter = reporter;
         this.testContext = testContext;
     }
 
@@ -43,21 +41,12 @@ public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifi
     @Override
     public TResponse create(TRequest body, HttpStatusCode expectedStatus) {
         step("რესურსის შექმნა " + resourceType());
-        TResponse created = validator.validate(
-                genericClient.create(collectionEndpoint(), body),
-                expectedStatus,
-                responseType()
-        );
-
-        if (created != null && created.getId() != null) {
-            int id = created.getId();
-            testContext.getCleanupRegistry().register(
-                    new ResourceKey(resourceType(), id),
-                    () -> bestEffortDelete(id)
-            );
-        }
-        return created;
+        Response response = genericClient.create(collectionEndpoint(), body);
+        registerIfCreated(response);
+        return validator.validate(response, expectedStatus, responseType());
     }
+
+
 
     @Override
     public TResponse getById(int id) {
@@ -97,11 +86,9 @@ public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifi
                                       HttpStatusCode expectedStatus,
                                       Class<T> errorDto) {
         step("რესურსის შექმნის მცდელობა არავალიდური მონაცემებით " + resourceType());
-        return validator.validate(
-                genericClient.create(collectionEndpoint(), body),
-                expectedStatus,
-                errorDto
-        );
+        Response response = genericClient.create(collectionEndpoint(), body);
+        registerIfCreated(response);
+        return validator.validate(response, expectedStatus, errorDto);
     }
 
     @Override
@@ -142,9 +129,24 @@ public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifi
     }
 
     protected void logBestEffortFailure(int id, int statusCode) {
+        reporter.info("cleanup: " + resourceType() + " " + id + " ვერ წაიშალა სტატუსი " + statusCode);
+    }
 
-        reporter.info(
-                "cleanup: " + resourceType() + " " + id +
-                        " ვერ წაიშალა სტატუსი " + statusCode);
+
+    protected void registerIfCreated(Response response) {
+        if (response == null) return;
+
+        try {
+            Integer id = response.jsonPath().get("id");
+            if (id != null && id > 0) {
+
+                testContext.getCleanupRegistry().register(new ResourceKey(resourceType(), id), () -> bestEffortDelete(id));
+
+                reporter.info("Cleanup-ზე დარეგისტრირდა " + resourceType() + " " + id);
+            }
+        } catch (Exception e) {
+            reporter.info("Cleanup რეგისტრაცია ვერ მოხერხდა " + resourceType() + " : " + e.getMessage());
+
+        }
     }
 }

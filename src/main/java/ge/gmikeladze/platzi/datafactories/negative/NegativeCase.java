@@ -10,11 +10,11 @@ import java.util.List;
 @Setter
 
 public class NegativeCase<T> {
-    private  String name;
-    private  T payload;
-    private  HttpStatusCode expectedStatus;
-    private  Class<? extends ApiError> errorDto;
-    private  List<String> messageFragments;
+    private final String name;
+    private  final T payload;
+    private final HttpStatusCode expectedStatus;
+    private final Class<? extends ApiError> errorDto;
+    private final List<String> messageFragments;
 
     public NegativeCase(String name, T payload,
                         HttpStatusCode expectedStatus,
@@ -35,5 +35,7 @@ public class NegativeCase<T> {
         return new NegativeCase<>(name, payload, expectedStatus, errorDto, List.of(messageFragments));
     }
 
-    @Override public String toString()        { return name; }
+    @Override public String toString(){
+        return name;
+    }
 }
