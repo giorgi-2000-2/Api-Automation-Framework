@@ -18,29 +18,29 @@ public class GenericClient {
         return apiRequest.post(endpoint.path(), body);
     }
 
+    public Response get(ApiEndpoint endpoint,
+                        Map<String, ?> pathParams,
+                        Map<String, ?> queryParams) {
+        return apiRequest.get(endpoint.path(), pathParams, queryParams);
+    }
+
     public Response getByPath(ApiEndpoint endpoint, Map<String, ?> pathParams) {
-        return apiRequest.getWithPathParam(endpoint.path(), pathParams);
+        return get(endpoint, pathParams, Map.of());
     }
 
     public Response getByQuery(ApiEndpoint endpoint, Map<String, ?> queryParams) {
-        return apiRequest.getWithQueryParams(endpoint.path(), queryParams);
-    }
-
-    public Response delete(ApiEndpoint endpoint, int id) {
-        return apiRequest.delete(endpoint.path(), id);
+        return get(endpoint, Map.of(), queryParams);
     }
 
     public Response update(ApiEndpoint endpoint, int id, Object body) {
         return apiRequest.put(endpoint.path(), Map.of("id", id), body);
     }
-    public Response getByPathAndQuery(ApiEndpoint endpoint, int id, int limit, int offset) {
-        return apiRequest.getIdWithPagination(endpoint.path(), id, limit, offset);
+
+    public Response delete(ApiEndpoint endpoint, int id) {
+        return apiRequest.delete(endpoint.path(), Map.of("id", id));
     }
 
 
-
-
 }
-
 
 
