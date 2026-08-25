@@ -15,7 +15,7 @@ public enum SchemaMapping {
     BAD_REQUEST(BadRequestResponse.class,         "schemas/bad-request-schema.json"),
     PUT_BAD_REQUEST(PutBadRequestResponseDto.class,  "schemas/put-bad-request-schema.json"),
     VALIDATION_ERROR(ValidationErrorDto.class,    "schemas/validation-error-schema.json"),
-    PRODUCT_LIST(GetResponseProductDto[].class, "schemas/product-list.json"),
+    PRODUCT_LIST(GetResponseProductDto[].class, "schemas/product-list-schema.json"),
     INTERNAL_SERVER_ERROR(InternalServerErrorDto.class, "schemas/internal-server-error-schema.json"),
     USER(GetUserResponseDto.class, "schemas/user-success-schema.json");
     private final Class<?> dtoClass;
@@ -25,6 +25,7 @@ public enum SchemaMapping {
         this.schemaPath = schemaPath;
     }
     private static final Map<Class<?>, String> INDEX = buildIndex();
+
     private static Map<Class<?>, String> buildIndex() {
         Map<Class<?>, String> index = new HashMap<>();
         for (SchemaMapping m : values()) {
@@ -41,6 +42,7 @@ public enum SchemaMapping {
         }
         return Map.copyOf(index);
     }
+
     public static String getPath(Class<?> dtoClass) {
         String path = INDEX.get(dtoClass);
         if (path == null) {

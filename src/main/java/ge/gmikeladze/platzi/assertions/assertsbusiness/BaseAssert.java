@@ -1,7 +1,6 @@
 package ge.gmikeladze.platzi.assertions.assertsbusiness;
-import com.aventstack.extentreports.ExtentTest;
-import ge.gmikeladze.platzi.utils.ITestReporter;
-import ge.gmikeladze.platzi.utils.ReportStatus;
+import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
+import ge.gmikeladze.platzi.utils.reporter.ReportStatus;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -15,7 +14,6 @@ public abstract class BaseAssert<T, Self extends BaseAssert<T, Self>>
     private final ITestReporter reporter;
     protected final SoftAssert softAssert;
     private final String nodeName;
-    private ExtentTest node;
 
     protected T dto;
     protected List<T> dtoList;
@@ -25,33 +23,40 @@ public abstract class BaseAssert<T, Self extends BaseAssert<T, Self>>
         this.reporter = reporter;
         this.softAssert = softAssert;
         this.nodeName = nodeName;
+    }
 
+    private Self activateNode() {
         reporter.createNode(nodeName);
+        return (Self) this;
     }
 
 
-
+    @Override
     public Self assertThat(T dto) {
         Assert.assertNotNull(dto, "DTO არ უნდა იყოს null");
         this.dto = dto;
-        return (Self) this;
+        this.dtoList = null;
+        this.rawResponse = null;
+        return activateNode();
     }
 
-
+    @Override
     public Self assertThat(List<T> dtoList) {
         Assert.assertNotNull(dtoList, "DTO List არ უნდა იყოს null");
         this.dtoList = dtoList;
-        return (Self) this;
+        this.dto = null;
+        this.rawResponse = null;
+        return activateNode();
     }
 
-
+    @Override
     public Self assertThat(Response response) {
         Assert.assertNotNull(response, "API Response არ უნდა იყოს null");
         this.rawResponse = response;
-        Self self = (Self) this;
-        return self;
+        this.dto = null;
+        this.dtoList = null;
+        return activateNode();
     }
-
 
     public <V> Self hasField(Function<T, V> extractor, V expected, String fieldName) {
         step(fieldName + "-ის შემოწმება");
@@ -70,7 +75,6 @@ public abstract class BaseAssert<T, Self extends BaseAssert<T, Self>>
     }
 
 
-
     public <V> Self hasNotNullField(Function<T, V> extractor, String fieldName) {
         step(fieldName + "-ის NotNull შემოწმება");
         V actual = extractor.apply(dto);
@@ -87,30 +91,36 @@ public abstract class BaseAssert<T, Self extends BaseAssert<T, Self>>
     }
 
 
-
     public Self hasSize(int expectedSize) {
         step("სიის ზომის შემოწმება");
-        softAssert.assertEquals(dtoList.size(), expectedSize, "სიის ზომა არასწორია");
+        if (dtoList == null) {
+            softAssert.fail("dtoList არის null ");
+            return (Self) this;
+        }
+        softAssert.assertEquals(dtoList.size(), expectedSize, "სიის ზომა არასწორია. მოსალოდნელი: " + expectedSize + ", მიღებული: " + dtoList.size());
         return (Self) this;
     }
 
-
     public Self allMatch(Predicate<T> predicate, String description) {
         step("ყველა ელემენტის პირობის შემოწმება: " + description);
+        if (dtoList == null) {
+            softAssert.fail(" dtoList არის null ");
+            return (Self) this;
+        }
         for (int i = 0; i < dtoList.size(); i++) {
             T item = dtoList.get(i);
-            softAssert.assertTrue(predicate.test(item),
-                    "ელემენტი #" + i + " არ აკმაყოფილებს პირობას: " + description);
+            softAssert.assertTrue(predicate.test(item), "ელემენტი " + i + " არ აკმაყოფილებს პირობას: " + description);
         }
         return (Self) this;
     }
 
-    public void hasNotNullFields(String description, Function<T, ?>... extractors) {
+    public Self hasNotNullFields(String description, Function<T, ?>... extractors) {
         step(description);
         for (Function<T, ?> extractor : extractors) {
             Object value = extractor.apply(dto);
             softAssert.assertNotNull(value, "ველი არ უნდა იყოს null");
         }
+        return (Self) this;
     }
 
 

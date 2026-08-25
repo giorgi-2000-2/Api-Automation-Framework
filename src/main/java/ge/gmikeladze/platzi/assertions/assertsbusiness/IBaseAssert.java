@@ -1,7 +1,5 @@
 package ge.gmikeladze.platzi.assertions.assertsbusiness;
-
 import io.restassured.response.Response;
-
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -17,6 +15,10 @@ public interface IBaseAssert<T, Self extends IBaseAssert<T, Self>> {
     <V> Self hasField(Function<T, V> extractor, V expected, String fieldName);
 
     <V> Self hasField(Function<T, V> extractor, V expected, String fieldName, String customMessage);
+
+     Self hasFieldMatching(Function<T, ?> extractor, Predicate<Object> predicate, String fieldName);
+
+    Self hasNotNullFields(String description, Function<T, ?>... extractors);
 
     <V> Self hasNotNullField(Function<T, V> extractor, String fieldName);
 
