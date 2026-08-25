@@ -1,4 +1,5 @@
-package ge.gmikeladze.platzi.utils;
+package ge.gmikeladze.platzi.utils.reporter;
+
 public final class TestReporterContext {
 
     private static final ThreadLocal<ITestReporter> REPORTER = new ThreadLocal<>();
@@ -13,10 +14,10 @@ public final class TestReporterContext {
     public static ITestReporter get() {
         ITestReporter reporter = REPORTER.get();
         if (reporter == null) {
-            throw new IllegalStateException(
-                    "ITestReporter არ არის ინიციალიზებული"
-            );}
-        return reporter;}
+            throw new IllegalStateException("ITestReporter არ არის ინიციალიზებული");
+        }
+        return reporter;
+    }
 
     public static void remove() {
         REPORTER.remove();

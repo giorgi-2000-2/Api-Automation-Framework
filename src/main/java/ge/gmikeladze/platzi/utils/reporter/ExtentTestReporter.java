@@ -1,13 +1,14 @@
-package ge.gmikeladze.platzi.utils;
+package ge.gmikeladze.platzi.utils.reporter;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
 public class ExtentTestReporter implements ITestReporter {
 
-    private static ExtentReports extent;
-    private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
-    private static final ThreadLocal<ExtentTest> node = new ThreadLocal<>();
+    private volatile ExtentReports extent;
+    private final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+    private final ThreadLocal<ExtentTest> node = new ThreadLocal<>();
 
     private ExtentReports getExtentReports() {
         if (extent == null) { synchronized (ExtentTestReporter.class) {
@@ -16,6 +17,7 @@ public class ExtentTestReporter implements ITestReporter {
                     ExtentSparkReporter sparkReporter = new ExtentSparkReporter(reportPath);
                     sparkReporter.config().setReportName("Automation Tester: Giorgi Mikeladze - Reports");
                     sparkReporter.config().setDocumentTitle("Test Execution Report");
+
                     extent = new ExtentReports();
                     extent.attachReporter(sparkReporter);
                     extent.setSystemInfo("Environment", "QA");

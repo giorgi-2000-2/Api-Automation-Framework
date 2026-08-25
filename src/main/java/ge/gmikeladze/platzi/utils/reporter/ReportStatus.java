@@ -1,4 +1,4 @@
-package ge.gmikeladze.platzi.utils;
+package ge.gmikeladze.platzi.utils.reporter;
 
 public enum ReportStatus {
     PASS,

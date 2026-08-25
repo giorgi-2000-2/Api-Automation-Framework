@@ -1,4 +1,6 @@
 package ge.gmikeladze.platzi.utils;
+import ge.gmikeladze.platzi.utils.reporter.ReportStatus;
+import ge.gmikeladze.platzi.utils.reporter.TestReporterContext;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -42,7 +44,6 @@ public class TestListenerManager implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         System.out.println("ტესტების ნაკრები დასრულდა: " + context.getName());
-
     }
 
     private String describeThrowable(ITestResult result) {
