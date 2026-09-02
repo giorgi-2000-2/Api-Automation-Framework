@@ -3,19 +3,20 @@ package ge.gmikeladze.platzi.assertions.validator;
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
-import ge.gmikeladze.platzi.utils.ConfigReader;
+import ge.gmikeladze.platzi.utils.config.IConfigForRequest;
 import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
 
 @TestScoped
 public class StatusValidator extends Validator {
-
+    private final IConfigForRequest config;
     private final SoftAssert softAssert;
 
     @Inject
-    public StatusValidator(ITestReporter reporter, SoftAssert softAssert) {
+    public StatusValidator(ITestReporter reporter, IConfigForRequest config, SoftAssert softAssert) {
         super(reporter);
+        this.config = config;
         this.softAssert = softAssert;
     }
 
@@ -38,7 +39,7 @@ public class StatusValidator extends Validator {
             return "ცარიელი body";
         }
 
-        int maxBodyLengthInMessage = ConfigReader.getInt("max.body.length.in.message");
+        int maxBodyLengthInMessage = config.maxBodyLengthInMessage();
         if (body.length() <= maxBodyLengthInMessage) {
             return body;
         }

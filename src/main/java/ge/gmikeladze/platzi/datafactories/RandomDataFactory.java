@@ -1,15 +1,20 @@
 package ge.gmikeladze.platzi.datafactories;
-
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import ge.gmikeladze.platzi.utils.ConfigReader;
+import ge.gmikeladze.platzi.utils.config.IConfigForData;
 import net.datafaker.Faker;
 
 import java.util.UUID;
 
 @Singleton
 public class RandomDataFactory {
-
     private final Faker faker = new Faker();
+    private final IConfigForData config;
+
+    @Inject
+    public RandomDataFactory(IConfigForData config) {
+        this.config = config;
+    }
 
     public Integer randomInt(int numb1, int numb2) {
         return faker.random().nextInt(numb1, numb2);
@@ -20,7 +25,7 @@ public class RandomDataFactory {
     }
 
     public String avatar() {
-        return ConfigReader.get("user.avatar");
+        return config.userAvatar();
     }
 
     public String validEmail() {
@@ -36,10 +41,10 @@ public class RandomDataFactory {
     }
 
     public String image() {
-        return ConfigReader.get("category.image");
+        return config.categoryImage();
     }
 
     public String validTitle() {
-        return uniqueTitle(ConfigReader.get("category.name"));
+        return uniqueTitle(config.categoryName());
     }
 }

@@ -1,22 +1,23 @@
 package ge.gmikeladze.platzi.assertions.validator;
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.annotations.TestScoped;
-import ge.gmikeladze.platzi.utils.ConfigReader;
+import ge.gmikeladze.platzi.utils.config.IConfigForRequest;
 import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
 @TestScoped
 public class ResponseTimeValidator extends Validator {
     private final SoftAssert softAssert;
-
+    private final IConfigForRequest config;
     @Inject
-    public ResponseTimeValidator(ITestReporter reporter, SoftAssert softAssert) {
+    public ResponseTimeValidator(ITestReporter reporter, SoftAssert softAssert, IConfigForRequest config) {
         super(reporter);
         this.softAssert = softAssert;
+        this.config = config;
     }
 
     public void verifyResponseTime(Response response) {
-        long limit = ConfigReader.getInt("response.time");
+        long limit = config.responseTimeLimit();
         long actual = response.time();
 
         if (actual < limit) {

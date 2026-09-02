@@ -10,22 +10,22 @@ import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
 import ge.gmikeladze.platzi.dtos.response.error.InternalServerErrorDto;
 import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponseDto;
 import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
-import ge.gmikeladze.platzi.utils.ConfigReader;
+import ge.gmikeladze.platzi.utils.config.IConfigForData;
 import org.testng.annotations.DataProvider;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.function.IntFunction;
-
 import static ge.gmikeladze.platzi.datafactories.negative.NegativeCase.of;
 
 @Singleton
 public class ProductNegativeData {
     private final RandomDataFactory randomDataFactory;
-
+    private final IConfigForData config;
     @Inject
-    public ProductNegativeData(RandomDataFactory randomDataFactory) {
+    public ProductNegativeData(RandomDataFactory randomDataFactory, IConfigForData config) {
         this.randomDataFactory = randomDataFactory;
+        this.config = config;
     }
 
 
@@ -34,11 +34,11 @@ public class ProductNegativeData {
     private final String VALID_DESCRIPTION = "valid description";
 
     public String image() {
-        return ConfigReader.get("category.image");
+        return config.categoryImage();
     }
 
     public String validTitle() {
-        return randomDataFactory.uniqueTitle(ConfigReader.get("product.name"));
+        return randomDataFactory.uniqueTitle(config.productName());
     }
 
     private CreateProductRequestDto.CreateProductRequestDtoBuilder validCreate(int categoryId) {
