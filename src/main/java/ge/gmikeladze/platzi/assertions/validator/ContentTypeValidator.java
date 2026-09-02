@@ -20,15 +20,15 @@ public class ContentTypeValidator extends Validator {
         String contentType = response.getContentType();
 
         if (contentType == null || contentType.isBlank()) {
-            String msg = "Content-Type header is missing";
+            String msg = "Content-Type არ მოიძებნა ";
             reportFail(msg);
             softAssert.fail(msg);
             return;
         }
 
         if (!contentType.toLowerCase().contains(EXPECTED_CONTENT_TYPE)) {
-            String msg = "Content-Type is invalid. Expected to contain [" + EXPECTED_CONTENT_TYPE
-                    + "], actual [" + contentType + "]";
+            String msg = "Content-Type არასწორია. მოსალოდნელი : " + EXPECTED_CONTENT_TYPE
+                    + " , მიღებული " + contentType;
             reportFail(msg);
             softAssert.fail(msg);
             return;
