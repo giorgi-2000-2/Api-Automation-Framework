@@ -79,7 +79,7 @@ REST API-ის ავტომატიზებული სატესტო
 git clone https://github.com/giorgi-2000-2/platzi-api-automation.git
 cd platzi-api-automation
 
-# ტესტების გაშვება (ნაგულისხმევად უშვებს Regression სუიტას)
+# ტესტების გაშვება (უშვებს Regression სუიტს)
 mvn clean test
 ```
 *შენიშვნა: IDE-ში პროექტის გახსნისას აუცილებლად ჩართეთ Annotation Processors (Lombok-ისთვის).*
@@ -95,8 +95,7 @@ mvn clean test -DsuiteXmlFile=testexecution/smoketesting.xml
 # E2E სცენარები
 mvn clean test -DsuiteXmlFile=testexecution/e2etesting.xml
 
-# გარემოს ცვლადის გადაფარვა გაშვებისას
-mvn clean test -Dbase.url=https://api.escuelajs.co
+
 ```
 
 ## რეპორტინგი & CI/CD

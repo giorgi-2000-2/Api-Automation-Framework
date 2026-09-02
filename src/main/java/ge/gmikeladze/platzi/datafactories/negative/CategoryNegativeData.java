@@ -1,5 +1,4 @@
 package ge.gmikeladze.platzi.datafactories.negative;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
@@ -11,16 +10,15 @@ import ge.gmikeladze.platzi.dtos.response.error.InternalServerErrorDto;
 import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponseDto;
 import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
 import org.testng.annotations.DataProvider;
-
 import static ge.gmikeladze.platzi.datafactories.negative.NegativeCase.of;
 
 @Singleton
-public class CategoryNegativeData {
+public class CategoryNegativeData{
     private final RandomDataFactory randomDataFactory;
-
     @Inject
     public CategoryNegativeData(RandomDataFactory randomDataFactory) {
         this.randomDataFactory = randomDataFactory;
+
     }
 
     private CreateCategoryRequestDto.CreateCategoryRequestDtoBuilder validCreate() {

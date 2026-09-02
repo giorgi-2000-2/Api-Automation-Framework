@@ -28,7 +28,7 @@ public class NegativeCase<T> {
     }
 
 
-    public static  <T> NegativeCase<T> of(String name, T payload,
+    public static <T> NegativeCase<T> of(String name, T payload,
                                          HttpStatusCode expectedStatus,
                                          Class<? extends ApiError> errorDto,
                                          String... messageFragments) {

@@ -9,7 +9,6 @@ import ge.gmikeladze.platzi.dtos.request.CreateProductRequestDto;
 import ge.gmikeladze.platzi.dtos.response.GetResponseCategoryDto;
 import ge.gmikeladze.platzi.dtos.response.GetResponseProductDto;
 
-
 @Getter
 @Setter
 @TestScoped

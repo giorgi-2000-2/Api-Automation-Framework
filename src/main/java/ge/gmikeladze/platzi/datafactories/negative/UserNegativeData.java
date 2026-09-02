@@ -10,16 +10,15 @@ import ge.gmikeladze.platzi.dtos.response.error.InternalServerErrorDto;
 import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponseDto;
 import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
 import org.testng.annotations.DataProvider;
-
 import static ge.gmikeladze.platzi.datafactories.negative.NegativeCase.of;
 
 @Singleton
 public class UserNegativeData{
     private final RandomDataFactory randomDataFactory;
-
     @Inject
     public UserNegativeData(RandomDataFactory randomDataFactory) {
         this.randomDataFactory = randomDataFactory;
+
     }
 
     private CreateUserDto.CreateUserDtoBuilder validCreate() {
@@ -144,10 +143,6 @@ public class UserNegativeData{
                         "User", "2147483647")},
         };
     }
-
-
-
-
 
 
     @DataProvider(name = "invalidUserUpdate")
