@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public interface IBaseAssert<T, Self extends IBaseAssert<T, Self>> {
-    
+
     Self assertThat(T dto);
 
     Self assertThat(List<T> dtoList);
@@ -16,7 +16,7 @@ public interface IBaseAssert<T, Self extends IBaseAssert<T, Self>> {
 
     <V> Self hasField(Function<T, V> extractor, V expected, String fieldName, String customMessage);
 
-     Self hasFieldMatching(Function<T, ?> extractor, Predicate<Object> predicate, String fieldName);
+    Self hasFieldMatching(Function<T, ?> extractor, Predicate<Object> predicate, String fieldName);
 
     Self hasNotNullFields(String description, Function<T, ?>... extractors);
 

@@ -28,6 +28,7 @@ public class CategoryTest extends BaseApiTest {
 
     }
 
+
     @Test(groups = { "regression","positive"})
     public void testGetCategoryLimit() {
         GetCategoryLimitRequestDto requestBody = categoryData.getCategoryLimit();
@@ -137,4 +138,6 @@ public class CategoryTest extends BaseApiTest {
                 .messageIsNotBlank()
                 .messageMentionsAll(testCase.getMessageFragments());
     }
+
+
 }

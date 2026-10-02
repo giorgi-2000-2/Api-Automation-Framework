@@ -28,9 +28,9 @@ public class ResponseUserAssert extends BaseAssert<GetUserResponseDto, ResponseU
     public ResponseUserAssert hasRole(String expectedRole) {
         return hasField(GetUserResponseDto::getRole, expectedRole, "Role");
     }
-public ResponseUserAssert hasAvatar(String expectedAvatar){
+    public ResponseUserAssert hasAvatar(String expectedAvatar){
         return hasField(GetUserResponseDto::getAvatar,expectedAvatar,"Avatar");
-}
+    }
 
     public void hasCreationDatesPopulated() {
         hasNotNullFields(

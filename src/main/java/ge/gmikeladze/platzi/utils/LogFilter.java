@@ -19,15 +19,17 @@ public class LogFilter implements Filter {
                            FilterableResponseSpecification responseSpec,
                            FilterContext ctx) {
 
-        reporter.info("მოთხოვნა: " + requestSpec.getMethod() + " " + requestSpec.getURI());
+        String call = requestSpec.getMethod() + " " + requestSpec.getURI();
+        reporter.info("მოთხოვნა: " + call);
         if (requestSpec.getBody() != null) {
-            reporter.info("მოთხოვნის სხეული: <pre>" + requestSpec.getBody() + "</pre>");
+            reporter.attach("მოთხოვნის სხეული — " + call, String.valueOf((Object) requestSpec.getBody()));
         }
 
         Response response = ctx.next(requestSpec, responseSpec);
 
-        reporter.info("პასუხის სტატუს კოდი: " + response.getStatusCode());
-        reporter.info("პასუხის სხეული: <pre>" + response.getBody().asPrettyString() + "</pre>");
+        reporter.info("პასუხი: " + response.getStatusCode() + " (" + response.getTime() + "ms) — " + call);
+        reporter.attach("პასუხის სხეული — " + response.getStatusCode() + " " + call,
+                response.getBody().asPrettyString());
 
         return response;
     }

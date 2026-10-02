@@ -13,7 +13,6 @@ public abstract class Validator {
         this.reporter = reporter;
     }
 
-
     protected void reportPass(String message) {
         reporter.log(ReportStatus.PASS, message);
     }

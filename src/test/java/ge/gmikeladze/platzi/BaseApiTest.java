@@ -11,14 +11,17 @@ import ge.gmikeladze.platzi.datafactories.UserDataFactory;
 import ge.gmikeladze.platzi.di.FrameworkModule;
 import ge.gmikeladze.platzi.di.SoftAssertListener;
 import ge.gmikeladze.platzi.di.TestContext;
+import ge.gmikeladze.platzi.di.TestScope;
 import ge.gmikeladze.platzi.steps.CategorySteps;
 import ge.gmikeladze.platzi.steps.ProductSteps;
 import ge.gmikeladze.platzi.steps.UserSteps;
 import ge.gmikeladze.platzi.testdata.TestDataPreparer;
+import ge.gmikeladze.platzi.utils.metrics.MetricsRegistry;
+import ge.gmikeladze.platzi.utils.metrics.SuiteMetricsListener;
 import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import ge.gmikeladze.platzi.utils.reporter.ReportStatus;
 import ge.gmikeladze.platzi.utils.TestListenerManager;
-import ge.gmikeladze.platzi.utils.reporter.TestReporterContext;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
@@ -28,6 +31,8 @@ import java.lang.reflect.Method;
 @Listeners({TestListenerManager.class, SoftAssertListener.class})
 public abstract class BaseApiTest {
 
+
+    @Inject private TestScope TEST_SCOPE;
     @Inject private Provider<TestDataPreparer> dataPreparer;
     @Inject protected ITestReporter reporter;
     @Inject protected CategoryDataFactory categoryData;
@@ -43,18 +48,30 @@ public abstract class BaseApiTest {
     @Inject protected Provider<ResponseProductAssert> productAssert;
     @Inject protected Provider<ResponseUserAssert> userAssert;
     @Inject protected Provider<ResponseErrorAssert> errorAssert;
+    @Inject private MetricsRegistry metrics;
+    @Inject private SuiteMetricsListener suiteMetricsListener;
 
+
+    @BeforeClass(alwaysRun = true)
+    public void shareMetricsAndRegisterListener(ITestContext context) {
+        context.getSuite().setAttribute(MetricsRegistry.SUITE_ATTRIBUTE, metrics);
+        synchronized (context.getSuite()) {
+            if (context.getSuite().getAttribute("metricsListenerRegistered") == null) {
+                context.getSuite().addListener(suiteMetricsListener);
+                context.getSuite().setAttribute("metricsListenerRegistered", true);
+            }
+        }
+    }
 
     @BeforeMethod(alwaysRun = true)
     public void setUp(Method method, ITestResult result) {
-        FrameworkModule.TEST_SCOPE.enter();
-        TestReporterContext.set(reporter);
+        TEST_SCOPE.enter();
         reporter.createTest(displayName(method, result));
-        TestReporterContext.get().info("ტესტი დაიწყო: " + displayName(method, result));
+        reporter.info("ტესტი დაიწყო: " + displayName(method, result));
+        result.setAttribute("reporter", reporter);
         result.setAttribute("softAssert", soft.get());
         dataPreparer.get().prepare(method);
     }
-
 
     private String displayName(Method method, ITestResult result) {
         Object[] params = result.getParameters();
@@ -65,16 +82,21 @@ public abstract class BaseApiTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        try {context.get().getCleanupRegistry().cleanup();
+    public void tearDown(ITestResult result) {
+        try {
+            context.get().getCleanupRegistry().cleanup();
         } catch (Throwable cleanupError) {
-            TestReporterContext.get().log(ReportStatus.WARNING, "ტესტ მონაცემების გასუფთავება ვერ შესრულდა " + cleanupError.getMessage());
-        } finally { try {FrameworkModule.TEST_SCOPE.exit();
+            reporter.log(ReportStatus.WARNING,
+                    "ტესტ მონაცემების გასუფთავება ვერ შესრულდა " + cleanupError.getMessage());
+        } finally {
+            try {
+                TEST_SCOPE.exit();
             } finally {
-                TestReporterContext.get().flush();
-                TestReporterContext.get().unload();
-                TestReporterContext.remove();
+                reporter.flush();
+                reporter.unload();
             }
         }
     }
+
+
 }

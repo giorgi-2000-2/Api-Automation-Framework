@@ -1,5 +1,4 @@
 package ge.gmikeladze.platzi.steps;
-
 import ge.gmikeladze.platzi.apiclient.ApiEndpoint;
 import ge.gmikeladze.platzi.apiclient.GenericClient;
 import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
@@ -9,7 +8,6 @@ import ge.gmikeladze.platzi.di.TestContext;
 import ge.gmikeladze.platzi.dtos.response.Identifiable;
 import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.response.Response;
-
 import java.util.Map;
 
 public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifiable, TUpdate> extends BaseSteps implements IResourceSteps<TRequest, TResponse, TUpdate> {
@@ -140,11 +138,19 @@ public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifi
             Integer id = response.jsonPath().get("id");
             if (id != null && id > 0) {
 
-                testContext.getCleanupRegistry().register(new ResourceKey(resourceType(), id), () -> bestEffortDelete(id));
+                testContext.getCleanupRegistry().register(new ResourceKey(resourceType(), id), new Runnable() {
+                    @Override
+                    public void run() {
+                        bestEffortDelete(id);
+                    }
+                });
 
                 reporter.info("Cleanup-ზე დარეგისტრირდა " + resourceType() + " " + id);
+
             }
+
         } catch (Exception e) {
+
             reporter.info("Cleanup რეგისტრაცია ვერ მოხერხდა " + resourceType() + " : " + e.getMessage());
 
         }

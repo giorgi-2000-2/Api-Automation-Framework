@@ -6,18 +6,16 @@ import ge.gmikeladze.platzi.apiservice.HttpStatusCode;
 import ge.gmikeladze.platzi.utils.config.IConfigForRequest;
 import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.response.Response;
-import org.testng.asserts.SoftAssert;
+import org.testng.Assert;
 
 @TestScoped
 public class StatusValidator extends Validator {
     private final IConfigForRequest config;
-    private final SoftAssert softAssert;
 
     @Inject
-    public StatusValidator(ITestReporter reporter, IConfigForRequest config, SoftAssert softAssert) {
+    public StatusValidator(ITestReporter reporter, IConfigForRequest config ) {
         super(reporter);
         this.config = config;
-        this.softAssert = softAssert;
     }
 
     public void verifyStatus(Response response, HttpStatusCode expected) {
@@ -29,7 +27,7 @@ public class StatusValidator extends Validator {
         } else {
             String fullMessage = message + " " + bodyResponseMessage(response);
             reportFail(fullMessage);
-            softAssert.fail(fullMessage);
+            Assert.fail(fullMessage);
         }
     }
 

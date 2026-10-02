@@ -1,11 +1,12 @@
 package ge.gmikeladze.platzi.assertions.validator;
-
 import com.google.inject.Inject;
 import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import org.testng.asserts.SoftAssert;
+
+
 @TestScoped
 public class SchemaValidator extends Validator {
     private final SoftAssert softAssert;
