@@ -7,4 +7,11 @@ public interface ITestReporter {
         void info(String message);
         void unload();
         void flush();
+
+        default void attach(String name, String content) {
+                info(name + ": " + content);
+        }
+
+        default void endTest() {
+        }
 }

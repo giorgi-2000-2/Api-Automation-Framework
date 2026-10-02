@@ -1,11 +1,13 @@
 package ge.gmikeladze.platzi.utils.config;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import ge.gmikeladze.platzi.utils.reporter.IReportConfig;
+import ge.gmikeladze.platzi.utils.reporter.ReportEngine;
 import java.util.Properties;
 
 
 @Singleton
-public class PropertiesConfig implements IConfigForData, IConfigForRequest {
+public class PropertiesConfig implements IConfigForData, IConfigForRequest, IReportConfig {
     private static final String FILE = "config.properties";
     private final Properties props;
 
@@ -42,6 +44,16 @@ public class PropertiesConfig implements IConfigForData, IConfigForRequest {
     }
     @Override public int categoryListLimit(){
         return requireInt("limit");
+    }
+
+    @Override public ReportEngine reportEngine(){
+        String fromSystem = System.getProperty("report.engine");
+        return ReportEngine.from(isUsable(fromSystem) ? fromSystem : resolve("report.engine"));
+    }
+
+    @Override
+    public int maxStepTitle() {
+        return requireInt("max.step.title");
     }
 
     private String resolve(String key) {

@@ -17,14 +17,17 @@
     <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <restassured.version>5.5.6</restassured.version>
-    <testng.version>7.11.0</testng.version>
+    <restassured.version>5.5.0</restassured.version>
+    <testng.version>7.10.2</testng.version>
     <guice.version>7.0.0</guice.version>
-    <lombok.version>1.18.36</lombok.version>
+    <lombok.version>1.18.34</lombok.version>
     <extentreports.version>5.1.2</extentreports.version>
-    <datafaker.version>2.4.2</datafaker.version>
+    <datafaker.version>2.4.0</datafaker.version>
     <surefire.version>3.5.2</surefire.version>
     <compiler.plugin.version>3.13.0</compiler.plugin.version>
+
+    <allure.version>2.29.0</allure.version>
+    <aspectj.version>1.9.22.1</aspectj.version>
 
     <jackson.version>2.17.2</jackson.version>
     <commons-codec.version>1.17.1</commons-codec.version>
@@ -40,6 +43,14 @@
         <groupId>io.rest-assured</groupId>
         <artifactId>rest-assured-bom</artifactId>
         <version>${restassured.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-bom</artifactId>
+        <version>${allure.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -107,6 +118,12 @@
       <version>${extentreports.version}</version>
     </dependency>
 
+    <!-- Allure TestNG დამატებულია ძირითად დეპენდენსიებში -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
@@ -120,23 +137,40 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectj.version}</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
     <plugins>
-
       <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.15.0</version>
+        <configuration>
+          <reportVersion>2.29.0</reportVersion>
+          <resultsDirectory>allure-results</resultsDirectory>
+          <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
 
         <configuration>
-
           <suiteXmlFiles>
             <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
           </suiteXmlFiles>
 
           <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
             -Dfile.encoding=UTF-8
             -Dstdout.encoding=UTF-8
             -Dstderr.encoding=UTF-8
@@ -158,9 +192,7 @@
         <version>${compiler.plugin.version}</version>
 
         <configuration>
-
           <release>${maven.compiler.release}</release>
-
           <annotationProcessorPaths>
             <path>
               <groupId>org.projectlombok</groupId>
@@ -168,7 +200,6 @@
               <version>${lombok.version}</version>
             </path>
           </annotationProcessorPaths>
-
         </configuration>
       </plugin>
 

@@ -1,12 +1,12 @@
 package ge.gmikeladze.platzi.utils;
+
+import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import ge.gmikeladze.platzi.utils.reporter.ReportStatus;
-import ge.gmikeladze.platzi.utils.reporter.TestReporterContext;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class TestListenerManager implements ITestListener {
-
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -17,23 +17,29 @@ public class TestListenerManager implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("ტესტი წარმატებულია: " + result.getName());
-        TestReporterContext.get().log(ReportStatus.PASS, "ტესტი წარმატებულია");
-
+        ITestReporter reporter = getReporter(result);
+        if (reporter != null) {
+            reporter.log(ReportStatus.PASS, "ტესტი წარმატებულია");
+        }
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         String testName = result.getMethod().getMethodName();
         System.out.println("ტესტი ჩავარდა: " + testName);
-        TestReporterContext.get().log(ReportStatus.FAIL, "ტესტი ჩავარდა: " + describeThrowable(result));
-
+        ITestReporter reporter = getReporter(result);
+        if (reporter != null) {
+            reporter.log(ReportStatus.FAIL, "ტესტი ჩავარდა: " + describeThrowable(result));
+        }
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         System.out.println("ტესტი გამოტოვებულია: " + result.getName());
-        TestReporterContext.get().log(ReportStatus.SKIP, "ტესტი გამოტოვებულია: " + describeThrowable(result));
-
+        ITestReporter reporter = getReporter(result);
+        if (reporter != null) {
+            reporter.log(ReportStatus.SKIP, "ტესტი გამოტოვებულია: " + describeThrowable(result));
+        }
     }
 
     @Override
@@ -44,6 +50,14 @@ public class TestListenerManager implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         System.out.println("ტესტების ნაკრები დასრულდა: " + context.getName());
+    }
+
+    private ITestReporter getReporter(ITestResult result) {
+        Object attr = result.getAttribute("reporter");
+        if (attr instanceof ITestReporter) {
+            return (ITestReporter) attr;
+        }
+        return null;
     }
 
     private String describeThrowable(ITestResult result) {
