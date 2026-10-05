@@ -17,6 +17,7 @@ public class CleanupRegistryTest {
     private FakeReporter reporter;
     private CleanupRegistry registry;
 
+
     @BeforeMethod
     public void setUp() {
         reporter = new FakeReporter();

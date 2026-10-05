@@ -1,20 +1,13 @@
 package ge.gmikeladze.platzi;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import ge.gmikeladze.platzi.assertions.assertsbusiness.ResponseErrorAssert;
-import ge.gmikeladze.platzi.assertions.assertsbusiness.ResponseCategoryAssert;
-import ge.gmikeladze.platzi.assertions.assertsbusiness.ResponseProductAssert;
-import ge.gmikeladze.platzi.assertions.assertsbusiness.ResponseUserAssert;
-import ge.gmikeladze.platzi.datafactories.CategoryDataFactory;
-import ge.gmikeladze.platzi.datafactories.ProductDataFactory;
-import ge.gmikeladze.platzi.datafactories.UserDataFactory;
+import ge.gmikeladze.platzi.assertions.assertsbusiness.*;
+import ge.gmikeladze.platzi.datafactories.*;
 import ge.gmikeladze.platzi.di.FrameworkModule;
 import ge.gmikeladze.platzi.di.SoftAssertListener;
 import ge.gmikeladze.platzi.di.TestContext;
 import ge.gmikeladze.platzi.di.TestScope;
-import ge.gmikeladze.platzi.steps.CategorySteps;
-import ge.gmikeladze.platzi.steps.ProductSteps;
-import ge.gmikeladze.platzi.steps.UserSteps;
+import ge.gmikeladze.platzi.steps.*;
 import ge.gmikeladze.platzi.testdata.TestDataPreparer;
 import ge.gmikeladze.platzi.utils.metrics.MetricsRegistry;
 import ge.gmikeladze.platzi.utils.metrics.SuiteMetricsListener;
@@ -30,24 +23,28 @@ import java.lang.reflect.Method;
 @Guice(modules = FrameworkModule.class)
 @Listeners({TestListenerManager.class, SoftAssertListener.class})
 public abstract class BaseApiTest {
-
-
     @Inject private TestScope TEST_SCOPE;
     @Inject private Provider<TestDataPreparer> dataPreparer;
     @Inject protected ITestReporter reporter;
     @Inject protected CategoryDataFactory categoryData;
     @Inject protected ProductDataFactory productData;
     @Inject protected UserDataFactory userData;
+    @Inject protected AuthDataFactory authData;
 
+    @Inject protected Provider<AuthSteps> authSteps;
     @Inject protected Provider<CategorySteps> categorySteps;
     @Inject protected Provider<UserSteps> userSteps;
     @Inject protected Provider<ProductSteps> productSteps;
+    @Inject protected Provider<E2ESteps> e2eSteps;
     @Inject protected Provider<SoftAssert> soft;
     @Inject protected Provider<TestContext> context;
+
     @Inject protected Provider<ResponseCategoryAssert> categoryAssert;
     @Inject protected Provider<ResponseProductAssert> productAssert;
     @Inject protected Provider<ResponseUserAssert> userAssert;
     @Inject protected Provider<ResponseErrorAssert> errorAssert;
+    @Inject protected Provider<ResponseAuthAssert> authAssert;
+
     @Inject private MetricsRegistry metrics;
     @Inject private SuiteMetricsListener suiteMetricsListener;
 
