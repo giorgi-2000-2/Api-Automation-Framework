@@ -6,4 +6,6 @@ public interface IConfigForData {
     String productName();
     String userAvatar();
     int categoryListLimit();
+    String  email();
+       String  password();
 }

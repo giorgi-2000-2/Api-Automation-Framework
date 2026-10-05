@@ -7,53 +7,19 @@ import java.util.Properties;
 
 
 @Singleton
-public class PropertiesConfig implements IConfigForData, IConfigForRequest, IReportConfig {
-    private static final String FILE = "config.properties";
+public class PropertiesConfig implements IConfigForData, IConfigForRequest, IReportConfig{
+    private final String FILE = "config.properties";
     private final Properties props;
-
     @Inject
     public PropertiesConfig() {
+
         Properties fromFile = ConfigSource.fromClasspath(FILE);
         this.props = fromFile;
     }
 
     PropertiesConfig(Properties props) {
         this.props = props;
-    }
 
-    @Override public String baseUrl(){
-        return require("base.url");
-    }
-    @Override public int responseTimeLimit(){
-        return requireInt("response.time");
-    }
-    @Override public int maxBodyLengthInMessage(){
-        return requireInt("max.body.length.in.message");
-    }
-    @Override public String categoryName(){
-        return require("category.name");
-    }
-    @Override public String categoryImage(){
-        return require("category.image");
-    }
-    @Override public String productName(){
-        return require("product.name");
-    }
-    @Override public String userAvatar(){
-        return require("user.avatar");
-    }
-    @Override public int categoryListLimit(){
-        return requireInt("limit");
-    }
-
-    @Override public ReportEngine reportEngine(){
-        String fromSystem = System.getProperty("report.engine");
-        return ReportEngine.from(isUsable(fromSystem) ? fromSystem : resolve("report.engine"));
-    }
-
-    @Override
-    public int maxStepTitle() {
-        return requireInt("max.step.title");
     }
 
     private String resolve(String key) {
@@ -79,9 +45,46 @@ public class PropertiesConfig implements IConfigForData, IConfigForRequest, IRep
         }
     }
 
-    private static boolean isUsable(String value) {
+    private boolean isUsable(String value) {
         return value != null && !value.trim().isEmpty();
     }
+
+
+    @Override public String baseUrl(){
+        return require("base.url");
+    }
+    @Override public int responseTimeLimit(){
+        return requireInt("response.time");
+    }
+    @Override public int maxBodyLengthInMessage(){
+        return requireInt("max.body.length.in.message");
+    }
+    @Override public String categoryName(){
+        return require("category.name");
+    }
+    @Override public String categoryImage(){
+        return require("category.image");
+    }
+    @Override public String productName(){
+        return require("product.name");
+    }
+    @Override public String userAvatar(){return require("user.avatar");}
+    @Override public int categoryListLimit(){
+        return requireInt("limit");
+    }
+    @Override public String email() {return require("email");}
+    @Override public String password() {return require("password");}
+    @Override public ReportEngine reportEngine(){
+        String fromSystem = System.getProperty("report.engine");
+        return ReportEngine.from(isUsable(fromSystem) ? fromSystem : resolve("report.engine"));
+    }
+    @Override
+    public int maxStepTitle() {
+        return requireInt("max.step.title");
+    }
+
+
+
 
 
 }
