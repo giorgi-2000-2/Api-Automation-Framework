@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UnauthorizedErrorSchema",
+  "type": "object",
+  "properties": {
+    "message": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "error": {
+      "type": "string"
+    },
+    "statusCode": {
+      "type": "integer",
+      "enum": [401]
+    }
+  },
+  "required": [
+    "message",
+    "statusCode"
+  ],
+  "additionalProperties": false
+}

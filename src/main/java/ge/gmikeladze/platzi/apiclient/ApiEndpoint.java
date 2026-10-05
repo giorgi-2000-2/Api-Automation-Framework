@@ -9,7 +9,10 @@ public enum ApiEndpoint {
     PRODUCT_ID("/api/v1/products/{id}"),
     CATEGORY_ID_PRODUCTS("/api/v1/categories/{id}/products"),
     USER("/api/v1/users"),
-    USER_ID("/api/v1/users/{id}");
+    USER_ID("/api/v1/users/{id}"),
+    AUTH_LOGIN("/api/v1/auth/login"),
+    AUTH_PROFILE("/api/v1/auth/profile"),
+    AUTH_REFRESH("/api/v1/auth/refresh-token");
 
     private final String path;
 

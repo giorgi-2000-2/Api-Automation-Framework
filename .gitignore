@@ -38,6 +38,7 @@ report/
 *.log
 test-output/
 surefire-reports/
+allure-results/
 
 ### Other ###
 *.class

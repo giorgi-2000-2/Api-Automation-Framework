@@ -1,14 +1,13 @@
 package ge.gmikeladze.platzi.assertions;
+import ge.gmikeladze.platzi.dtos.request.AuthTokensDto;
 import ge.gmikeladze.platzi.dtos.response.*;
-import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
-import ge.gmikeladze.platzi.dtos.response.error.InternalServerErrorDto;
-import ge.gmikeladze.platzi.dtos.response.error.PutBadRequestResponseDto;
-import ge.gmikeladze.platzi.dtos.response.error.ValidationErrorDto;
+import ge.gmikeladze.platzi.dtos.response.error.*;
+
+
 import java.util.HashMap;
 import java.util.Map;
 
 public enum SchemaMapping {
-
     CATEGORY(GetResponseCategoryDto.class,        "schemas/category-success-schema.json"),
     CATEGORY_LIST(GetResponseCategoryDto[].class, "schemas/category-list-schema.json"),
     PRODUCT(GetResponseProductDto.class,          "schemas/product-schema.json"),
@@ -17,7 +16,9 @@ public enum SchemaMapping {
     VALIDATION_ERROR(ValidationErrorDto.class,    "schemas/validation-error-schema.json"),
     PRODUCT_LIST(GetResponseProductDto[].class, "schemas/product-list-schema.json"),
     INTERNAL_SERVER_ERROR(InternalServerErrorDto.class, "schemas/internal-server-error-schema.json"),
-    USER(GetUserResponseDto.class, "schemas/user-success-schema.json");
+    USER(GetUserResponseDto.class, "schemas/user-success-schema.json"),
+    AUTH_TOKENS(AuthTokensDto.class, "schemas/auth-tokens-schema.json"),
+    UNAUTHORIZED(UnauthorizedErrorDto.class, "schemas/unauthorized-error-schema.json");
     private final Class<?> dtoClass;
     private final String schemaPath;
     SchemaMapping(Class<?> dtoClass, String schemaPath) {

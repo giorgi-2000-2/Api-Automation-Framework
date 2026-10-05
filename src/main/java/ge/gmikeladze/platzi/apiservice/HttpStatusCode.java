@@ -8,7 +8,10 @@ public enum HttpStatusCode {
     OK(200, "OK"),
     CREATED(201, "Created"),
     BAD_REQUEST(400, "Bad Request"),
-    SERVER_ERROR (500, "Internal server error");
+    UNAUTHORIZED(401, "Unauthorized"),
+    FORBIDDEN(403, "Forbidden"),
+    NOT_FOUND(404, "Not Found"),
+    SERVER_ERROR(500, "Internal server error");
     private final int code;
     private final String description;
 }
