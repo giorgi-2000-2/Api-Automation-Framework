@@ -47,13 +47,6 @@ public class CategorySteps extends AbstractResourceSteps<CreateCategoryRequestDt
         return ResourceKey.TYPE_CATEGORY;
     }
 
-    @Override
-    protected void bestEffortDelete(int id) {
-        Response response = genericClient.delete(ApiEndpoint.CATEGORY_ID, id);
-        if (response.statusCode() != HttpStatusCode.OK.getCode()) {
-            logBestEffortFailure(id, response.statusCode());
-        }
-    }
 
     public List<GetResponseCategoryDto> getCategories(int limit) {
         step("კატეგორიების სია limit=" + limit);
@@ -83,11 +76,10 @@ public class CategorySteps extends AbstractResourceSteps<CreateCategoryRequestDt
         );
     }
 
-
     public List<GetResponseProductDto> getProductsByCategoryId(
             int categoryId, Pagination pagination, HttpStatusCode expectedStatus) {
 
-        step("კატეგორიის პროდუქტების სია id=" + categoryId + ", limit=" + pagination.limit() + ", offset=" + pagination.offset());
+        step("კატეგორიის პროდუქტების სია id=" + categoryId + ", limit=" + pagination.getLimit() + ", offset=" + pagination.getOffset());
 
         return validator.validateList(
                 genericClient.get(

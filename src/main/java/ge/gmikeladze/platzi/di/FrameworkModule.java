@@ -33,7 +33,6 @@ public class FrameworkModule extends AbstractModule {
 
         bind(CleanupRegistry.class).in(TEST_SCOPE);
 
-        bind(PropertiesConfig.class).in(Singleton.class);
         bind(IConfigForRequest.class).to(PropertiesConfig.class);
         bind(IConfigForData.class).to(PropertiesConfig.class);
         bind(IReportConfig.class).to(PropertiesConfig.class);

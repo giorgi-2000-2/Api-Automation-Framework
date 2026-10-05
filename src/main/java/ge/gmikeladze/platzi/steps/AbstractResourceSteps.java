@@ -6,6 +6,7 @@ import ge.gmikeladze.platzi.assertions.ResponseValidator;
 import ge.gmikeladze.platzi.cleanup.ResourceKey;
 import ge.gmikeladze.platzi.di.TestContext;
 import ge.gmikeladze.platzi.dtos.response.Identifiable;
+import ge.gmikeladze.platzi.dtos.response.error.BadRequestResponse;
 import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 import io.restassured.response.Response;
 import java.util.Map;
@@ -28,8 +29,6 @@ public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifi
     protected abstract Class<TResponse> responseType();
 
     protected abstract String resourceType();
-
-    protected abstract void bestEffortDelete(int id);
 
     @Override
     public TResponse create(TRequest body) {
@@ -88,7 +87,12 @@ public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifi
         registerIfCreated(response);
         return validator.validate(response, expectedStatus, errorDto);
     }
-
+    public void bestEffortDelete(int id) {
+        Response response = genericClient.delete(itemEndpoint(), id);
+        if (response.statusCode() != HttpStatusCode.OK.getCode()) {
+            logBestEffortFailure(id, response.statusCode());
+        }
+    }
     @Override
     public <T> T getExpectingError(int id,
                                    HttpStatusCode expectedStatus,
@@ -129,7 +133,9 @@ public abstract class AbstractResourceSteps<TRequest, TResponse extends Identifi
     protected void logBestEffortFailure(int id, int statusCode) {
         reporter.info("cleanup: " + resourceType() + " " + id + " ვერ წაიშალა სტატუსი " + statusCode);
     }
-
+    public void verifyGone(int id) {
+        getExpectingError(id, HttpStatusCode.BAD_REQUEST, BadRequestResponse.class);
+    }
 
     protected void registerIfCreated(Response response) {
         if (response == null) return;

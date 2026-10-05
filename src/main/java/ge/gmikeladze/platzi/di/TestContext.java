@@ -18,7 +18,8 @@ public class TestContext {
     private CreateProductRequestDto  productRequest;
     private GetResponseProductDto    product;
     private CleanupRegistry cleanupRegistry;
-
+    private String accessToken;
+    private String refreshToken;
     @Inject
     public TestContext(CleanupRegistry cleanupRegistry) {
         this.cleanupRegistry = cleanupRegistry;

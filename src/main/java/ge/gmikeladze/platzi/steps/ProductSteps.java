@@ -45,14 +45,6 @@ public class ProductSteps extends AbstractResourceSteps<CreateProductRequestDto,
         return ResourceKey.TYPE_PRODUCT;
     }
 
-    @Override
-    protected void bestEffortDelete(int id) {
-        Response response = genericClient.delete(ApiEndpoint.PRODUCT_ID, id);
-        if (response.statusCode() != HttpStatusCode.OK.getCode()) {
-            logBestEffortFailure(id, response.statusCode());
-        }
-    }
-
 
     public List<GetResponseProductDto> getProductsByCategoryId(Integer categoryId, HttpStatusCode expectedStatus) {
         Response response = genericClient.getByPath(

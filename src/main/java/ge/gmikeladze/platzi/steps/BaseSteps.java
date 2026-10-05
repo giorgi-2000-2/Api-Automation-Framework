@@ -1,4 +1,6 @@
 package ge.gmikeladze.platzi.steps;
+import com.google.inject.Inject;
+import ge.gmikeladze.platzi.annotations.TestScoped;
 import ge.gmikeladze.platzi.assertions.ResponseValidator;
 import ge.gmikeladze.platzi.utils.reporter.ITestReporter;
 

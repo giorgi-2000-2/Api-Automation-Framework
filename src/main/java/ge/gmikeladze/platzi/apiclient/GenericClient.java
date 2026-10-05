@@ -39,8 +39,16 @@ public class GenericClient {
     public Response delete(ApiEndpoint endpoint, int id) {
         return apiRequest.delete(endpoint.path(), Map.of("id", id));
     }
+    public Response post(ApiEndpoint endpoint, Object body) {
+        return apiRequest.post(endpoint.path(), body);
+    }
 
-
+    public Response getWithAuth(ApiEndpoint endpoint, String accessToken) {
+        return apiRequest.getWithAuth(endpoint.path(), accessToken);
+    }
+    public Response getWithoutAuth(ApiEndpoint endpoint) {
+        return apiRequest.getWithoutAuth(endpoint.path());
+    }
 }
 
 

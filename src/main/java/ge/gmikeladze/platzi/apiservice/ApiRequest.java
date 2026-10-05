@@ -62,4 +62,27 @@ public class ApiRequest {
                 .extract()
                 .response();
     }
+
+    public Response getWithAuth(String endpoint, String accessToken) {
+        return given()
+                .spec(spec)
+                .header("Authorization", "Bearer " + (accessToken != null ? accessToken : ""))
+                .when()
+                .get(endpoint)
+                .then()
+                .extract()
+                .response();
+    }
+
+    public Response getWithoutAuth(String endpoint) {
+        return given()
+                .spec(spec)
+                .when()
+                .get(endpoint)
+                .then()
+                .extract()
+                .response();
+    }
+
+
 }

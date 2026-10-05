@@ -44,13 +44,6 @@ public class UserSteps  extends AbstractResourceSteps<CreateUserDto, GetUserResp
         return ResourceKey.TYPE_USER;
     }
 
-    @Override
-    protected void bestEffortDelete(int id) {
-        Response response = genericClient.delete(ApiEndpoint.USER_ID, id);
-        if (response.statusCode() != HttpStatusCode.OK.getCode()) {
-            logBestEffortFailure(id, response.statusCode());
-        }
-    }
 
 
 
