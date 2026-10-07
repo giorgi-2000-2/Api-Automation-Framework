@@ -86,6 +86,143 @@ LIFO (Last In, First Out) მუშაობს ანუ ეს ნიშნა
 * **DI & არქიტექტურა:** Google Guice 7.0.0
 * **სხვა:** Lombok, Datafaker, JSON Schema Validator, Extent Reports
 
+## პროექტის სტრუქტურა
+
+### `src/main/java/ge/gmikeladze/platzi` — ფრეიმვორკი
+
+**`annotations`**
+- `RequiresCategory` — ტესტის წინ იქმნება კატეგორია
+- `RequiresProduct` — ტესტის წინ იქმნება კატეგორია და მასში პროდუქტი
+- `TestScoped` — scope ანოტაცია: ობიექტი ცოცხლობს ერთი ტესტის განმავლობაში
+
+**`apiclient`**
+- `ApiEndpoint` — enum ყველა endpoint-ის მისამართით
+- `GenericClient` — მოთხოვნის გაგზავნა არჩეულ endpoint-ზე (create, get, update, delete)
+- `Pagination` — `limit` და `offset` პარამეტრები
+
+**`apiservice`**
+- `ApiRequest` — HTTP მოთხოვნები REST Assured-ით (POST, GET, PUT, DELETE)
+- `HttpStatusCode` — enum HTTP სტატუს კოდებით
+
+**`assertions`**
+- `ResponseValidator` — პასუხის ტექნიკური ვალიდაცია (დრო, სტატუსი, Content-Type, სქემა) და DTO-ში გარდაქმნა
+- `SchemaMapping` — enum: რომელ DTO-ს რომელი JSON სქემა შეესაბამება
+
+**`assertions/validator`**
+- `Validator` — ვალიდატორების საბაზო კლასი, შედეგს წერს რეპორტში
+- `StatusValidator` — სტატუს კოდის შემოწმება (hard assert)
+- `ContentTypeValidator` — Content-Type-ის შემოწმება (soft assert)
+- `SchemaValidator` — JSON სქემასთან შესაბამისობა (soft assert)
+- `ResponseTimeValidator` — პასუხის დროის ლიმიტი (soft assert)
+
+**`assertions/assertsbusiness`**
+- `IBaseAssert` — fluent assert-ების ინტერფეისი
+- `BaseAssert` — საერთო შემოწმებები: ველის მნიშვნელობა, სიის ზომა, წაშლის პასუხი
+- `ResponseCategoryAssert` — კატეგორიის პასუხის შემოწმება
+- `ResponseProductAssert` — პროდუქტის პასუხის შემოწმება
+- `ResponseUserAssert` — მომხმარებლის პასუხის შემოწმება
+- `ResponseAuthAssert` — access და refresh token-ების შემოწმება
+- `ResponseErrorAssert` — შეცდომის ტექსტის შემოწმება
+
+**`cleanup`**
+- `CleanupRegistry` — ტესტში შექმნილი მონაცემების აღრიცხვა და წაშლა LIFO რიგით
+- `ResourceKey` — რესურსის იდენტიფიკატორი (ტიპი + id)
+
+**`datafactories`**
+- `RandomDataFactory` — უნიკალური და შემთხვევითი მნიშვნელობები (სახელი, email, პაროლი)
+- `CategoryDataFactory` — კატეგორიის შექმნისა და განახლების მონაცემები
+- `ProductDataFactory` — პროდუქტის შექმნისა და განახლების მონაცემები
+- `UserDataFactory` — მომხმარებლის შექმნისა და განახლების მონაცემები
+- `AuthDataFactory` — login-ის მონაცემები
+
+**`datafactories/negative`**
+- `NegativeCase` — ერთი ნეგატიური ქეისი: სახელი, payload, მოსალოდნელი სტატუსი და შეცდომის ტექსტი
+- `CategoryNegativeData`, `ProductNegativeData`, `UserNegativeData`, `AuthNegativeData` — DataProvider-ები არავალიდური მონაცემებით
+
+**`di`**
+- `FrameworkModule` — Guice-ის მოდული: binding-ები, რეპორტერის არჩევა, RequestSpecification
+- `TestScope` — custom scope: თითო ტესტს საკუთარი ობიექტები აქვს
+- `TestContext` — ერთი ტესტის მდგომარეობა (შექმნილი კატეგორია, პროდუქტი, token-ები)
+- `SoftAssertListener` — ტესტის ბოლოს აჯამებს soft assert-ებს და შეცდომისას ტესტს აგდებს
+
+**`dtos/request`**
+- `CreateCategoryRequestDto`, `UpdateCategoryRequestDto` — კატეგორიის მოთხოვნის body
+- `CreateProductRequestDto`, `UpdateProductRequestDto` — პროდუქტის მოთხოვნის body
+- `CreateUserDto`, `UpdateUserDto` — მომხმარებლის მოთხოვნის body
+- `LoginRequestDto`, `RefreshTokenRequestDto` — ავტორიზაციის მოთხოვნის body
+- `GetCategoryLimitRequestDto` — კატეგორიების სიის `limit`
+- `AuthTokensDto` — login-ისა და refresh-ის პასუხი (access და refresh token)
+
+**`dtos/response`**
+- `GetResponseCategoryDto`, `GetResponseProductDto`, `GetUserResponseDto` — რესურსების პასუხები
+- `Identifiable` — ინტერფეისი `getId()` მეთოდით
+- `UnauthorizedErrorDto` — 401 პასუხი
+
+**`dtos/response/error`**
+- `ApiError` — შეცდომის DTO-ების საერთო ინტერფეისი
+- `BadRequestResponse` — 400: ჩანაწერი ვერ მოიძებნა
+- `ValidationErrorDto` — 400: ვალიდაციის შეცდომები
+- `PutBadRequestResponseDto` — 400 განახლებისას: ბაზის შეზღუდვის დარღვევა
+- `InternalServerErrorDto` — 500 პასუხი
+
+**`steps`**
+- `BaseSteps` — ნაბიჯების საბაზო კლასი (რეპორტერი, ვალიდატორი, ნაბიჯის ლოგირება)
+- `IResourceSteps` — CRUD ნაბიჯების ინტერფეისი
+- `AbstractResourceSteps` — CRUD ნაბიჯების საერთო იმპლემენტაცია და შექმნილი რესურსის cleanup-ზე რეგისტრაცია
+- `CategorySteps` — კატეგორიის ნაბიჯები (სია, slug-ით ძებნა, კატეგორიის პროდუქტები)
+- `ProductSteps` — პროდუქტის ნაბიჯები
+- `UserSteps` — მომხმარებლის ნაბიჯები
+- `AuthSteps` — login, profile, refresh token
+- `E2ESteps` — რამდენიმე რესურსის გაერთიანებული სცენარები
+
+**`utils`**
+- `LogFilter` — ყველა request-სა და response-ს წერს რეპორტში
+- `TestListenerManager` — TestNG listener: ტესტის შედეგს წერს კონსოლსა და რეპორტში
+
+**`utils/config`**
+- `ConfigSource` — `.properties` ფაილის წაკითხვა classpath-იდან
+- `PropertiesConfig` — კონფიგურაციის მნიშვნელობები `config.properties`-დან
+- `IConfigForRequest`, `IConfigForData` — კონფიგის ინტერფეისები მოთხოვნებისა და ტესტ-მონაცემებისთვის
+
+**`utils/reporter`**
+- `ITestReporter` — რეპორტერის ინტერფეისი
+- `IReportConfig` — რეპორტის კონფიგის ინტერფეისი
+- `ReportEngine` — enum: `ALLURE` ან `EXTENT`
+- `ReportStatus` — enum: PASS, FAIL, SKIP, INFO, WARNING
+- `allure/AllureTestReporter` — Allure-ის იმპლემენტაცია
+- `extent/ExtentTestReporter` — Extent Reports-ის იმპლემენტაცია
+
+**`utils/metrics`**
+- `MetricsFilter` — ზომავს თითო HTTP მოთხოვნის დროს
+- `MetricsRegistry` — ინახავს ტესტების მთვლელებსა და endpoint-ების სტატისტიკას
+- `SuiteMetricsListener` — ითვლის passed/failed/flaky ტესტებს და suite-ის ბოლოს უშვებს რეპორტის გენერაციას
+- `MetricsReportService` — აგროვებს მონაცემებს და იძახებს გენერატორებს
+- `PercentileCalculator` — პერცენტილის გამოთვლა (p50, p95, p99)
+- `generator/MetricsJsonReportBuilder` — ქმნის `metrics.json`-ს
+- `generator/MetricsHistoryStore` — გაშვებების ისტორია `history.json`-ში
+- `generator/MetricsHtmlGenerator` — ქმნის `metrics.html` dashboard-ს
+
+**`utils/retry`**
+- `RetryAnalyzer` — ჩავარდნილ ტესტს თავიდან უშვებს (რაოდენობა: `-Dretry.count`, default 1)
+- `RetryTransformer` — `RetryAnalyzer`-ს ყველა ტესტს ადებს
+
+### `src/test/java/ge/gmikeladze/platzi` — ტესტები
+
+- `BaseApiTest` — ყველა API ტესტის მშობელი კლასი: DI, setUp, tearDown, cleanup
+- `testdata/TestDataPreparer` — ანოტაციების მიხედვით ქმნის ტესტის წინასწარ მონაცემებს
+- `tests/CategoryTest`, `tests/ProductTest`, `tests/UserTest` — CRUD-ის პოზიტიური და ნეგატიური ტესტები
+- `tests/AuthTest` — login, profile და refresh token-ის ტესტები
+- `tests/e2e/E2ETest` — რამდენიმე რესურსის სცენარები
+- `unit/CleanupRegistryTest` — `CleanupRegistry`-ის unit ტესტები
+- `unit/FakeReporter` — რეპორტერის შემცვლელი unit ტესტებისთვის
+
+### რესურსები
+
+- `src/main/resources/config.properties` — base URL, ლიმიტები, რეპორტის engine, ტესტ-მონაცემები
+- `src/main/resources/schemas/` — JSON სქემები პასუხების ვალიდაციისთვის
+- `testexecution/` — TestNG suite-ები: smoke, positive, negative, regression, e2e
+
+
 ##  სწრაფი სტარტი
 
 **წინაპირობა:** დაინსტალირებული JDK 21 და Maven.
