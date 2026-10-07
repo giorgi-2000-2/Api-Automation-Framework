@@ -1,7 +1,7 @@
 package ge.gmikeladze.platzi.utils.metrics.generator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.utils.metrics.MetricsRegistry;
 import ge.gmikeladze.platzi.utils.metrics.PercentileCalculator;
@@ -13,19 +13,25 @@ import java.util.*;
 @Singleton
 public class MetricsJsonReportBuilder {
 
-        private static final String RUN_ID = "run-" + System.currentTimeMillis();
-        private static final String TIMESTAMP = Instant.now().toString();
+    private final String RUN_ID = "run-" + System.currentTimeMillis();
+    private final String TIMESTAMP = Instant.now().toString();
 
-        private final ObjectMapper mapper = new ObjectMapper()
-                .enable(SerializationFeature.INDENT_OUTPUT);
+    private final ObjectMapper mapper;
+    private final PercentileCalculator percentileCalculator;
 
-        public Map<String, Object> build(MetricsRegistry metrics, long suiteDurationMs) {
-            Map<String, Object> report = new LinkedHashMap<>();
+    @Inject
+    public MetricsJsonReportBuilder(ObjectMapper mapper,
+                                    PercentileCalculator percentileCalculator) {
+        this.mapper = mapper;
+        this.percentileCalculator = percentileCalculator;
+    }
 
-            report.put("runId", RUN_ID);
-            report.put("timestamp", TIMESTAMP);
-            report.put("suiteDurationMs", suiteDurationMs);
+    public Map<String, Object> build(MetricsRegistry metrics, long suiteDurationMs) {
+        Map<String, Object> report = new LinkedHashMap<>();
 
+        report.put("runId", RUN_ID);
+        report.put("timestamp", TIMESTAMP);
+        report.put("suiteDurationMs", suiteDurationMs);
 
         int total   = metrics.getTotalTests();
         int passed  = metrics.getPassedTests();
@@ -53,7 +59,6 @@ public class MetricsJsonReportBuilder {
 
             Map<String, Object> endpointData = new LinkedHashMap<>();
             endpointData.put("totalCalls", stats.getCallsCount());
-            endpointData.put("retriesCount", stats.getRetriesCount());
 
             Map<String, Integer> statusMap = new HashMap<>();
             for (var statusEntry : stats.getStatusCodes().entrySet()) {
@@ -68,9 +73,9 @@ public class MetricsJsonReportBuilder {
             if (!times.isEmpty()) {
                 percentiles.put("min", times.get(0));
                 percentiles.put("max", times.get(times.size() - 1));
-                percentiles.put("p50", PercentileCalculator.calculate(times, 50));
-                percentiles.put("p95", PercentileCalculator.calculate(times, 95));
-                percentiles.put("p99", PercentileCalculator.calculate(times, 99));
+                percentiles.put("p50", percentileCalculator.calculate(times, 50));
+                percentiles.put("p95", percentileCalculator.calculate(times, 95));
+                percentiles.put("p99", percentileCalculator.calculate(times, 99));
             }
             endpointData.put("responseTimeMs", percentiles);
 

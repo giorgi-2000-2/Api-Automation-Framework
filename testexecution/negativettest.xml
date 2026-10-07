@@ -8,12 +8,9 @@
                 <include name="negative"/>
             </run>
         </groups>
-        <classes>
-            <class name="ge.gmikeladze.platzi.tests.CategoryTest"/>
-            <class name="ge.gmikeladze.platzi.tests.ProductTest"/>
-            <class name="ge.gmikeladze.platzi.tests.UserTest"/>
-            <class name="ge.gmikeladze.platzi.tests.AuthTest"/>
-        </classes>
+        <packages>
+            <package name="ge.gmikeladze.platzi.tests.*"/>
+        </packages>
 
     </test>
 

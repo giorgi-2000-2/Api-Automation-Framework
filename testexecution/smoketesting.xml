@@ -8,11 +8,9 @@
                 <include name="smoke"/>
             </run>
         </groups>
-        <classes>
-            <class name="ge.gmikeladze.platzi.tests.CategoryTest"/>
-            <class name="ge.gmikeladze.platzi.tests.ProductTest"/>
-            <class name="ge.gmikeladze.platzi.tests.UserTest"/>
-        </classes>
+        <packages>
+            <package name="ge.gmikeladze.platzi.tests.*"/>
+        </packages>
     </test>
 
 </suite>

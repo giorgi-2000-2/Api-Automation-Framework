@@ -1,4 +1,6 @@
 package ge.gmikeladze.platzi.di;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provider;
 import com.google.inject.Provides;
@@ -45,7 +47,16 @@ public class FrameworkModule extends AbstractModule {
         bind(MetricsHtmlGenerator.class).asEagerSingleton();
         bind(MetricsReportService.class).asEagerSingleton();
         bind(SuiteMetricsListener.class).asEagerSingleton();
+        bind(PercentileCalculator.class).asEagerSingleton();
     }
+
+    @Provides
+    @Singleton
+    ObjectMapper provideObjectMapper() {
+        return new ObjectMapper()
+                .enable(SerializationFeature.INDENT_OUTPUT);
+    }
+
 
     @Provides
     @Singleton

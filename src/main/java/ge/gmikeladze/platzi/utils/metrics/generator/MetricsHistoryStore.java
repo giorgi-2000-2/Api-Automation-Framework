@@ -1,19 +1,22 @@
 package ge.gmikeladze.platzi.utils.metrics.generator;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import java.io.File;
+import java.util.*;
 import java.util.*;
 
 @Singleton
 public class MetricsHistoryStore {
 
-    private final ObjectMapper mapper = new ObjectMapper()
-            .enable(SerializationFeature.INDENT_OUTPUT);
+    private final ObjectMapper mapper;
 
+    @Inject
+    public MetricsHistoryStore(ObjectMapper mapper) {
+        this.mapper = mapper;
+    }
     public List<Map<String, Object>> loadAndAppend(File dir, String runId, String timestamp,
                                                    long durationMs, int totalTests,
                                                    double passRate, double flakyRate) {

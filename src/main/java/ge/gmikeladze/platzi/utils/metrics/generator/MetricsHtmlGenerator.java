@@ -1,5 +1,6 @@
 package ge.gmikeladze.platzi.utils.metrics.generator;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import ge.gmikeladze.platzi.utils.metrics.MetricsRegistry;
 import ge.gmikeladze.platzi.utils.metrics.PercentileCalculator;
@@ -10,6 +11,13 @@ import java.util.*;
 
 @Singleton
 public class MetricsHtmlGenerator {
+
+    private final PercentileCalculator percentileCalculator;
+
+    @Inject
+    public MetricsHtmlGenerator(PercentileCalculator percentileCalculator) {
+        this.percentileCalculator = percentileCalculator;
+    }
 
     public void generate(int total, int allTimeTotalTests, int passed, int failed, int skipped, int flaky,
                          double passRate, double flakyRate, long currentDurationMs,
@@ -24,7 +32,7 @@ public class MetricsHtmlGenerator {
             List<Long> times = new ArrayList<>(stats.getResponseTimes());
             Collections.sort(times);
 
-            long p95 = PercentileCalculator.calculate(times, 95);
+            long p95 = percentileCalculator.calculate(times, 95);
             long max = times.isEmpty() ? 0 : times.get(times.size() - 1);
 
             tableRows.append(String.format(
@@ -32,7 +40,6 @@ public class MetricsHtmlGenerator {
                     endpoint, stats.getCallsCount(), p95, max
             ));
         }
-
         double currentAvgDurationSec = total > 0
                 ? Math.round(((double) currentDurationMs / total / 1000.0) * 100.0) / 100.0
                 : 0.0;

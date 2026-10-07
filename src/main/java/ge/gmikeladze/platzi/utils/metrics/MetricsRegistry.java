@@ -11,8 +11,6 @@ import java.util.concurrent.atomic.LongAdder;
 @Singleton
 public class MetricsRegistry {
 
-    public static final String SUITE_ATTRIBUTE = MetricsRegistry.class.getName();
-
     private final LongAdder totalTests = new LongAdder();
     private final LongAdder passedTests = new LongAdder();
     private final LongAdder failedTests = new LongAdder();
@@ -37,11 +35,6 @@ public class MetricsRegistry {
                 .recordCall(statusCode, responseTimeMs);
     }
 
-    public void recordRetry(String endpointKey) {
-        endpointStatsMap
-                .computeIfAbsent(endpointKey, k -> new EndpointStats())
-                .recordRetry();
-    }
 
     public int getTotalTests()   { return totalTests.intValue(); }
     public int getPassedTests()  { return passedTests.intValue(); }
@@ -63,10 +56,6 @@ public class MetricsRegistry {
             callsCount.increment();
             statusCodes.computeIfAbsent(statusCode, k -> new LongAdder()).increment();
             responseTimes.add(responseTimeMs);
-        }
-
-        public void recordRetry() {
-            retriesCount.increment();
         }
 
         public int getCallsCount()   { return callsCount.intValue(); }

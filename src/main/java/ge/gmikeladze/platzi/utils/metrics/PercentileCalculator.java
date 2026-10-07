@@ -1,12 +1,17 @@
 package ge.gmikeladze.platzi.utils.metrics;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import java.util.List;
 
+@Singleton
 public class PercentileCalculator {
 
-    private PercentileCalculator() {}
+    @Inject
+    public PercentileCalculator() {}
 
-    public static long calculate(List<Long> sortedList, double percentile) {
+    public long calculate(List<Long> sortedList, double percentile) {
         if (sortedList == null || sortedList.isEmpty()) {
             return 0;
         }

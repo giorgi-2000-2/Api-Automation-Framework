@@ -57,7 +57,7 @@ public class SuiteMetricsListener implements ISuiteListener, ITestListener {
 
     @Override
     public void onFinish(ISuite suite) {
-        MetricsRegistry metrics = (MetricsRegistry) suite.getAttribute(MetricsRegistry.SUITE_ATTRIBUTE);
+        MetricsRegistry metrics = (MetricsRegistry) suite.getAttribute(MetricsRegistry.class.getName());
         if (metrics == null) {
             System.out.println("MetricsRegistry suite-ზე ვერ მოიძებნა — მეტრიკების რეპორტი არ დაგენერირდა");
             return;
@@ -72,6 +72,6 @@ public class SuiteMetricsListener implements ISuiteListener, ITestListener {
 
     private MetricsRegistry metrics(ITestResult result) {
         return (MetricsRegistry) result.getTestContext().getSuite()
-                .getAttribute(MetricsRegistry.SUITE_ATTRIBUTE);
+                .getAttribute(MetricsRegistry.class.getName());
     }
 }

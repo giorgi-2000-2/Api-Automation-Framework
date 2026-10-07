@@ -51,7 +51,7 @@ public abstract class BaseApiTest {
 
     @BeforeClass(alwaysRun = true)
     public void shareMetricsAndRegisterListener(ITestContext context) {
-        context.getSuite().setAttribute(MetricsRegistry.SUITE_ATTRIBUTE, metrics);
+        context.getSuite().setAttribute(MetricsRegistry.class.getName(), metrics);
         synchronized (context.getSuite()) {
             if (context.getSuite().getAttribute("metricsListenerRegistered") == null) {
                 context.getSuite().addListener(suiteMetricsListener);
