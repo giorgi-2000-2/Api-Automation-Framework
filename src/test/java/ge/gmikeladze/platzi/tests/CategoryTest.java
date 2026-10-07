@@ -40,21 +40,33 @@ public class CategoryTest extends BaseApiTest {
     @Test(groups = {"smoke", "regression","positive"})
     @RequiresCategory
     public void testGetCategoryById() {
+        CreateCategoryRequestDto sent = context.get().getCategoryRequest();
+        GetResponseCategoryDto created = context.get().getCategory();
 
-        GetResponseCategoryDto response = categorySteps.get().getById(context.get().getCategory().getId());
+        GetResponseCategoryDto response = categorySteps.get().getById(created.getId());
+
         categoryAssert.get().assertThat(response)
-                .hasId(context.get().getCategory().getId());
-
+                .hasId(created.getId())
+                .hasName(sent.getName())
+                .hasImage(sent.getImage());
     }
 
     @Test(groups = {"smoke", "regression","positive"})
     @RequiresCategory
     public void testPutCategoryUpdateSuccessfully() {
+        UpdateCategoryRequestDto update = categoryData.updateCategoryDto();
 
-        UpdateCategoryRequestDto updateCategory = categoryData.updateCategoryDto();
-        GetResponseCategoryDto response = categorySteps.get().update(context.get().getCategory().getId(), updateCategory);
+        GetResponseCategoryDto response = categorySteps.get().update(context.get().getCategory().getId(), update);
         categoryAssert.get().assertThat(response)
-                .hasName(updateCategory.getName());
+                .hasId(context.get().getCategory().getId())
+                .hasName(update.getName())
+                .hasImage(update.getImage());
+
+        GetResponseCategoryDto fetched = categorySteps.get().getById(context.get().getCategory().getId());
+        categoryAssert.get().assertThat(fetched)
+                .hasId(context.get().getCategory().getId())
+                .hasName(update.getName())
+                .hasImage(update.getImage());
     }
 
     @Test(groups = {"smoke", "regression","positive"})
